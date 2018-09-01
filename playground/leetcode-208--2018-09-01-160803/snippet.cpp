@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -44,12 +45,9 @@ using namespace std;
  */
 struct TrieNode {
 public:
-    TrieNode* next[26];
+    unique_ptr<TrieNode> next[26];
     bool is_word;
-    TrieNode(bool b = false) {
-        fill_n(next, sizeof(next), nullptr);
-        is_word = b;
-    }
+    TrieNode(bool b = false) { is_word = b; }
 };
 
 class Trie {
@@ -62,9 +60,9 @@ public:
     void insert(string s) {
         TrieNode* p = root;
         for (int i = 0; i < s.size(); ++i) {
-            if (p->next[s[i] - 'a'] == NULL)
-                p->next[s[i] - 'a'] = new TrieNode();
-            p = p->next[s[i] - 'a'];
+            if (p->next[s[i] - 'a'] == nullptr)
+                p->next[s[i] - 'a'].reset(new TrieNode());
+            p = p->next[s[i] - 'a'].get();
         }
         p->is_word = true;
     }
@@ -72,18 +70,18 @@ public:
     // Returns if the word is in the trie.
     bool search(string key) {
         TrieNode* p = find(key);
-        return p != NULL && p->is_word;
+        return p != nullptr && p->is_word;
     }
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
-    bool startsWith(string prefix) { return find(prefix) != NULL; }
+    bool startsWith(string prefix) { return find(prefix) != nullptr; }
 
 private:
     TrieNode* find(string key) {
         TrieNode* p = root;
-        for (int i = 0; i < key.size() && p != NULL; ++i)
-            p = p->next[key[i] - 'a'];
+        for (int i = 0; i < key.size() && p != nullptr; ++i)
+            p = p->next[key[i] - 'a'].get();
         return p;
     }
 };

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -47,43 +48,42 @@ using namespace std;
  */
 struct TrieNode {
     bool isKey;
-    TrieNode* children[26];
+    unique_ptr<TrieNode> children[26];
     TrieNode()
-        : isKey(false) {
-        fill_n(children, sizeof(children), nullptr);
-    }
+        : isKey(false) {}
 };
 
 class WordDictionary {
 public:
-    WordDictionary() { root = new TrieNode(); }
+    WordDictionary()
+        : root(new TrieNode()) {}
 
     // Adds a word into the data structure.
     void addWord(string word) {
-        TrieNode* run = root;
+        TrieNode* run = root.get();
         for (char c : word) {
             if (!(run->children[c - 'a']))
-                run->children[c - 'a'] = new TrieNode();
-            run = run->children[c - 'a'];
+                run->children[c - 'a'].reset(new TrieNode());
+            run = run->children[c - 'a'].get();
         }
         run->isKey = true;
     }
 
     // Returns if the word is in the data structure. A word could
     // contain the dot character '.' to represent any one letter.
-    bool search(string word) { return query(word.c_str(), root); }
+    bool search(string word) { return query(word.c_str(), root.get()); }
 
 private:
-    TrieNode* root;
+    unique_ptr<TrieNode> root;
     bool query(const char* word, TrieNode* node) {
         TrieNode* run = node;
         for (int i = 0; word[i]; i++) {
             if (run && word[i] != '.')
-                run = run->children[word[i] - 'a'];
+                run = run->children[word[i] - 'a'].get();
             else if (run && word[i] == '.') {
                 TrieNode* tmp = run;
                 for (int j = 0; j < 26; j++) {
-                    run = tmp->children[j];
+                    run = tmp->children[j].get();
                     if (query(word + i + 1, run))
                         return true;
                 }

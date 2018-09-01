@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <memory>
 #include <vector>
 
 using namespace std;
@@ -45,7 +46,7 @@ using namespace std;
  * You may assume that all inputs are consist of lowercase letters a-z.
  */
 struct Trie {
-    Trie* children[26];
+    unique_ptr<Trie> children[26];
     bool isLeaf;
     int wordIdx;
     int prefixCount;
@@ -53,11 +54,6 @@ struct Trie {
         isLeaf = false;
         wordIdx = 0;
         prefixCount = 0;
-        fill_n(children, sizeof(children), nullptr);
-    }
-    ~Trie() {
-        for (auto i = 0; i < sizeof(children); ++i)
-            delete children[i];
     }
 };
 
@@ -68,19 +64,12 @@ private:
         for (i = 0, root->prefixCount++; i < len; ++i) {
             childID = words[idx][i] - 'a';
             if (!root->children[childID])
-                root->children[childID] = new Trie();
-            root = root->children[childID];
+                root->children[childID].reset(new Trie());
+            root = root->children[childID].get();
             ++root->prefixCount;
         }
         root->isLeaf = true;
         root->wordIdx = idx;
-    }
-
-    Trie* buildTrie(const vector<string>& words) {
-        Trie* root = new Trie();
-        for (int i = 0; i < words.size(); ++i)
-            insertWord(root, words, i);
-        return root;
     }
 
     int dfs_Trie(vector<string>& res, Trie* root, vector<vector<char>>& board,
@@ -99,10 +88,10 @@ private:
             return detected;
         int curC = board[row][col] - 'a';
         board[row][col] = '*';
-        detected += dfs_Trie(res, root->children[curC], board, words, row - 1, col)
-            + dfs_Trie(res, root->children[curC], board, words, row + 1, col)
-            + dfs_Trie(res, root->children[curC], board, words, row, col - 1)
-            + dfs_Trie(res, root->children[curC], board, words, row, col + 1);
+        detected += dfs_Trie(res, root->children[curC].get(), board, words, row - 1, col)
+            + dfs_Trie(res, root->children[curC].get(), board, words, row + 1, col)
+            + dfs_Trie(res, root->children[curC].get(), board, words, row, col - 1)
+            + dfs_Trie(res, root->children[curC].get(), board, words, row, col + 1);
         root->prefixCount -= detected;
         board[row][col] = curC + 'a';
         return detected;
@@ -114,11 +103,12 @@ public:
         vector<string> res;
         if (!(M = board.size()) || !(N = board[0].size()) || !wordNum)
             return res;
-        Trie* root = buildTrie(words);
+        auto root = make_unique<Trie>();
+        for (int i = 0; i < words.size(); ++i)
+            insertWord(root.get(), words, i);
         for (auto i = 0; i < M && root->prefixCount; ++i)
             for (auto j = 0; j < N; ++j)
-                dfs_Trie(res, root, board, words, i, j);
-        delete root;
+                dfs_Trie(res, root.get(), board, words, i, j);
         return res;
     }
 };
