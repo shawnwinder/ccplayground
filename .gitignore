@@ -1,0 +1,7 @@
+*.d
+*.o
+core.*
+rel
+deb
+rel_test
+deb_test
