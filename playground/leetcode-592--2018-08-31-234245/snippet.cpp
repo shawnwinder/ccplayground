@@ -55,7 +55,7 @@ using namespace std;
  *
  * The input string only contains '0' to '9', '/', '+' and '-'. So does the
  * output.
- * Each fraction (input and output) has format ±numerator/denominator. If the
+ * Each fraction (input and output) has format ?numerator/denominator. If the
  * first input fraction or the output is positive, then '+' will be omitted.
  * The input only contains valid irreducible fractions, where the numerator and
  * denominator of each fraction will always be in the range [1,10]. If the

@@ -31,7 +31,7 @@ using namespace std;
  * Note:
  *
  * The given numbers of 0s and 1s will both not exceed 100
- * The size of given string array won't exceed 600.
+ * The size of given string array won't exceed 0.
  *
  *
  *
@@ -41,7 +41,7 @@ using namespace std;
  * Output: 4
  *
  * Explanation: This are totally 4 strings can be formed by the using of 5 0s
- * and 3 1s, which are “10,”0001”,”1”,”0”
+ * and 3 1s, which are "10,"0001","1","0"
  *
  *
  *

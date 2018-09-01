@@ -41,7 +41,7 @@ using namespace std;
  *
  * MyCalendarThree();
  * MyCalendarThree.book(10, 20); // returns 1
- * MyCalendarThree.book(50, 60); // returns 1
+ * MyCalendarThree.book(50, ); // returns 1
  * MyCalendarThree.book(10, 40); // returns 2
  * MyCalendarThree.book(5, 15); // returns 3
  * MyCalendarThree.book(5, 10); // returns 3

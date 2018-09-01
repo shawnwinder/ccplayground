@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
  * Total Submissions: 598.6K
  * Testcase Example:  '[2,2,1]'
  *
- * Given a non-empty array of integers, every element appears twice except for
+ * Given a non-empty array of integers, every element appears twice except for
  * one. Find that single one.
  *
  * Note:
@@ -43,13 +44,11 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         int ones = 0;
-		for (int i = 0; i < nums.size(); i++) {
-			ones = (ones ^ nums[i]);
-		}
-		return ones;
+        for (int i = 0; i < nums.size(); i++) {
+            ones = (ones ^ nums[i]);
+        }
+        return ones;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

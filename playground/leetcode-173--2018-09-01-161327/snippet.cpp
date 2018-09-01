@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -28,29 +29,50 @@ using namespace std;
  * Credits:Special thanks to @ts for adding this problem and creating all test
  * cases.
  */
-/**
- * Definition for binary tree
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class BSTIterator {
-public:
-    BSTIterator(TreeNode *root) {
 
-    }
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
+class BSTIterator {
+private:
+    stack<TreeNode*> st;
+
+public:
+    BSTIterator(TreeNode* root) { find_left(root); }
 
     /** @return whether we have a next smallest number */
     bool hasNext() {
-
+        if (st.empty())
+            return false;
+        return true;
     }
 
     /** @return the next smallest number */
     int next() {
+        TreeNode* top = st.top();
+        st.pop();
+        if (top->right != NULL)
+            find_left(top->right);
 
+        return top->val;
+    }
+
+    /** put all the left child() of root */
+    void find_left(TreeNode* root) {
+        TreeNode* p = root;
+        while (p != NULL) {
+            st.push(p);
+            p = p->left;
+        }
     }
 };
 
@@ -60,6 +82,4 @@ public:
  * while (i.hasNext()) cout << i.next();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

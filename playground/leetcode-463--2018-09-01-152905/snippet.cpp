@@ -29,9 +29,9 @@ using namespace std;
  * Example:
  *
  * [[0,1,0,0],
- * ⁠[1,1,1,0],
- * ⁠[0,1,0,0],
- * ⁠[1,1,0,0]]
+ * [1,1,1,0],
+ * [0,1,0,0],
+ * [1,1,0,0]]
  *
  * Answer: 16
  * Explanation: The perimeter is the 16 yellow stripes in the image below:

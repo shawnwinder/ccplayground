@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -25,38 +27,43 @@ using namespace std;
  * For example:
  * Given binary tree [3,9,20,null,null,15,7],
  *
- * ⁠   3
- * ⁠  / \
- * ⁠ 9  20
- * ⁠   /  \
- * ⁠  15   7
+ *     3
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
  *
  *
  *
  * return its zigzag level order traversal as:
  *
  * [
- * ⁠ [3],
- * ⁠ [20,9],
- * ⁠ [15,7]
+ *   [3],
+ *   [20,9],
+ *   [15,7]
  * ]
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        if (!root) return {};
-        vector<TreeNode*> q = {root};
+        if (!root)
+            return {};
+        vector<TreeNode*> q = { root };
         vector<vector<int>> ans;
         bool lr = true;
         while (!q.empty()) {
@@ -65,14 +72,18 @@ public:
             reverse(q.begin(), q.end());
             for (auto e : q) {
                 if (lr) {
-                    if (e->left) q2.push_back(e->left);
-                    if (e->right) q2.push_back(e->right);
+                    if (e->left)
+                        q2.push_back(e->left);
+                    if (e->right)
+                        q2.push_back(e->right);
                 } else {
-                    if (e->right) q2.push_back(e->right);
-                    if (e->left) q2.push_back(e->left);
+                    if (e->right)
+                        q2.push_back(e->right);
+                    if (e->left)
+                        q2.push_back(e->left);
                 }
             }
-            transform(q.begin(), q.end(), back_inserter(tmp), [](TreeNode* t) { return t->val;});
+            transform(q.begin(), q.end(), back_inserter(tmp), [](TreeNode* t) { return t->val; });
             ans.push_back(tmp);
             q = q2;
             lr = !lr;
@@ -81,7 +92,4 @@ public:
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -49,12 +50,15 @@ class Solution {
 public:
     void solve(vector<vector<int>>& ans, vector<int>& state, int s, int i, int k, int n) {
         if (k == 0) {
-            if ( s == n) ans.push_back(state);
+            if (s == n)
+                ans.push_back(state);
             return;
         }
-        if (9 - i + 1 < k) return;
-        for (int j = i; j<=9; j++) {
-            if (s + (2*j + k - 1) * k / 2 > n) break;
+        if (9 - i + 1 < k)
+            return;
+        for (int j = i; j <= 9; j++) {
+            if (s + (2 * j + k - 1) * k / 2 > n)
+                break;
             state.push_back(j);
             solve(ans, state, s + j, j + 1, k - 1, n);
             state.pop_back();
@@ -68,6 +72,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

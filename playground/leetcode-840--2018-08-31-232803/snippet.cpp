@@ -20,8 +20,8 @@ using namespace std;
  * A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to
  * 9 such that each row, column, and both diagonals all have the same sum.
  *
- * Given an grid of integers, how many 3 x 3 "magic square" subgrids are
- * there?  (Each subgrid is contiguous).
+ * Given an grid of integers, how many 3 x 3 "magic square" subgrids are
+ * there?  (Each subgrid is contiguous).
  *
  *
  *
@@ -29,8 +29,8 @@ using namespace std;
  *
  *
  * Input: [[4,3,8,4],
- * ⁠       [9,5,1,9],
- * ⁠       [2,7,6,2]]
+ *        [9,5,1,9],
+ *        [2,7,6,2]]
  * Output: 1
  * Explanation:
  * The following subgrid is a 3 x 3 magic square:
@@ -49,8 +49,8 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= grid.length <= 10
- * 1 <= grid[0].length <= 10
+ * 1 <= grid.length <= 10
+ * 1 <= grid[0].length <= 10
  * 0 <= grid[i][j] <= 15
  *
  *

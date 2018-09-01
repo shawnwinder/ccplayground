@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 22.4K
  * Testcase Example:  '[1,2,3,4,5]'
  *
- * Given a non-empty, singly linked list with head node head, return a middle
+ * Given a non-empty, singly linked list with head node head, return a middle
  * node of linked list.
  *
  * If there are two middle nodes, return the second middle node.
@@ -48,7 +48,7 @@ using namespace std;
  * Note:
  *
  *
- * The number of nodes in the given list will be between 1 and 100.
+ * The number of nodes in the given list will be between 1 and 100.
  *
  */
 
@@ -77,8 +77,5 @@ public:
         return slow;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

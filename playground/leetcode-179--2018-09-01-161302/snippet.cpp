@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -39,22 +42,18 @@ using namespace std;
  */
 class Solution {
 public:
-    string largestNumber(vector<int>& nums) {
-        sort(nums.begin(), nums.end(), [](int a, int b) {
-                stringstream sa ;
-                stringstream sb ;
-                sa << a << b;
-                sb << b << a;
-                return sa.str() > sb.str();
-            });
-        stringstream ss;
-        if (!nums.empty() && nums[0] == 0) ss << "0";
-        else for (auto n : nums) ss << n;
-        return ss.str();
+    string largestNumber(vector<int>& num) {
+        vector<string> arr;
+        for (auto i : num)
+            arr.push_back(to_string(i));
+        sort(begin(arr), end(arr), [](string& s1, string& s2) { return s1 + s2 > s2 + s1; });
+        string res;
+        for (auto s : arr)
+            res += s;
+        while (res[0] == '0' && res.length() > 1)
+            res.erase(0, 1);
+        return res;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

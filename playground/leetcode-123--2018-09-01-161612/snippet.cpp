@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ using namespace std;
  * Design an algorithm to find the maximum profit. You may complete at most two
  * transactions.
  *
- * Note: You may not engage in multiple transactions at the same time (i.e.,
+ * Note: You may not engage in multiple transactions at the same time (i.e.,
  * you must sell the stock before you buy again).
  *
  * Example 1:
@@ -61,28 +62,26 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        if(n <= 1) return 0;
+        if (n <= 1)
+            return 0;
         vector<int> l = vector<int>(n, 0);
         vector<int> r = vector<int>(n, 0);
         int cur_min = prices[0];
-        for(int i=1; i<n; i++) {
-            l[i] = max(l[i-1], prices[i] - cur_min);
+        for (int i = 1; i < n; i++) {
+            l[i] = max(l[i - 1], prices[i] - cur_min);
             cur_min = min(cur_min, prices[i]);
         }
-        int cur_max = prices[n-1];
-        for(int i=n-2; i>=0; i--) {
-            r[i] = max(r[i+1], cur_max - prices[i]);
+        int cur_max = prices[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            r[i] = max(r[i + 1], cur_max - prices[i]);
             cur_max = max(cur_max, prices[i]);
         }
-        int res = l[n-1];
-        for(int i=1; i<n-1; i++) {
-            res = max(res, l[i] + r[i+1]);
+        int res = l[n - 1];
+        for (int i = 1; i < n - 1; i++) {
+            res = max(res, l[i] + r[i + 1]);
         }
         return res;
-        
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

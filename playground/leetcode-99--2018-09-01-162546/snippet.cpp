@@ -26,19 +26,19 @@ using namespace std;
  *
  * Input: [1,3,null,null,2]
  *
- * 1
- * /
+ *   1
+ *  /
  * 3
- * \
- * 2
+ *  \
+ *   2
  *
  * Output: [3,1,null,null,2]
  *
- * 3
- * /
+ *   3
+ *  /
  * 1
- * \
- * 2
+ *  \
+ *   2
  *
  *
  * Example 2:
@@ -46,19 +46,19 @@ using namespace std;
  *
  * Input: [3,1,4,null,null,2]
  *
- * ⁠ 3
- * ⁠/ \
- * 1   4
- * /
+ *     3
+ *    / \
+ *   1   4
+ *  /
  * 2
  *
  * Output: [2,1,4,null,null,3]
  *
- * ⁠ 2
- * ⁠/ \
+ *   2
+ *  / \
  * 1   4
- * /
- * ⁠ 3
+ *    /
+ *   3
  *
  *
  * Follow up:
@@ -69,20 +69,25 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     void recoverTree(TreeNode* root) {
-        if (!root) return;
-        TreeNode* p = nullptr, *u = nullptr, *v;
+        if (!root)
+            return;
+        TreeNode *p = nullptr, *u = nullptr, *v;
         while (root) {
             auto l = root->left;
             if (l) {
@@ -110,6 +115,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

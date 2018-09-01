@@ -26,29 +26,30 @@ using namespace std;
  * Can you solve it without using extra space?
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
-        if (!head) return false;
+    bool hasCycle(ListNode* head) {
+        if (!head)
+            return false;
         auto fast = head;
         auto slow = head;
         while (slow->next && fast->next && fast->next->next) {
             slow = slow->next;
             fast = fast->next->next;
-            if (slow == fast) return true;
+            if (slow == fast)
+                return true;
         }
         return false;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

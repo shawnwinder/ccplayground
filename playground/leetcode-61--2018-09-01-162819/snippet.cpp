@@ -14,10 +14,10 @@ using namespace std;
  * algorithms
  * Medium (25.24%)
  * Total Accepted:    152.3K
- * Total Submissions: 603.5K
+ * Total Submissions: 3.5K
  * Testcase Example:  '[1,2,3,4,5]\n2'
  *
- * Given a linked list, rotate the list to the right by k places, where k is
+ * Given a linked list, rotate the list to the right by k places, where k is
  * non-negative.
  *
  * Example 1:
@@ -38,36 +38,38 @@ using namespace std;
  * Explanation:
  * rotate 1 steps to the right: 2->0->1->NULL
  * rotate 2 steps to the right: 1->2->0->NULL
- * rotate 3 steps to the right: 0->1->2->NULL
- * rotate 4 steps to the right: 2->0->1->NULL
+ * rotate 3 steps to the right: 0->1->2->NULL
+ * rotate 4 steps to the right: 2->0->1->NULL
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-  ListNode *rotateRight(ListNode *head, int k) {
-    if (! head) return NULL;
-    ListNode *x = head, *y, *z;
-    int n = 0;
-    for (; x; y = x, x = x->next)
-      n++;
-    if (! (k %= n)) return head;
-    for (k = n-k, x = head; k; k--)
-      z = x, x = x->next;
-    y->next = head;
-    z->next = NULL;
-    return x;
-  }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (!head)
+            return NULL;
+        ListNode *x = head, *y, *z;
+        int n = 0;
+        for (; x; y = x, x = x->next)
+            n++;
+        if (!(k %= n))
+            return head;
+        for (k = n - k, x = head; k; k--)
+            z = x, x = x->next;
+        y->next = head;
+        z->next = NULL;
+        return x;
+    }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

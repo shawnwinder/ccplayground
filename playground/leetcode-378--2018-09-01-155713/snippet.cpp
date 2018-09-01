@@ -28,9 +28,9 @@ using namespace std;
  * Example:
  *
  * matrix = [
- * ⁠  [ 1,  5,  9],
- * ⁠  [10, 11, 13],
- * ⁠  [12, 13, 15]
+ *   [ 1,  5,  9],
+ *   [10, 11, 13],
+ *   [12, 13, 15]
  * ],
  * k = 8,
  *
@@ -39,7 +39,7 @@ using namespace std;
  *
  *
  * Note:
- * You may assume k is always valid, 1 ≤ k ≤ n2.
+ * You may assume k is always valid, 1 <= k <= n2.
  */
 class Solution {
 public:

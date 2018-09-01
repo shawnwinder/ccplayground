@@ -20,7 +20,7 @@ using namespace std;
  * On a 2x3 board, there are 5 tiles represented by the integers 1 through 5,
  * and an empty square represented by 0.
  *
- * A move consists of choosing 0 and a 4-directionally adjacent number and
+ * A move consists of choosing 0 and a 4-directionally adjacent number and
  * swapping it.
  *
  * The state of the board is solved if and only if the board is

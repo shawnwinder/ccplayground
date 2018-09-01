@@ -53,7 +53,7 @@ using namespace std;
  *
  * Note:
  *
- * You may assume that the initial row of balls on the table won’t have any 3
+ * You may assume that the initial row of balls on the table won't have any 3
  * or more consecutive balls with the same color.
  * The number of balls on the table won't exceed 20, and the string represents
  * these balls is called "board" in the input.

@@ -18,8 +18,8 @@ using namespace std;
  * Testcase Example:  '[[1,2,7],[3,6,7]]\n1\n6'
  *
  * We have a list of bus routes. Each routes[i] is a bus route that the i-th
- * bus repeats forever. For example if routes[0] = [1, 5, 7], this means that
- * the first bus (0-th indexed) travels in the sequence
+ * bus repeats forever. For example if routes[0] = [1, 5, 7], this means that
+ * the first bus (0-th indexed) travels in the sequence
  * 1->5->7->1->5->7->1->... forever.
  *
  * We start at bus stop S (initially not on a bus), and we want to go to bus

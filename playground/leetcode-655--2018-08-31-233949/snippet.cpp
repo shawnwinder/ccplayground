@@ -39,12 +39,12 @@ using namespace std;
  * Example 1:
  *
  * Input:
- * ⁠    1
- * ⁠   /
- * ⁠  2
+ *     1
+ *    /
+ *   2
  * Output:
  * [["", "1", ""],
- * ⁠["2", "", ""]]
+ * ["2", "", ""]]
  *
  *
  *
@@ -52,34 +52,34 @@ using namespace std;
  * Example 2:
  *
  * Input:
- * ⁠    1
- * ⁠   / \
- * ⁠  2   3
- * ⁠   \
- * ⁠    4
+ *     1
+ *    / \
+ *   2   3
+ *    \
+ *     4
  * Output:
  * [["", "", "", "1", "", "", ""],
- * ⁠["", "2", "", "", "", "3", ""],
- * ⁠["", "", "4", "", "", "", ""]]
+ * ["", "2", "", "", "", "3", ""],
+ * ["", "", "4", "", "", "", ""]]
  *
  *
  *
  * Example 3:
  *
  * Input:
- * ⁠     1
- * ⁠    / \
- * ⁠   2   5
- * ⁠  /
- * ⁠ 3
- * ⁠/
+ *      1
+ *     / \
+ *    2   5
+ *   /
+ *  3
+ * /
  * 4
  * Output:
  *
  * [["",  "",  "", "",  "", "", "", "1", "",  "",  "",  "",  "", "", ""]
- * ⁠["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""]
- * ⁠["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]
- * ⁠["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]]
+ * ["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""]
+ * ["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]
+ * ["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]]
  *
  *
  *
@@ -87,15 +87,19 @@ using namespace std;
  * The height of binary tree is in the range of [1, 10].
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int dep(TreeNode* root) {

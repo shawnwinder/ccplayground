@@ -18,16 +18,16 @@ using namespace std;
  * Total Submissions: 9.4K
  * Testcase Example:  '[[2]]'
  *
- * On a N * N grid, we place some 1 * 1 * 1 cubes that are axis-aligned with
+ * On a N * N grid, we place some 1 * 1 * 1 cubes that are axis-aligned with
  * the x, y, and z axes.
  *
- * Each value v = grid[i][j] represents a tower of v cubes placed on top of
+ * Each value v = grid[i][j] represents a tower of v cubes placed on top of
  * grid cell (i, j).
  *
- * Now we view the projection of these cubes onto the xy, yz, and zx planes.
+ * Now we view the projection of these cubes onto the xy, yz, and zx planes.
  *
- * A projection is like a shadow, that maps our 3 dimensional figure to a 2
- * dimensional plane. 
+ * A projection is like a shadow, that maps our 3 dimensional figure to a 2
+ * dimensional plane.
  *
  * Here, we are viewing the "shadow" when looking at the cubes from the top,
  * the front, and the side.
@@ -87,16 +87,8 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= grid.length = grid[0].length <= 50
+ * 1 <= grid.length = grid[0].length <= 50
  * 0 <= grid[i][j] <= 50
- *
- *
- *
- *
- *
- *
- *
- *
  *
  */
 class Solution {
@@ -116,8 +108,5 @@ public:
         return res;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -46,38 +47,35 @@ using namespace std;
  * Output: 4
  * Explanation: You can allocate to the first, second and third child with 1,
  * 2, 1 candies respectively.
- * ⁠            The third child gets 1 candy because it satisfies the above two
+ *             The third child gets 1 candy because it satisfies the above two
  * conditions.
  *
  *
  */
 class Solution {
 public:
-
     int candy(vector<int>& ratings) {
         int n = ratings.size();
-        if(n == 0) return 0;
+        if (n == 0)
+            return 0;
         vector<int> l = vector<int>(n, 1);
         vector<int> r = l;
         int ans = 0;
-        for(int i=1; i<n; i++) {
-            if(ratings[i] > ratings[i-1]) {
-                l[i] = l[i-1] + 1;
+        for (int i = 1; i < n; i++) {
+            if (ratings[i] > ratings[i - 1]) {
+                l[i] = l[i - 1] + 1;
             }
         }
-        for(int i=n-2; i>=0; i--) {
-            if(ratings[i] > ratings[i+1]) {
-                r[i] = r[i+1] + 1;
+        for (int i = n - 2; i >= 0; i--) {
+            if (ratings[i] > ratings[i + 1]) {
+                r[i] = r[i + 1] + 1;
             }
         }
-        
-        for(int i=0;i<n;i++) {
+        for (int i = 0; i < n; i++) {
             ans += max(l[i], r[i]);
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

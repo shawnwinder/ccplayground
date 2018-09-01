@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Easy (32.85%)
  * Total Accepted:    213.7K
  * Total Submissions: 650.6K
- * Testcase Example:  '["MinStack","push","push","push","getMin","pop","top","getMin"]\n[[],[-2],[0],[-3],[],[],[],[]]'
+ * Testcase Example:
+ * '["MinStack","push","push","push","getMin","pop","top","getMin"]\n[[],[-2],[0],[-3],[],[],[],[]]'
  *
  *
  * Design a stack that supports push, pop, top, and retrieving the minimum
@@ -50,27 +52,22 @@ using namespace std;
  *
  */
 class MinStack {
+private:
+    stack<int> s1;
+    stack<int> s2;
 public:
-    /** initialize your data structure here. */
-    MinStack() {
-
-    }
-
     void push(int x) {
-
+        s1.push(x);
+        if (s2.empty() || x <= getMin())
+            s2.push(x);
     }
-
     void pop() {
-
+        if (s1.top() == getMin())
+            s2.pop();
+        s1.pop();
     }
-
-    int top() {
-
-    }
-
-    int getMin() {
-
-    }
+    int top() { return s1.top(); }
+    int getMin() { return s2.top(); }
 };
 
 /**
@@ -82,6 +79,4 @@ public:
  * int param_4 = obj.getMin();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -28,11 +28,11 @@ using namespace std;
  * Example 1:
  *
  * Input: Binary tree: [1,2,3,4]
- * ⁠      1
- * ⁠    /   \
- * ⁠   2     3
- * ⁠  /
- * ⁠ 4
+ *       1
+ *     /   \
+ *    2     3
+ *   /
+ *  4
  *
  * Output: "1(2(4))(3)"
  * Explanation: Originallay it needs to be "1(2(4)())(3()())", but you need to
@@ -44,11 +44,11 @@ using namespace std;
  * Example 2:
  *
  * Input: Binary tree: [1,2,3,null,4]
- * ⁠      1
- * ⁠    /   \
- * ⁠   2     3
- * ⁠    \
- * ⁠     4
+ *       1
+ *     /   \
+ *    2     3
+ *     \
+ *      4
  *
  * Output: "1(2()(4))(3)"
  * Explanation: Almost the same as the first example, except we can't omit the
@@ -57,15 +57,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     string tree2str(TreeNode* t) {

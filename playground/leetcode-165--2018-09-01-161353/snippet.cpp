@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -18,7 +20,7 @@ using namespace std;
  * Testcase Example:  '"0.1"\n"1.1"'
  *
  * Compare two version numbers version1 and version2.
- * If version1 > version2 return 1; if version1 < version2 return -1;otherwise
+ * If version1 > version2 return 1; if version1 < version2 return -1;otherwise
  * return 0.
  *
  * You may assume that the version strings are non-empty and contain only
@@ -47,42 +49,36 @@ using namespace std;
  * Output: -1
  *
  */
- class Solution {
- public:
-   vector<int> parse(string& v) {
-     stringstream ss(v);
-     int i;
-     char sep;
-     vector<int> ret;
-     while (true) {
-       ss >> i;
-       ret.push_back(i);
-       if (! (ss >> sep)) break;
-     }
-     return ret;
-   }
+class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        int i = 0;
+        int j = 0;
+        int n1 = version1.size();
+        int n2 = version2.size();
+        int num1 = 0;
+        int num2 = 0;
+        while (i < n1 || j < n2) {
+            while (i < n1 && version1[i] != '.') {
+                num1 = num1 * 10 + (version1[i] - '0');
+                i++;
+            }
+            while (j < n2 && version2[j] != '.') {
+                num2 = num2 * 10 + (version2[j] - '0');
+                ;
+                j++;
+            }
+            if (num1 > num2)
+                return 1;
+            else if (num1 < num2)
+                return -1;
+            num1 = 0;
+            num2 = 0;
+            i++;
+            j++;
+        }
+        return 0;
+    }
+};
 
-   int compareVersion(string version1, string version2) {
-     vector<int> l = parse(version1);
-     vector<int> r = parse(version2);
-     int i;
-     for (i = 0;  i < min(l.size(), r.size()); i++ ) {
-       if (l[i] < r[i]) return -1;
-       if (l[i] > r[i]) return 1;
-     }
-     while (i < l.size()) {
-       if(l[i] > 0) return 1;
-       i ++;
-     }
-     while (i < r.size()) {
-       if(r[i] > 0) return -1;
-       i ++;
-     }
-     return 0;
-   }
- };
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

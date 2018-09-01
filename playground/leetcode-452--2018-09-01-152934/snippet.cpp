@@ -25,7 +25,7 @@ using namespace std;
  *
  * An arrow can be shot up exactly vertically from different points along the
  * x-axis. A balloon with xstart and xend bursts by an arrow shot at x if
- * xstart ≤ x ≤ xend. There is no limit to the number of arrows that can be
+ * xstart <= x <= xend. There is no limit to the number of arrows that can be
  * shot. An arrow once shot keeps travelling up infinitely. The problem is to
  * find the minimum number of arrows that must be shot to burst all balloons.
  *

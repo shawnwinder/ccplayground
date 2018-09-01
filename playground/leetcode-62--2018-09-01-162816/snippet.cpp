@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -56,15 +57,13 @@ public:
     int uniquePaths(int m, int n) {
         int ret = 0;
         vector<int> dp(n, 1);
-        for (int i=1;i<m;i++) {
-            for (int j=1;j<n;j++) {
-                dp[j] += dp[j-1];
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[j] += dp[j - 1];
             }
         }
-        return dp[n-1];
+        return dp[n - 1];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

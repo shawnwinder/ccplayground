@@ -29,8 +29,8 @@ using namespace std;
  *
  *
  * -1 : My number is lower
- * ⁠1 : My number is higher
- * ⁠0 : Congrats! You got it!
+ * 1 : My number is higher
+ * 0 : Congrats! You got it!
  *
  *
  * Example :

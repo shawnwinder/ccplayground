@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -43,57 +44,22 @@ using namespace std;
  */
 class Solution {
 public:
-    int largestRectangleArea(vector<int> &height) {
-    stack<int> s;
- 
-    int max_area = 0; // Initalize max area
-    int tp;  // To store top of stack
-    int area_with_top; // To store area with top bar as the smallest bar
- 
-    vector<int> hist = height;
-    int n = height.size();
-    // Run through all bars of given histogram
-    int i = 0;
-    while (i < n)
-    {
-        // If this bar is higher than the bar on top stack, push it to stack
-        if (s.empty() || hist[s.top()] <= hist[i])
-            s.push(i++);
- 
-        // If this bar is lower than top of stack, then calculate area of rectangle
-        // with stack top as the smallest (or minimum height) bar. 'i' is
-        // 'right index' for the top and element before top in stack is 'left index'
-        else
-        {
-            tp = s.top();  // store the top index
-            s.pop();  // pop the top
- 
-            // Calculate the area with hist[tp] stack as smallest bar
-            area_with_top = hist[tp] * (s.empty() ? i : i - s.top() - 1);
- 
-            // update max area, if needed
-            if (max_area < area_with_top)
-                max_area = area_with_top;
+    int largestRectangleArea(vector<int>& height) {
+        int ret = 0;
+        height.push_back(0);
+        vector<int> index;
+        for (int i = 0; i < height.size(); i++) {
+            while (index.size() && height[index.back()] >= height[i]) {
+                int h = height[index.back()];
+                index.pop_back();
+                int l = index.size() ? index.back() : -1;
+                if (h * (i - l - 1) > ret)
+                    ret = h * (i - l - 1);
+            }
+            index.push_back(i);
         }
+        return ret;
     }
- 
-    // Now pop the remaining bars from stack and calculate area with every
-    // popped bar as the smallest bar
-    while (s.empty() == false)
-    {
-        tp = s.top();
-        s.pop();
-        area_with_top = hist[tp] * (s.empty() ? i : i - s.top() - 1);
- 
-        if (max_area < area_with_top)
-            max_area = area_with_top;
-    }
- 
-    return max_area;
-}
-    
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

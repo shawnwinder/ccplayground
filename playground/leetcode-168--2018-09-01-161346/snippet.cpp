@@ -23,14 +23,14 @@ using namespace std;
  * For example:
  *
  *
- * ⁠   1 -> A
- * ⁠   2 -> B
- * ⁠   3 -> C
- * ⁠   ...
- * ⁠   26 -> Z
- * ⁠   27 -> AA
- * ⁠   28 -> AB
- * ⁠   ...
+ *    1 -> A
+ *    2 -> B
+ *    3 -> C
+ *    ...
+ *    26 -> Z
+ *    27 -> AA
+ *    28 -> AB
+ *    ...
  *
  *
  * Example 1:
@@ -58,10 +58,13 @@ using namespace std;
 class Solution {
 public:
     string convertToTitle(int n) {
-
+        string ret;
+        while (n > 0) {
+            ret = char((n - 1) % 26 + 'A') + ret;
+            n = (n - 1) / 26;
+        }
+        return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -15,7 +15,8 @@ using namespace std;
  * Medium (26.70%)
  * Total Accepted:    85.3K
  * Total Submissions: 319.6K
- * Testcase Example:  '["WordDictionary","addWord","addWord","addWord","search","search","search","search"]\n[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]'
+ * Testcase Example:
+ * '["WordDictionary","addWord","addWord","addWord","search","search","search","search"]\n[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]'
  *
  * Design a data structure that supports the following two operations:
  *
@@ -44,21 +45,52 @@ using namespace std;
  * You may assume that all words are consist of lowercase letters a-z.
  *
  */
+struct TrieNode {
+    bool isKey;
+    TrieNode* children[26];
+    TrieNode()
+        : isKey(false) {
+        fill_n(children, sizeof(children), nullptr);
+    }
+};
+
 class WordDictionary {
 public:
-    /** Initialize your data structure here. */
-    WordDictionary() {
+    WordDictionary() { root = new TrieNode(); }
 
-    }
-
-    /** Adds a word into the data structure. */
+    // Adds a word into the data structure.
     void addWord(string word) {
-
+        TrieNode* run = root;
+        for (char c : word) {
+            if (!(run->children[c - 'a']))
+                run->children[c - 'a'] = new TrieNode();
+            run = run->children[c - 'a'];
+        }
+        run->isKey = true;
     }
 
-    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
-    bool search(string word) {
+    // Returns if the word is in the data structure. A word could
+    // contain the dot character '.' to represent any one letter.
+    bool search(string word) { return query(word.c_str(), root); }
 
+private:
+    TrieNode* root;
+    bool query(const char* word, TrieNode* node) {
+        TrieNode* run = node;
+        for (int i = 0; word[i]; i++) {
+            if (run && word[i] != '.')
+                run = run->children[word[i] - 'a'];
+            else if (run && word[i] == '.') {
+                TrieNode* tmp = run;
+                for (int j = 0; j < 26; j++) {
+                    run = tmp->children[j];
+                    if (query(word + i + 1, run))
+                        return true;
+                }
+            } else
+                break;
+        }
+        return run && run->isKey;
     }
 };
 
@@ -69,6 +101,4 @@ public:
  * bool param_2 = obj.search(word);
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -35,41 +35,45 @@ using namespace std;
  * root = [5,3,6,2,4,null,7]
  * key = 3
  *
- * ⁠   5
- * ⁠  / \
- * ⁠ 3   6
- * ⁠/ \   \
+ *    5
+ *   / \
+ *  3   6
+ * / \   \
  * 2   4   7
  *
  * Given key to delete is 3. So we find the node with value 3 and delete it.
  *
  * One valid answer is [5,4,6,2,null,null,7], shown in the following BST.
  *
- * ⁠   5
- * ⁠  / \
- * ⁠ 4   6
- * ⁠/     \
+ *    5
+ *   / \
+ *  4   6
+ * /     \
  * 2       7
  *
  * Another valid answer is [5,2,6,null,4,null,7].
  *
- * ⁠   5
- * ⁠  / \
- * ⁠ 2   6
- * ⁠  \   \
- * ⁠   4   7
+ *    5
+ *   / \
+ *  2   6
+ *   \   \
+ *    4   7
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* deleteNode(TreeNode* root, int key) {

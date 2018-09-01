@@ -19,20 +19,20 @@ using namespace std;
  * Total Submissions: 11.6K
  * Testcase Example:  '[1,2,3,4,5,6,7,8]'
  *
- * A sequence X_1, X_2, ..., X_n is fibonacci-like if:
+ * A sequence X_1, X_2, ..., X_n is fibonacci-like if:
  *
  *
  * n >= 3
- * X_i + X_{i+1} = X_{i+2} for all i + 2 <= n
+ * X_i + X_{i+1} = X_{i+2} for all i + 2 <= n
  *
  *
- * Given a strictly increasing array A of positive integers forming a sequence,
- * find the length of the longest fibonacci-like subsequence of A.  If one does
+ * Given a strictly increasing array A of positive integers forming a sequence,
+ * find the length of the longest fibonacci-like subsequence of A.  If one does
  * not exist, return 0.
  *
- * (Recall that a subsequence is derived from another sequence A by deleting
- * any number of elements (including none) from A, without changing the order
- * of the remaining elements.  For example, [3, 5, 8] is a subsequence of [3,
+ * (Recall that a subsequence is derived from another sequence A by deleting
+ * any number of elements (including none) from A, without changing the order
+ * of the remaining elements.  For example, [3, 5, 8] is a subsequence of [3,
  * 4, 5, 6, 7, 8].)
  *
  * Example 1:
@@ -66,7 +66,6 @@ class Solution {
 public:
     // `dp[a, b]` represents the length of fibo sequence ends up with `(a, b)`
     // Then we have `dp[a, b] = dp[b - a, a] or 2`
-    // The complexity reduce to `O(N^2)`.
     int lenLongestFibSubseq(vector<int>& A) {
         unordered_map<int, int> m;
         int N = A.size(), res = 0;
@@ -82,8 +81,5 @@ public:
         return res > 2 ? res : 0;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

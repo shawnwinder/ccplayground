@@ -25,26 +25,30 @@ using namespace std;
  * Example:
  *
  * Input: The root of a Binary Search Tree like this:
- * ⁠             5
- * ⁠           /   \
- * ⁠          2     13
+ *              5
+ *            /   \
+ *           2     13
  *
  * Output: The root of a Greater Tree like this:
- * ⁠            18
- * ⁠           /   \
- * ⁠         20     13
+ *             18
+ *            /   \
+ *          20     13
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* convertBST(TreeNode* root) {

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
  * Total Submissions: 456.3K
  * Testcase Example:  '5'
  *
- * Given a non-negative integer numRows, generate the first numRows of Pascal's
+ * Given a non-negative integer numRows, generate the first numRows of Pascal's
  * triangle.
  *
  *
@@ -30,11 +31,11 @@ using namespace std;
  * Input: 5
  * Output:
  * [
- * ⁠    [1],
- * ⁠   [1,1],
- * ⁠  [1,2,1],
- * ⁠ [1,3,3,1],
- * ⁠[1,4,6,4,1]
+ *      [1],
+ *     [1,1],
+ *    [1,2,1],
+ *   [1,3,3,1],
+ *  [1,4,6,4,1]
  * ]
  *
  *
@@ -44,7 +45,7 @@ public:
     vector<vector<int>> generate(int numRows) {
         vector<vector<int>> ret;
         vector<int> ws;
-        for (int i=0;i<numRows;i++) {
+        for (int i = 0; i < numRows; i++) {
             vector<int> pend;
             int l = 0;
             for (int x : ws) {
@@ -59,6 +60,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

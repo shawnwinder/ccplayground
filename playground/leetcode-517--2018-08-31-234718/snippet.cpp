@@ -21,7 +21,7 @@ using namespace std;
  * has some dresses or is empty.
  *
  *
- * For each move, you could choose any m (1 ≤ m ≤ n) washing machines, and pass
+ * For each move, you could choose any m (1 <= m <= n) washing machines, and pass
  * one dress of each washing machine to one of its adjacent washing machines
  * at the same time .
  *

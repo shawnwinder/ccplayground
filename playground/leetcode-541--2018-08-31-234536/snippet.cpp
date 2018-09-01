@@ -34,8 +34,8 @@ using namespace std;
  *
  * Restrictions:
  *
- * ⁠The string consists of lower English letters only.
- * ⁠Length of the given string and k will in the range [1, 10000]
+ * The string consists of lower English letters only.
+ * Length of the given string and k will in the range [1, 10000]
  *
  */
 class Solution {

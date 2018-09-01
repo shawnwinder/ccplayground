@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -41,7 +42,7 @@ using namespace std;
  * Follow up:
  *
  *
- * This is a follow up problem to Search in Rotated Sorted Array, where nums
+ * This is a follow up problem to Search in Rotated Sorted Array, where nums
  * may contain duplicates.
  * Would this affect the run-time complexity? How and why?
  *
@@ -50,23 +51,31 @@ using namespace std;
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
-        if (nums.empty()) return false;
+        if (nums.empty())
+            return false;
         int l = 0, r = nums.size() - 1;
         while (l < r) {
-            int mid = l + (r-l>>1);
-            if (target == nums[mid]) return true;
+            int mid = l + (r - l) / 2;
+            if (target == nums[mid])
+                return true;
             if (nums[l] < nums[mid]) { // left is good
-                if (nums[l] <= target && target < nums[mid]) r = mid;
-                else l = mid + 1;
+                if (nums[l] <= target && target < nums[mid])
+                    r = mid;
+                else
+                    l = mid + 1;
             } else if (nums[l] > nums[mid]) { // left is broken, so right is good
-                if (nums[mid] < target && target <= nums[r]) l = mid+1;
-                else r = mid;
-            } else l ++; // fix left
+                if (nums[mid] < target && target <= nums[r])
+                    l = mid + 1;
+                else
+                    r = mid;
+            } else
+                l++; // fix left
         }
-        if (nums[l] == target) return true; else return false;
+        if (nums[l] == target)
+            return true;
+        else
+            return false;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

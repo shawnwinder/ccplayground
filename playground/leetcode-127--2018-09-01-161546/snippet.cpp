@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -60,75 +62,46 @@ using namespace std;
  * endWord = "cog"
  * wordList = ["hot","dot","dog","lot","log"]
  *
- * Output: 0
+ * Output: 0
  *
- * Explanation: The endWord "cog" is not in wordList, therefore no possible
+ * Explanation: The endWord "cog" is not in wordList, therefore no possible
  * transformation.
- *
- *
- *
- *
  *
  */
 class Solution {
 public:
-    bool adj(string& a, string& b) {
-        if (a.size() != b.size()) return false;
-        int cnt = 0;
-        for (int i=0;i<a.size();i++) {
-            cnt += a[i] != b[i];
-        }
-        return cnt == 1;
-    }
-
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        int n = wordList.size();
-        vector<vector<int>> g (n);
-        wordList.push_back(beginWord);
-        sort(wordList.begin(), wordList.end());
-        wordList.erase(unique(wordList.begin(), wordList.end()), wordList.end());
-        int s = -1, t = -1;
-        for (int i=0;i<n;i++) {
-            if (wordList[i] == beginWord) s = i;
-            else if (wordList[i] == endWord) t = i;
-            for (int j=i+1;j<n;j++) {
-                if (adj(wordList[i], wordList[j])) {
-                    g[i].push_back(j);
-                    g[j].push_back(i);
-                }
-            }
-        }
-        if (t == -1) return 0;
-        if (s == t) return 1;
-        unordered_set<int> visit;
-        vector<unordered_set<int>> be(2);
-        be[0].insert(s);
-        be[1].insert(t);
-        visit.insert(s);
-        visit.insert(t);
-        int ret = 2;
-        int idx = 0;
-        while (!be[idx].empty()) {
-            unordered_set<int> aug;
-            for (int c : be[idx]) {
-                for (int i : g[c]) {
-                    if (be[1-idx].count(i) > 0) {
-                        return ret;
-                    } else if (visit.find(i) == visit.end()) {
-                        aug.insert(i);
-                        visit.insert(i);
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
+        vector<vector<string>> ans;
+        vector<vector<string>> paths;
+        paths.push_back({ beginWord });
+        unordered_set<string> visited;
+        while (!paths.empty()) {
+            vector<vector<string>> paths2;
+            unordered_set<string> visited2;
+            for (auto& path : paths) {
+                string last = path.back();
+                for (int i = 0; i < last.size(); ++i) {
+                    string news = last;
+                    for (char c = 'a'; c <= 'z'; ++c) {
+                        news[i] = c;
+                        if (!visited.count(news) && wordSet.find(news) != wordSet.end()) {
+                            vector<string> newpath = path;
+                            newpath.push_back(news);
+                            visited2.insert(news);
+                            if (news == endWord) {
+                                return newpath.size();
+                            } else
+                                paths2.push_back(newpath);
+                        }
                     }
                 }
             }
-            ret ++;
-            be[idx] = aug;
-            idx = 1-idx;
+            paths = std::move(paths2);
+            visited.insert(visited2.begin(), visited2.end());
         }
         return 0;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

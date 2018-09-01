@@ -37,8 +37,10 @@ using namespace std;
 #ifdef CC_PLAYGROUND
 struct ListNode {
     int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
 };
 #endif
 
@@ -55,6 +57,7 @@ public:
             l1 = l1 ? l1->next : l1;
             l2 = l2 ? l2->next : l2;
         }
+        return pre.next;
     }
 };
 

@@ -20,10 +20,10 @@ using namespace std;
  * Testcase Example:  '[2,3,6,7]\n7'
  *
  * Given a set of candidate numbers (candidates) (without duplicates) and a
- * target number (target), find all unique combinations in candidates where the
+ * target number (target), find all unique combinations in candidates where the
  * candidate numbers sums to target.
  *
- * The same repeated number may be chosen from candidates unlimited number of
+ * The same repeated number may be chosen from candidates unlimited number of
  * times.
  *
  * Note:
@@ -39,8 +39,8 @@ using namespace std;
  * Input: candidates = [2,3,6,7], target = 7,
  * A solution set is:
  * [
- * ⁠ [7],
- * ⁠ [2,2,3]
+ *  [7],
+ *  [2,2,3]
  * ]
  *
  *

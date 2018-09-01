@@ -20,7 +20,7 @@ using namespace std;
  * Testcase Example:  '[2,7,11,15]\n[1,10,4,11]'
  *
  * Given two arrays A and B of equal size, the advantage of A with respect to B
- * is the number of indices i for which A[i] > B[i].
+ * is the number of indices i for which A[i] > B[i].
  *
  * Return any permutation of A that maximizes its advantage with respect to
  * B.
@@ -53,7 +53,6 @@ using namespace std;
  * 0 <= B[i] <= 10^9
  *
  *
- *
  */
 class Solution {
 public:
@@ -67,8 +66,5 @@ public:
         return A;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

@@ -30,11 +30,11 @@ using namespace std;
  * Example:
  *
  * Given matrix = [
- * ⁠ [3, 0, 1, 4, 2],
- * ⁠ [5, 6, 3, 2, 1],
- * ⁠ [1, 2, 0, 1, 5],
- * ⁠ [4, 1, 0, 1, 7],
- * ⁠ [1, 0, 3, 0, 5]
+ *  [3, 0, 1, 4, 2],
+ *  [5, 6, 3, 2, 1],
+ *  [1, 2, 0, 1, 5],
+ *  [4, 1, 0, 1, 7],
+ *  [1, 0, 3, 0, 5]
  * ]
  *
  * sumRegion(2, 1, 4, 3) -> 8
@@ -47,7 +47,7 @@ using namespace std;
  *
  * You may assume that the matrix does not change.
  * There are many calls to sumRegion function.
- * You may assume that row1 ≤ row2 and col1 ≤ col2.
+ * You may assume that row1 <= row2 and col1 <= col2.
  *
  *
  */

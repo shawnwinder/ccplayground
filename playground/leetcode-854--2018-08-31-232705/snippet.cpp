@@ -17,11 +17,11 @@ using namespace std;
  * Total Submissions: 10.2K
  * Testcase Example:  '"ab"\n"ba"'
  *
- * Strings A and B are K-similar (for some non-negative integer K) if we can
- * swap the positions of two letters in A exactly K times so that the resulting
+ * Strings A and B are K-similar (for some non-negative integer K) if we can
+ * swap the positions of two letters in A exactly K times so that the resulting
  * string equals B.
  *
- * Given two anagrams A and B, return the smallest K for which A and B are
+ * Given two anagrams A and B, return the smallest K for which A and B are
  * K-similar.
  *
  * Example 1:

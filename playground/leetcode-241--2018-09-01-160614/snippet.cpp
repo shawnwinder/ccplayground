@@ -13,7 +13,7 @@ using namespace std;
  *
  * algorithms
  * Medium (47.15%)
- * Total Accepted:    60.5K
+ * Total Accepted:    .5K
  * Total Submissions: 128.4K
  * Testcase Example:  '"2-1-1"'
  *

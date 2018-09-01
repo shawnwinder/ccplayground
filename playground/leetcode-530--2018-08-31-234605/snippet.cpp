@@ -25,11 +25,11 @@ using namespace std;
  *
  * Input:
  *
- * ⁠  1
- * ⁠   \
- * ⁠    3
- * ⁠   /
- * ⁠  2
+ *   1
+ *    \
+ *     3
+ *    /
+ *   2
  *
  * Output:
  * 1
@@ -45,15 +45,19 @@ using namespace std;
  * There are at least two nodes in this BST.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int getMinimumDifference(TreeNode* root) {

@@ -27,52 +27,56 @@ using namespace std;
  * Example 1:
  *
  * Input:
- * ⁠   1
- * ⁠  / \
- * ⁠ 0   2
+ *    1
+ *   / \
+ *  0   2
  *
- * ⁠ L = 1
- * ⁠ R = 2
+ *  L = 1
+ *  R = 2
  *
  * Output:
- * ⁠   1
- * ⁠     \
- * ⁠      2
+ *    1
+ *      \
+ *       2
  *
  *
  *
  * Example 2:
  *
  * Input:
- * ⁠   3
- * ⁠  / \
- * ⁠ 0   4
- * ⁠  \
- * ⁠   2
- * ⁠  /
- * ⁠ 1
+ *    3
+ *   / \
+ *  0   4
+ *   \
+ *    2
+ *   /
+ *  1
  *
- * ⁠ L = 1
- * ⁠ R = 3
+ *  L = 1
+ *  R = 3
  *
  * Output:
- * ⁠     3
- * ⁠    /
- * ⁠  2
- * ⁠ /
- * ⁠1
+ *      3
+ *     /
+ *   2
+ *  /
+ * 1
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* trimBST(TreeNode* root, int L, int R) {

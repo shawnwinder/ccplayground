@@ -37,11 +37,11 @@ using namespace std;
  *
  * Input: n = 4, edges = [[1, 0], [1, 2], [1, 3]]
  *
- * ⁠       0
- * ⁠       |
- * ⁠       1
- * ⁠      / \
- * ⁠     2   3
+ *        0
+ *        |
+ *        1
+ *       / \
+ *      2   3
  *
  * Output: [1]
  *
@@ -51,22 +51,22 @@ using namespace std;
  *
  * Input: n = 6, edges = [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]
  *
- * ⁠    0  1  2
- * ⁠     \ | /
- * ⁠       3
- * ⁠       |
- * ⁠       4
- * ⁠       |
- * ⁠       5
+ *     0  1  2
+ *      \ | /
+ *        3
+ *        |
+ *        4
+ *        |
+ *        5
  *
  * Output: [3, 4]
  *
  * Note:
  *
  *
- * According to the definition of tree on Wikipedia: “a tree is an undirected
+ * According to the definition of tree on Wikipedia: "a tree is an undirected
  * graph in which any two vertices are connected by exactly one path. In other
- * words, any connected graph without simple cycles is a tree.”
+ * words, any connected graph without simple cycles is a tree."
  * The height of a rooted tree is the number of edges on the longest downward
  * path between the root and a leaf.
  *

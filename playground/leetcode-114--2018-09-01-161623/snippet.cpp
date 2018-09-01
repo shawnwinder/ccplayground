@@ -22,10 +22,10 @@ using namespace std;
  * For example, given the following tree:
  *
  *
- * ⁠   1
- * ⁠  / \
- * ⁠ 2   5
- * ⁠/ \   \
+ *    1
+ *   / \
+ *  2   5
+ * / \   \
  * 3   4   6
  *
  *
@@ -33,35 +33,40 @@ using namespace std;
  *
  *
  * 1
- * ⁠\
- * ⁠ 2
- * ⁠  \
- * ⁠   3
- * ⁠    \
- * ⁠     4
- * ⁠      \
- * ⁠       5
- * ⁠        \
- * ⁠         6
+ *  \
+ *   2
+ *    \
+ *     3
+ *      \
+ *       4
+ *        \
+ *         5
+ *          \
+ *           6
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     void flatten(TreeNode* root) {
         while (root) {
             auto l = root->left;
             if (l) {
-                while (l->right && l->right != root) l=l->right;
+                while (l->right && l->right != root)
+                    l = l->right;
                 if (l->right == root) { // back from left;
                     l->right = root->right;
                     root->right = root->left;
@@ -78,6 +83,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

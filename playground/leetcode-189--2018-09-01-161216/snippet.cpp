@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -17,7 +19,7 @@ using namespace std;
  * Total Submissions: 790.3K
  * Testcase Example:  '[1,2,3,4,5,6,7]\n3'
  *
- * Given an array, rotate the array to the right by k steps, where k is
+ * Given an array, rotate the array to the right by k steps, where k is
  * non-negative.
  *
  * Example 1:
@@ -54,13 +56,12 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
-        if (! (k %= n)) return;
+        if (!(k %= n))
+            return;
         reverse(nums.begin(), nums.end());
         reverse(nums.begin(), nums.begin() + k);
         reverse(nums.begin() + k, nums.end());
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

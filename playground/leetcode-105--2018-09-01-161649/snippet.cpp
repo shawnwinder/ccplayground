@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -25,47 +27,51 @@ using namespace std;
  * For example, given
  *
  *
- * preorder = [3,9,20,15,7]
+ * preorder = [3,9,20,15,7]
  * inorder = [9,3,15,20,7]
  *
  * Return the following binary tree:
  *
  *
- * ⁠   3
- * ⁠  / \
- * ⁠ 9  20
- * ⁠   /  \
- * ⁠  15   7
+ *     3
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        if (preorder.empty()) return nullptr;
+        if (preorder.empty())
+            return nullptr;
         return solve(preorder.begin(), preorder.end(), inorder.begin(), inorder.end());
     }
-    
+
 private:
-    using it=vector<int>::iterator;
+    using it = vector<int>::iterator;
     TreeNode* solve(it l, it r, it ll, it rr) {
-        if (l == r) return nullptr;
+        if (l == r)
+            return nullptr;
         auto root = new TreeNode(*l);
         auto mid = find(ll, rr, *l);
-        root->left = solve(l+1, l+1+(mid-ll), ll, mid);
-        root->right = solve(l+1+(mid-ll), r, mid + 1, rr);
+        root->left = solve(l + 1, l + 1 + (mid - ll), ll, mid);
+        root->right = solve(l + 1 + (mid - ll), r, mid + 1, rr);
         return root;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

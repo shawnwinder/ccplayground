@@ -36,11 +36,7 @@ using namespace std;
  */
 class Solution {
 public:
-    int rangeBitwiseAnd(int m, int n) {
-           return (n > m) ? (rangeBitwiseAnd(m/2, n/2) << 1) : m; 
-    }
+    int rangeBitwiseAnd(int m, int n) { return (n > m) ? (rangeBitwiseAnd(m / 2, n / 2) << 1) : m; }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

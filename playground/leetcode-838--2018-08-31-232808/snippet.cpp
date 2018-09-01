@@ -17,10 +17,10 @@ using namespace std;
  * Total Submissions: 14K
  * Testcase Example:  '".L.R...LR..L.."'
  *
- * There are N dominoes in a line, and we place each domino vertically
+ * There are N dominoes in a line, and we place each domino vertically
  * upright.
  *
- * In the beginning, we simultaneously push some of the dominoes either to the
+ * In the beginning, we simultaneously push some of the dominoes either to the
  * left or to the right.
  *
  *
@@ -37,11 +37,11 @@ using namespace std;
  * For the purposes of this question, we will consider that a falling domino
  * expends no additional force to a falling or already fallen domino.
  *
- * Given a string "S" representing the initial state. S[i] = 'L', if the i-th
+ * Given a string "S" representing the initial state. S[i] = 'L', if the i-th
  * domino has been pushed to the left; S[i] = 'R', if the i-th domino has been
- * pushed to the right; S[i] = '.', if the i-th domino has not been pushed.
+ * pushed to the right; S[i] = '.', if the i-th domino has not been pushed.
  *
- * Return a string representing the final state. 
+ * Return a string representing the final state. 
  *
  * Example 1:
  *
@@ -62,8 +62,8 @@ using namespace std;
  * Note:
  *
  *
- * 0 <= N <= 10^5
- * String dominoes contains only 'L', 'R' and '.'
+ * 0 <= N <= 10^5
+ * String dominoes contains only 'L', 'R' and '.'
  *
  */
 class Solution {

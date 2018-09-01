@@ -34,33 +34,29 @@ using namespace std;
  * Output: 1->2->3
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* l = nullptr;
-        auto ret = head;
-        while ( head ) {
-            if (l && head->val == l->val) {
-                l->next = head->next;
-                delete head;
-                head = l->next;
-            } else {
-                l = head;
-                head = head ->next;
+        ListNode* cur = head;
+        while (cur) {
+            while (cur->next && cur->val == cur->next->val) {
+                cur->next = cur->next->next;
             }
+            cur = cur->next;
         }
-        return ret;
+        return head;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

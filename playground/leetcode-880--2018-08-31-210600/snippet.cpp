@@ -18,14 +18,14 @@ using namespace std;
  * Total Submissions: 13.3K
  * Testcase Example:  '"leet2code3"\n10'
  *
- * An encoded string S is given.  To find and write the decoded string to a
- * tape, the encoded string is read one character at a time and the following
+ * An encoded string S is given.  To find and write the decoded string to a
+ * tape, the encoded string is read one character at a time and the following
  * steps are taken:
  *
  *
  * If the character read is a letter, that letter is written onto the tape.
  * If the character read is a digit (say d), the entire current tape is
- * repeatedly written d-1 more times in total.
+ * repeatedly written d-1 more times in total.
  *
  *
  * Now for some encoded string S, and an index K, find and return the K-th
@@ -68,8 +68,8 @@ using namespace std;
  *
  *
  * 2 <= S.length <= 100
- * S will only contain lowercase letters and digits 2 through 9.
- * S starts with a letter.
+ * S will only contain lowercase letters and digits 2 through 9.
+ * S starts with a letter.
  * 1 <= K <= 10^9
  * The decoded string is guaranteed to have less than 2^63 letters.
  */
@@ -87,8 +87,5 @@ public:
         return {};
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

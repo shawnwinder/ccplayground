@@ -17,10 +17,10 @@ using namespace std;
  * Total Submissions: 7.2K
  * Testcase Example:  '[10,20,5]\n[70,50,30]\n2'
  *
- * There are N workers.  The i-th worker has a quality[i] and a minimum wage
+ * There are N workers.  The i-th worker has a quality[i] and a minimum wage
  * expectation wage[i].
  *
- * Now we want to hire exactly K workers to form a paid group.  When hiring a
+ * Now we want to hire exactly K workers to form a paid group.  When hiring a
  * group of K workers, we must pay them according to the following rules:
  *
  *

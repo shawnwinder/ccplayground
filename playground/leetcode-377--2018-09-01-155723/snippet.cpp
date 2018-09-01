@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 156.4K
  * Testcase Example:  '[1,2,3]\n4'
  *
- * ⁠Given an integer array with all positive numbers and no duplicates, find
+ * Given an integer array with all positive numbers and no duplicates, find
  * the number of possible combinations that add up to a positive integer
  * target.
  *

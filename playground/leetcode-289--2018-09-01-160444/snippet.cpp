@@ -38,8 +38,8 @@ using namespace std;
  *
  *
  * Write a function to compute the next state (after one update) of the board
- * given its current state. The next state is created by applying the above
- * rules simultaneously to every cell in the current state, where births and
+ * given its current state. The next state is created by applying the above
+ * rules simultaneously to every cell in the current state, where births and
  * deaths occur simultaneously.
  *
  * Example:

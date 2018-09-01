@@ -22,9 +22,9 @@ using namespace std;
  * The string "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext" represents:
  *
  * dir
- * ⁠   subdir1
- * ⁠   subdir2
- * ⁠       file.ext
+ *    subdir1
+ *    subdir2
+ *        file.ext
  *
  *
  * The directory dir contains an empty sub-directory subdir1 and a
@@ -35,12 +35,12 @@ using namespace std;
  * represents:
  *
  * dir
- * ⁠   subdir1
- * ⁠       file1.ext
- * ⁠       subsubdir1
- * ⁠   subdir2
- * ⁠       subsubdir2
- * ⁠           file2.ext
+ *    subdir1
+ *        file1.ext
+ *        subsubdir1
+ *    subdir2
+ *        subsubdir2
+ *            file2.ext
  *
  *
  * The directory dir contains two sub-directories subdir1 and subdir2. subdir1

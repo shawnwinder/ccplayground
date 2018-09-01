@@ -27,16 +27,16 @@ using namespace std;
  * You just need to ensure that a binary tree can be serialized to a string and
  * this string can be deserialized to the original tree structure.
  *
- * Example: 
+ * Example: 
  *
  *
  * You may serialize the following tree:
  *
- * ⁠   1
- * ⁠  / \
- * ⁠ 2   3
- * ⁠    / \
- * ⁠   4   5
+ *    1
+ *   / \
+ *  2   3
+ *     / \
+ *    4   5
  *
  * as "[1,2,3,null,null,4,5]"
  *
@@ -45,19 +45,23 @@ using namespace std;
  * binary tree. You do not necessarily need to follow this format, so please be
  * creative and come up with different approaches yourself.
  *
- * Note: Do not use class member/global/static variables to store states. Your
+ * Note: Do not use class member/global/static variables to store states. Your
  * serialize and deserialize algorithms should be stateless.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Codec {
 public:
 

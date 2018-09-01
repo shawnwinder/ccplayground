@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
+#include <deque>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -19,13 +22,13 @@ using namespace std;
  *
  * A peak element is an element that is greater than its neighbors.
  *
- * Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element
+ * Given an input array nums, where nums[i] ? nums[i+1], find a peak element
  * and return its index.
  *
  * The array may contain multiple peaks, in that case return the index to any
  * one of the peaks is fine.
  *
- * You may imagine that nums[-1] = nums[n] = -∞.
+ * You may imagine that nums[-1] = nums[n] = -?.
  *
  * Example 1:
  *
@@ -50,28 +53,26 @@ using namespace std;
  * Your solution should be in logarithmic complexity.
  *
  */
- class Solution {
- public:
-   int findPeakElement(vector<int>& nums) {
-     deque<int> anums(nums.begin(), nums.end());
-     anums.push_front(INT_MIN);
-     anums.push_back(INT_MIN);
-     int s = 1;
-     int t = nums.size();
-     while (s < t) {
-       int mid = s + (t-s) / 2;
-       int v = anums[mid];
-       if (v<=anums[mid + 1]) {
-         s = mid + 1;
-       } else if (anums[mid-1] >= v) {
-         t = mid;
-       } else return mid - 1;
-     }
-     return s - 1;
-   }
- };
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        deque<int> anums(nums.begin(), nums.end());
+        anums.push_front(INT_MIN);
+        anums.push_back(INT_MIN);
+        int s = 1;
+        int t = nums.size();
+        while (s < t) {
+            int mid = s + (t - s) / 2;
+            int v = anums[mid];
+            if (v <= anums[mid + 1]) {
+                s = mid + 1;
+            } else if (anums[mid - 1] >= v) {
+                t = mid;
+            } else
+                return mid - 1;
+        }
+        return s - 1;
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

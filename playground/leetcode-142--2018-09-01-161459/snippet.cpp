@@ -30,32 +30,38 @@ using namespace std;
  * Can you solve it without using extra space?
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
-        auto f = head, s = head;
-        while (f && f->next) {
-            f = f->next->next;
-            s = s->next;
-            if (f == s) break;
+    ListNode* detectCycle(ListNode* head) {
+        if (head == NULL || head->next == NULL)
+            return NULL;
+        auto slow = head;
+        auto fast = head;
+        auto entry = head;
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) { // there is a cycle
+                while (slow != entry) { // found the entry location
+                    slow = slow->next;
+                    entry = entry->next;
+                }
+                return entry;
+            }
         }
-        if (!f || !f->next) return nullptr;
-        while (head != f) {
-            head = head->next;
-            f = f->next;
-        }
-        return f;
+        return NULL; // there has no cycle
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

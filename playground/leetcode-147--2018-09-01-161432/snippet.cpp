@@ -59,21 +59,25 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
         ListNode* ret = nullptr;
         while (head) {
-            auto *pp=&ret, p=*pp;
-            for (; p!=nullptr && p->val<head->val; pp=&p->next, p=*pp);
+            auto *pp = &ret, p = *pp;
+            for (; p != nullptr && p->val < head->val; pp = &p->next, p = *pp)
+                ;
             *pp = head;
             head = (*pp)->next;
             (*pp)->next = p;
@@ -82,6 +86,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

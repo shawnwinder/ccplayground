@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -55,25 +57,22 @@ using namespace std;
  */
 class Solution {
 public:
-  int minDistance(string a, string b) {
-    if (a.size() < b.size())
-      swap(a, b);
-    vector<int> d(b.size()+1);
-    iota(d.begin(), d.end(), 0);
-    for(int i=0;i<a.size();i++) {
-      int ul = d[0];
-      d[0] = i+1;
-      for(int j=0;j<b.size();j++) {
-        int t = d[j+1];
-        d[j+1] = a[i] == b[j] ? ul : min(ul, min(d[j], d[j+1])) + 1;
-        ul = t;
-      }
+    int minDistance(string a, string b) {
+        if (a.size() < b.size())
+            swap(a, b);
+        vector<int> d(b.size() + 1);
+        iota(d.begin(), d.end(), 0);
+        for (int i = 0; i < a.size(); i++) {
+            int ul = d[0];
+            d[0] = i + 1;
+            for (int j = 0; j < b.size(); j++) {
+                int t = d[j + 1];
+                d[j + 1] = a[i] == b[j] ? ul : min(ul, min(d[j], d[j + 1])) + 1;
+                ul = t;
+            }
+        }
+        return d.back();
     }
-    return d.back();
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

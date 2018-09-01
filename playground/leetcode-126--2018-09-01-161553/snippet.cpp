@@ -2,7 +2,11 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <queue>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -47,7 +51,7 @@ using namespace std;
  *
  * Output:
  * [
- * ⁠ ["hit","hot","dot","dog","cog"],
+ *  ["hit","hot","dot","dog","cog"],
  * ["hit","hot","lot","log","cog"]
  * ]
  *
@@ -62,123 +66,46 @@ using namespace std;
  *
  * Output: []
  *
- * Explanation: The endWord "cog" is not in wordList, therefore no possible
+ * Explanation: The endWord "cog" is not in wordList, therefore no possible
  * transformation.
- *
- *
- *
- *
  *
  */
 class Solution {
 public:
-  vector<vector<string>> findLadders(string beginWord, string endWord, unordered_set<string> &wordList) {
-    wordList.insert(beginWord);
-    wordList.insert(endWord);
-    size_t n = wordList.size();
-    vector<vector<int>> g(n, vector<int>{});
-    vector<string> m(n, "");
-    int s, e;
-    int i = 0;
-    {
-      PB("construct");
-      unordered_map<string, int> wm;
-      for (auto& x : wordList) {
-        wm.emplace(x, i++);
-      }
-      for (auto& p : wm) {
-        auto w = p.first;
-        i = p.second;
-        m[i] = w;
-        if (beginWord == w) {
-          s = i;
+    vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
+        vector<vector<string>> ans;
+        vector<vector<string>> paths;
+        paths.push_back({ beginWord });
+        unordered_set<string> visited;
+        while (!paths.empty()) {
+            vector<vector<string>> paths2;
+            unordered_set<string> visited2;
+            for (auto& path : paths) {
+                string last = path.back();
+                for (int i = 0; i < last.size(); ++i) {
+                    string news = last;
+                    for (char c = 'a'; c <= 'z'; ++c) {
+                        news[i] = c;
+                        if (!visited.count(news) && wordSet.find(news) != wordSet.end()) {
+                            vector<string> newpath = path;
+                            newpath.push_back(news);
+                            visited2.insert(news);
+                            if (news == endWord) {
+                                ans.push_back(newpath);
+                            } else
+                                paths2.push_back(newpath);
+                        }
+                    }
+                }
+            }
+            if (ans.size())
+                break;
+            paths = std::move(paths2);
+            visited.insert(visited2.begin(), visited2.end());
         }
-        if (endWord == w) {
-          e = i;
-        }
-        for (auto& c : w) {
-          char c0 = c;
-          for (c = 'a'; c <= 'z'; c ++) {
-            if (c == c0) continue;
-            auto it = wm.find(w);
-            if (it != wm.end()) g[i].push_back(it->second);
-          }
-          c = c0;
-        }
-      }
+        return ans;
     }
-    using pii = pair<int, int>;
-    using vii = vector<pii>;
-    vector<pair<int, vector<int>>> d(n, {-1, {}});
-
-    std::priority_queue<pii, vii, greater<pii>> q;
-    q.emplace(0, s);
-    d[s] = {0, {}};
-    {
-      PB("dijkstra");
-    while (!q.empty()) {
-      pii i = q.top();
-      int v = i.second;
-      int w = i.first;
-      q.pop();
-      if (v == e) break;
-      for (auto t : g[v]) {
-        if (d[t].first == -1 || d[v].first + 1 < d[t].first) {
-          d[t] = {d[v].first + 1, {v}};
-          q.emplace(d[t].first, t);
-        } else if (d[v].first + 1 == d[t].first) {
-          d[t].second.push_back(v);
-        }
-      }
-    }
-
-    }
-    vector<vector<string>> ret;
-    list<string> l;
-    {
-      PB("print");
-      printPath(e, l, s, d, m, ret);
-
-    }
-    return ret;
-  }
-
-private:
-  bool adj(string a, string b) {
-    int c = 0;
-    for (auto i = 0; i < a.size(); ++i) {
-      if (a[i] != b[i]) c++;
-    }
-    return c == 1;
-  }
-
-  void printPath(int t, list<string>& l, int s,
-                 vector<pair<int, vector<int>>>& d,
-                 vector<string>& m,
-                 vector<vector<string>>& res) {
-    l.push_front(m[t]);
-    if (t == s) {
-      res.emplace_back(l.begin(), l.end());
-    } else {
-      for (int v : d[t].second) {
-        printPath(v, l, s, d, m, res);
-      }
-    }
-    l.pop_front();
-  }
-
 };
 
-#ifdef AMOS
-int main() {
-  ios::sync_with_stdio(false);
-  Solution s;
-  unordered_set<string> v {"dot"};
-  s.findLadders("hot", "dog", v);
-}
-#endif
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

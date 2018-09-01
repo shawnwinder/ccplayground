@@ -27,39 +27,43 @@ using namespace std;
  * Example 1:
  *
  *
- * ⁠       1
- * ⁠      / \
- * ⁠     2   3
- * ⁠    /   / \
- * ⁠   4   2   4
- * ⁠      /
- * ⁠     4
+ *        1
+ *       / \
+ *      2   3
+ *     /   / \
+ *    4   2   4
+ *       /
+ *      4
  *
  *
  * The following are two duplicate subtrees:
  *
  *
- * ⁠     2
- * ⁠    /
- * ⁠   4
+ *      2
+ *     /
+ *    4
  *
  *
  * and
  *
  *
- * ⁠   4
+ *    4
  *
  * Therefore, you need to return above trees' root in the form of a list.
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {

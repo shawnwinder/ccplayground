@@ -13,7 +13,7 @@ using namespace std;
  *
  * algorithms
  * Hard (37.73%)
- * Total Accepted:    60.4K
+ * Total Accepted:    .4K
  * Total Submissions: 160.1K
  * Testcase Example:  '[[9,9,4],[6,6,8],[2,1,1]]'
  *
@@ -28,9 +28,9 @@ using namespace std;
  *
  * Input: nums =
  * [
- * ⁠ [9,9,4],
- * ⁠ [6,6,8],
- * ⁠ [2,1,1]
+ *  [9,9,4],
+ *  [6,6,8],
+ *  [2,1,1]
  * ]
  * Output: 4
  * Explanation: The longest increasing path is [1, 2, 6, 9].
@@ -41,9 +41,9 @@ using namespace std;
  *
  * Input: nums =
  * [
- * ⁠ [3,4,5],
- * ⁠ [3,2,6],
- * ⁠ [2,2,1]
+ *  [3,4,5],
+ *  [3,2,6],
+ *  [2,2,1]
  * ]
  * Output: 4
  * Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally

@@ -39,13 +39,13 @@ using namespace std;
  * Input: [3,2,1,6,0,5]
  * Output: return the tree root node representing the following tree:
  *
- * ⁠     6
- * ⁠   /   \
- * ⁠  3     5
- * ⁠   \    /
- * ⁠    2  0
- * ⁠      \
- * ⁠       1
+ *      6
+ *    /   \
+ *   3     5
+ *    \    /
+ *     2  0
+ *       \
+ *        1
  *
  *
  *
@@ -55,15 +55,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* partition(vector<int>& nums, int s, int t) {

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Hard (30.59%)
  * Total Accepted:    94.8K
  * Total Submissions: 310K
- * Testcase Example:  '[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]'
+ * Testcase Example:
+ * '[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]'
  *
  * Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle
  * containing only 1's and return its area.
@@ -25,81 +27,51 @@ using namespace std;
  *
  * Input:
  * [
- * ⁠ ["1","0","1","0","0"],
- * ⁠ ["1","0","1","1","1"],
- * ⁠ ["1","1","1","1","1"],
- * ⁠ ["1","0","0","1","0"]
+ *  ["1","0","1","0","0"],
+ *  ["1","0","1","1","1"],
+ *  ["1","1","1","1","1"],
+ *  ["1","0","0","1","0"]
  * ]
  * Output: 6
- *
  *
  */
 class Solution {
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
-        int m = matrix.size();
-        if (m == 0) return 0;
-        int n = matrix[0].size();
-        if (m < n) {
-            vector<vector<char>> mm(n, vector<char>(m));
-            for (int i=0;i<m;i++) {
-                for (int j=0;j<n;j++) {
-                    mm[j][i] = matrix[i][j];
-                }
-            }
-            matrix = mm;
-            swap(m, n);
+        if (matrix.empty()) {
+            return 0;
         }
-        vector<int> histo(n);
-        int ret = 0;
-        for (int i=0;i<m;i++) {
-            stack<int> s;
-            int tp;  // To store top of stack
-            int area_with_top; // To store area with top bar as the smallest bar
-            for (int j=0;j<n;j++) {
-                histo[j] = matrix[i][j] == '0' ? 0 : histo[j] + 1;
-            }
-            // Run through all bars of given histogram
-            int j = 0;
-            while (j < n)
-            {
-                // If this bar is higher than the bar on top stack, push it to stack
-                if (s.empty() || histo[s.top()] <= histo[j])
-                    s.push(j++);
-
-                // If this bar is lower than top of stack, then calculate area of rectangle 
-                // with stack top as the smallest (or minimum height) bar. 'i' is 
-                // 'right index' for the top and element before top in stack is 'left index'
-                else
-                {
-                    tp = s.top();  // store the top index
-                    s.pop();  // pop the top
-
-                    // Calculate the area with hist[tp] stack as smallest bar
-                    area_with_top = histo[tp] * (s.empty() ? j : j - s.top() - 1);
-
-                    // update max area, if needed
-                    if (ret < area_with_top)
-                        ret = area_with_top;
+        int maxRec = 0;
+        vector<int> height(matrix[0].size(), 0);
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix[0].size(); j++) {
+                if (matrix[i][j] == '0') {
+                    height[j] = 0;
+                } else {
+                    height[j]++;
                 }
             }
+            maxRec = max(maxRec, largestRectangleArea(height));
+        }
+        return maxRec;
+    }
 
-            // Now pop the remaining bars from stack and calculate area with every
-            // popped bar as the smallest bar
-            while (s.empty() == false)
-            {
-                tp = s.top();
-                s.pop();
-                area_with_top = histo[tp] * (s.empty() ? j : j - s.top() - 1);
-
-                if (ret < area_with_top)
-                    ret = area_with_top;
+    int largestRectangleArea(vector<int>& height) {
+        int ret = 0;
+        height.push_back(0);
+        vector<int> index;
+        for (int i = 0; i < height.size(); i++) {
+            while (index.size() && height[index.back()] >= height[i]) {
+                int h = height[index.back()];
+                index.pop_back();
+                int l = index.size() ? index.back() : -1;
+                if (h * (i - l - 1) > ret)
+                    ret = h * (i - l - 1);
             }
+            index.push_back(i);
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

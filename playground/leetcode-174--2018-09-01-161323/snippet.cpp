@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -18,13 +20,13 @@ using namespace std;
  * Testcase Example:  '[[-2,-3,3],[-5,-10,1],[10,30,-5]]'
  *
  * table.dungeon, .dungeon th, .dungeon td {
- * ⁠ border:3px solid black;
+ *  border:3px solid black;
  * }
  *
- * ⁠.dungeon th, .dungeon td {
- * ⁠   text-align: center;
- * ⁠   height: 70px;
- * ⁠   width: 70px;
+ * .dungeon th, .dungeon td {
+ *    text-align: center;
+ *    height: 70px;
+ *    width: 70px;
  * }
  *
  * The demons had captured the princess (P) and imprisoned her in the
@@ -50,10 +52,7 @@ using namespace std;
  * is able to rescue the princess.
  *
  * For example, given the dungeon below, the initial health of the knight must
- * be at least 7 if he follows the optimal path RIGHT-> RIGHT -> DOWN ->
- * DOWN.
- *
- *
+ * be at least 7 if he follows the optimal path RIGHT-> RIGHT -> DOWN -> DOWN.
  *
  *
  * -2 (K)
@@ -71,10 +70,6 @@ using namespace std;
  * -5 (P)
  *
  *
- *
- *
- *
- *
  * Note:
  *
  *
@@ -84,26 +79,23 @@ using namespace std;
  *
  *
  */
- class Solution {
- public:
-   int calculateMinimumHP(vector<vector<int>> dungeon) {
-     vector<vector<int>> m(dungeon.size(), vector<int>(static_cast<int>(dungeon[0].size()), INT_MAX));
-     m.back().back() =  max(1, 1 - dungeon.back().back());
-     for (int i = m.size() - 1; i >= 0; --i) {
-       for (int j = m[i].size() - 1; j >= 0; --j) {
-         if (i < m.size() - 1) {
-           m[i][j] = min(m[i][j], max(1, m[i+1][j] - dungeon[i][j]));
-         }
-         if (j < m[i].size() - 1) {
-           m[i][j] = min(m[i][j], max(1, m[i][j+1] - dungeon[i][j]));
-         }
-       }
-     }
-     return max(m[0][0], 1);
-   }
- };
+class Solution {
+public:
+    int calculateMinimumHP(vector<vector<int>> dungeon) {
+        vector<vector<int>> m(dungeon.size(), vector<int>(dungeon[0].size(), INT_MAX));
+        m.back().back() = max(1, 1 - dungeon.back().back());
+        for (int i = m.size() - 1; i >= 0; --i) {
+            for (int j = m[i].size() - 1; j >= 0; --j) {
+                if (i < m.size() - 1) {
+                    m[i][j] = min(m[i][j], max(1, m[i + 1][j] - dungeon[i][j]));
+                }
+                if (j < m[i].size() - 1) {
+                    m[i][j] = min(m[i][j], max(1, m[i][j + 1] - dungeon[i][j]));
+                }
+            }
+        }
+        return max(m[0][0], 1);
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

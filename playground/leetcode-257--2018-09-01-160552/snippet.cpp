@@ -19,18 +19,18 @@ using namespace std;
  *
  * Given a binary tree, return all root-to-leaf paths.
  *
- * Note: A leaf is a node with no children.
+ * Note: A leaf is a node with no children.
  *
  * Example:
  *
  *
  * Input:
  *
- * ⁠  1
- * ⁠/   \
+ *   1
+ * /   \
  * 2     3
- * ⁠\
- * ⁠ 5
+ * \
+ *  5
  *
  * Output: ["1->2->5", "1->3"]
  *
@@ -38,15 +38,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     string join(vector<string>& d) {

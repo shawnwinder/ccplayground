@@ -22,11 +22,11 @@ using namespace std;
  * we record using a sentinel value such as #.
  *
  *
- * ⁠    _9_
- * ⁠   /   \
- * ⁠  3     2
- * ⁠ / \   / \
- * ⁠4   1  #  6
+ *     _9_
+ *    /   \
+ *   3     2
+ *  / \   / \
+ * 4   1  #  6
  * / \ / \   / \
  * # # # #   # #
  *

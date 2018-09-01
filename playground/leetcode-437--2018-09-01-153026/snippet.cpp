@@ -32,12 +32,12 @@ using namespace std;
  *
  * root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
  *
- * ⁠     10
- * ⁠    /  \
- * ⁠   5   -3
- * ⁠  / \    \
- * ⁠ 3   2   11
- * ⁠/ \   \
+ *      10
+ *     /  \
+ *    5   -3
+ *   / \    \
+ *  3   2   11
+ * / \   \
  * 3  -2   1
  *
  * Return 3. The paths that sum to 8 are:
@@ -48,15 +48,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int solve(TreeNode* root, int pre, int sum)  {

@@ -45,8 +45,8 @@ using namespace std;
  * Example 2:
  *
  *
- * Input: s = "PAYPALISHIRING", numRows = 4
- * Output: "PINALSIGYAHRPI"
+ * Input: s = "PAYPALISHIRING", numRows = 4
+ * Output: "PINALSIGYAHRPI"
  * Explanation:
  *
  * P     I    N

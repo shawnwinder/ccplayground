@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 7.5K
  * Testcase Example:  '["abc","deq","mee","aqq","dkd","ccc"]\n"abb"'
  *
- * You have a list of words and a pattern, and you want to know which words in
+ * You have a list of words and a pattern, and you want to know which words in
  * words matches the pattern.
  *
  * A word matches the pattern if there exists a permutation of letters p so
@@ -28,7 +28,7 @@ using namespace std;
  * letters: every letter maps to another letter, and no two letters map to the
  * same letter.)
  *
- * Return a list of the words in words that match the given pattern. 
+ * Return a list of the words in words that match the given pattern. 
  *
  * You may return the answer in any order.
  *
@@ -52,7 +52,7 @@ using namespace std;
  *
  *
  * 1 <= words.length <= 50
- * 1 <= pattern.length = words[i].length <= 20
+ * 1 <= pattern.length = words[i].length <= 20
  *
  *
  */

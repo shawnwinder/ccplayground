@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
  * Total Submissions: 703.7K
  * Testcase Example:  '[1,2,3]'
  *
- * Given a non-empty array of digits representing a non-negative integer, plus
+ * Given a non-empty array of digits representing a non-negative integer, plus
  * one to the integer.
  *
  * The digits are stored such that the most significant digit is at the head of
@@ -46,22 +47,27 @@ using namespace std;
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        int i;
-        for(i=digits.size()-1; i>=0; i--) {
-            if (digits[i] < 9) break;
+        int n = digits.size();
+        for (int i = n - 1; i >= 0; --i) {
+            if (digits[i] == 9) {
+                digits[i] = 0;
+            } else {
+                digits[i]++;
+                return digits;
+            }
         }
-        if(i == -1) {
-            for(int j=1; j<digits.size(); j++) digits[j] = 0;
-            digits[0] = 1;
-            digits.push_back(0);
-        } else {
-            for(int j=i+1;j<digits.size(); j++) digits[j] = 0;
-            digits[i] ++;
-        }
+        digits[0] = 1;
+        digits.push_back(0);
         return digits;
     }
 };
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    vector<int> d = { 9, 9, 9 };
+    Solution s;
+    s.plusOne(d);
+    for (auto i = 0u; i < d.size(); ++i) {
+        std::cout << d[i] << std::endl;
+    }
     return 0;
 }

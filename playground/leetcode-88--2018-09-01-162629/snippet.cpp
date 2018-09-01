@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <climits>
+#include <vector>
 
 using namespace std;
 
@@ -36,7 +38,7 @@ using namespace std;
  * nums1 = [1,2,3,0,0,0], m = 3
  * nums2 = [2,5,6],       n = 3
  *
- * Output: [1,2,2,3,5,6]
+ * Output: [1,2,2,3,5,6]
  *
  *
  */
@@ -51,16 +53,14 @@ public:
             int y = b < 0 ? INT_MIN : nums2[b];
             if (x > y) {
                 nums1[r] = x;
-                a --;
+                a--;
             } else {
                 nums1[r] = y;
-                b --;
+                b--;
             }
-            r --;
+            r--;
         }
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

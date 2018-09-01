@@ -22,7 +22,7 @@ using namespace std;
  * A[A[A[i]]], ... } subjected to the rule below.
  *
  * Suppose the first element in S starts with the selection of element A[i] of
- * index = i, the next element in S should be A[A[i]], and then A[A[A[i]]]… By
+ * index = i, the next element in S should be A[A[i]], and then A[A[A[i]]]... By
  * that analogy, we stop adding right before a duplicate element occurs in S.
  *
  * Example 1:

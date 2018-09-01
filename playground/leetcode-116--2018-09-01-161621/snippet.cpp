@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -21,9 +22,9 @@ using namespace std;
  *
  *
  * struct TreeLinkNode {
- * ⁠ TreeLinkNode *left;
- * ⁠ TreeLinkNode *right;
- * ⁠ TreeLinkNode *next;
+ *  TreeLinkNode *left;
+ *  TreeLinkNode *right;
+ *  TreeLinkNode *next;
  * }
  *
  *
@@ -47,54 +48,58 @@ using namespace std;
  * Given the following perfect binary tree,
  *
  *
- * ⁠    1
- * ⁠  /  \
- * ⁠ 2    3
- * ⁠/ \  / \
+ *     1
+ *   /  \
+ *  2    3
+ * / \  / \
  * 4  5  6  7
  *
  *
  * After calling your function, the tree should look like:
  *
  *
- * ⁠    1 -> NULL
- * ⁠  /  \
- * ⁠ 2 -> 3 -> NULL
- * ⁠/ \  / \
+ *     1 -> NULL
+ *   /  \
+ *  2 -> 3 -> NULL
+ * / \  / \
  * 4->5->6->7 -> NULL
  *
  *
  */
-/**
- * Definition for binary tree with next pointer.
- * struct TreeLinkNode {
- *  int val;
- *  TreeLinkNode *left, *right, *next;
- *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
- * };
- */
- class Solution {
- public:
-   void connect(TreeLinkNode *root) {
-            if (!root) return;
 
-     vector<TreeLinkNode*> q = {root};
-     while (!q.empty()) {
-       vector<TreeLinkNode*> q2;
-       TreeLinkNode* l = nullptr;
-       for (auto n : q) {
-         if (l) l->next = n;
-         l = n;
-         if (l->left) q2.push_back(l->left);
-         if (l->right) q2.push_back(l->right);
-       }
-       q = q2;
-     }
-   }
- };
+#ifdef CC_PLAYGROUND
+struct TreeLinkNode {
+    int val;
+    TreeLinkNode *left, *right, *next;
+    TreeLinkNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL)
+        , next(NULL) {}
+};
+#endif
 
+class Solution {
+public:
+    void connect(TreeLinkNode* root) {
+        if (!root)
+            return;
+        vector<TreeLinkNode*> q = { root };
+        while (!q.empty()) {
+            vector<TreeLinkNode*> q2;
+            TreeLinkNode* l = nullptr;
+            for (auto n : q) {
+                if (l)
+                    l->next = n;
+                l = n;
+                if (l->left)
+                    q2.push_back(l->left);
+                if (l->right)
+                    q2.push_back(l->right);
+            }
+            q = q2;
+        }
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

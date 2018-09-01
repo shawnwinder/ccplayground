@@ -16,11 +16,11 @@ using namespace std;
  * algorithms
  * Medium (32.46%)
  * Total Accepted:    196.4K
- * Total Submissions: 605.2K
+ * Total Submissions: 5.2K
  * Testcase Example:  '[-1,2,1,-4]\n1'
  *
  * Given an array nums of n integers and an integer target, find three integers
- * in nums such that the sum is closest to target. Return the sum of the three
+ * in nums such that the sum is closest to target. Return the sum of the three
  * integers. You may assume that each input would have exactly one solution.
  *
  * Example:

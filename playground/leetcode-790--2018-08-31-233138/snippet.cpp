@@ -49,7 +49,7 @@ using namespace std;
  * Note:
  *
  *
- * N  will be in range [1, 1000].
+ * N  will be in range [1, 1000].
  *
  *
  *

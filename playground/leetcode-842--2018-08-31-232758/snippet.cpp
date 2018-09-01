@@ -17,14 +17,14 @@ using namespace std;
  * Total Submissions: 14K
  * Testcase Example:  '"123456579"'
  *
- * Given a string S of digits, such as S = "123456579", we can split it into a
- * Fibonacci-like sequence [123, 456, 579].
+ * Given a string S of digits, such as S = "123456579", we can split it into a
+ * Fibonacci-like sequence [123, 456, 579].
  *
- * Formally, a Fibonacci-like sequence is a list F of non-negative integers
+ * Formally, a Fibonacci-like sequence is a list F of non-negative integers
  * such that:
  *
  *
- * 0 <= F[i] <= 2^31 - 1, (that is, each integer fits a 32-bit signed integer
+ * 0 <= F[i] <= 2^31 - 1, (that is, each integer fits a 32-bit signed integer
  * type);
  * F.length >= 3;
  * and F[i] + F[i+1] = F[i+2] for all 0 <= i < F.length - 2.
@@ -78,7 +78,7 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= S.length <= 200
+ * 1 <= S.length <= 200
  * S contains only digits.
  *
  */

@@ -45,7 +45,7 @@ using namespace std;
  * Output: true
  *
  * Note:
- * You may assume both s and t have the same length.
+ * You may assume both s and t have the same length.
  *
  */
 class Solution {

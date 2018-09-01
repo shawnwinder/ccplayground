@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 2.2K
  * Testcase Example:  '"e + 8 - a + 5"\n["e"]\n[1]'
  *
- * Given an expression such as expression = "e + 8 - a + 5" and an evaluation
+ * Given an expression such as expression = "e + 8 - a + 5" and an evaluation
  * map such as {"e": 1} (given in terms of evalvars = ["e"] and evalints =
  * [1]), return a list of tokens representing the simplified expression, such
  * as ["-1*a","14"]
@@ -47,11 +47,11 @@ using namespace std;
  * largest degree terms of our answer first, breaking ties by lexicographic
  * order ignoring the leading coefficient of the term.
  * The leading coefficient of the term is placed directly to the left with an
- * asterisk separating it from the variables (if they exist.)  A leading
+ * asterisk separating it from the variables (if they exist.)  A leading
  * coefficient of 1 is still printed.
  * An example of a well formatted answer is ["-2*a*a*a", "3*a*a*b", "3*b*b",
- * "4*a", "5*c", "-6"] 
- * Terms (including constant terms) with coefficient 0 are not included.  For
+ * "4*a", "5*c", "-6"] 
+ * Terms (including constant terms) with coefficient 0 are not included.  For
  * example, an expression of "0" has an output of [].
  *
  *

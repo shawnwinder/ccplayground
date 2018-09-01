@@ -17,10 +17,10 @@ using namespace std;
  * Total Submissions: 20.4K
  * Testcase Example:  '[0,1,2,3]\n[0,1,3]'
  *
- * We are given head, the head node of a linked list containing unique integer
+ * We are given head, the head node of a linked list containing unique integer
  * values.
  *
- * We are also given the list G, a subset of the values in the linked list.
+ * We are also given the list G, a subset of the values in the linked list.
  *
  * Return the number of connected components in G, where two values are
  * connected if they appear consecutively in the linked list.
@@ -51,7 +51,7 @@ using namespace std;
  * Note:
  *
  *
- * If N is the length of the linked list given by head, 1 <= N <= 10000.
+ * If N is the length of the linked list given by head, 1 <= N <= 10000.
  * The value of each node in the linked list will be in the range [0, N -
  * 1].
  * 1 <= G.length <= 10000.

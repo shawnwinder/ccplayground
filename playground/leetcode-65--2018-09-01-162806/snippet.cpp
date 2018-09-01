@@ -43,30 +43,34 @@ public:
         int e = 0;
         int num = 0;
         int trail = 0;
-        for (auto c:s) {
+        for (auto c : s) {
             if (c == ' ') {
-                if (trail != 0) space = 1;
+                if (trail != 0)
+                    space = 1;
             } else if (c >= '0' && c <= '9') {
-                if (space == 1) return false;
+                if (space == 1)
+                    return false;
                 num = 1;
                 trail = 1;
             } else if (c == '.') {
-                if (dot == 1 || space == 1 || e == 1) return false;
+                if (dot == 1 || space == 1 || e == 1)
+                    return false;
                 dot = 1;
                 trail = 2;
             } else if (c == 'e') {
-                if (num == 0 || e == 1 || space == 1) return false;
+                if (num == 0 || e == 1 || space == 1)
+                    return false;
                 e = 1;
                 trail = 3;
             } else if (c == '-' || c == '+') {
-                if (space == 1 || (trail != 0 && trail != 3)) return false;
+                if (space == 1 || (trail != 0 && trail != 3))
+                    return false;
                 trail = 4;
-            } else return false;
+            } else
+                return false;
         }
         return trail == 1 || (trail == 2 && num == 1);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

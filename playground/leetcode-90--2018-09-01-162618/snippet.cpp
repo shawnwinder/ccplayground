@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -28,39 +30,37 @@ using namespace std;
  * Input: [1,2,2]
  * Output:
  * [
- * ⁠ [2],
- * ⁠ [1],
- * ⁠ [1,2,2],
- * ⁠ [2,2],
- * ⁠ [1,2],
- * ⁠ []
+ *  [2],
+ *  [1],
+ *  [1,2,2],
+ *  [2,2],
+ *  [1,2],
+ *  []
  * ]
  *
  */
- class Solution {
- public:
-   void work(vector<vector<int>>& ans, vector<int>& partial, int i, vector<int>& candidates) {
-     if (i >= candidates.size()) {
-       ans.push_back(partial);
-         return;
-     }
-     partial.push_back(candidates[i]);
-     work(ans, partial, i + 1, candidates);
-     partial.pop_back();
-     i ++;
-     while (i < candidates.size() && candidates[i] == candidates[i-1]) i ++;
-     work(ans, partial, i, candidates);
-   }
-   vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-     sort(nums.begin(), nums.end());
-     vector<vector<int>> ans;
-     vector<int> partial;
-     work(ans, partial, 0, nums);
-     return ans;
-   }
- };
+class Solution {
+public:
+    void work(vector<vector<int>>& ans, vector<int>& partial, int i, vector<int>& candidates) {
+        if (i >= candidates.size()) {
+            ans.push_back(partial);
+            return;
+        }
+        partial.push_back(candidates[i]);
+        work(ans, partial, i + 1, candidates);
+        partial.pop_back();
+        i++;
+        while (i < candidates.size() && candidates[i] == candidates[i - 1])
+            i++;
+        work(ans, partial, i, candidates);
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
+        vector<int> partial;
+        work(ans, partial, 0, nums);
+        return ans;
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

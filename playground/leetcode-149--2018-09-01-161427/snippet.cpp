@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <map>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -28,11 +31,11 @@ using namespace std;
  * Explanation:
  * ^
  * |
- * |        o
- * |     o
- * |  o  
+ * |        o
+ * |     o
+ * |  o
  * +------------->
- * 0  1  2  3  4
+ * 0  1  2  3  4
  *
  *
  * Example 2:
@@ -44,62 +47,62 @@ using namespace std;
  * ^
  * |
  * |  o
- * |     o        o
- * |        o
- * |  o        o
+ * |     o        o
+ * |        o
+ * |  o        o
  * +------------------->
- * 0  1  2  3  4  5  6
+ * 0  1  2  3  4  5  6
  *
  *
  */
-/**
- * Definition for a point.
- * struct Point {
- *     int x;
- *     int y;
- *     Point() : x(0), y(0) {}
- *     Point(int a, int b) : x(a), y(b) {}
- * };
- */
-class Solution {
-public:
-  int maxPoints(const vector<Point>& points) {
-    int max = 1;
-    if (points.size() <= 2) return points.size();
-    for (int i=0;i<points.size();i++) {
-      unordered_map<Fraction, int> cnt;
-      int dup = 0;
-      int vert = 1;
-      int local = 1;
-      for (int j=i+1;j<points.size();j++) {
-        if (points[i].x == points[j].x) {
-          if (points[i].y == points[j].y) {
-            dup ++;
-          } else {
-            vert ++;
-          }
-        } else {
-          auto& num = cnt[{points[j].y - points[i].y , points[j].x - points[i].x}];
-          num ++;
-          if (local < num + 1) local = num + 1;
-        }
-      }
-      if (max < local + dup) max = local + dup;
-      if (max < dup + vert) max = dup + vert;
-    }
-    return max;
-  }
-};
 
-#ifdef AMOS
-int main() {
-  ios::sync_with_stdio(false);
-  Solution s;
-  cout << s.maxPoints(vector<Point>{{0,0}, {-1,-1}, {2,2}});
-}
+#ifdef CC_PLAYGROUND
+struct Point {
+    int x;
+    int y;
+    Point()
+        : x(0)
+        , y(0) {}
+    Point(int a, int b)
+        : x(a)
+        , y(b) {}
+};
 #endif
 
+class Solution {
+public:
+    int maxPoints(vector<Point>& points) {
+        if (points.size() < 2)
+            return points.size();
+        int result = 0;
+        for (int i = 0; i < points.size(); i++) {
+            map<pair<int, int>, int> lines;
+            int localmax = 0, overlap = 0, vertical = 0;
+            for (int j = i + 1; j < points.size(); j++) {
+                if (points[j].x == points[i].x && points[j].y == points[i].y) {
+                    overlap++;
+                    continue;
+                } else if (points[j].x == points[i].x)
+                    vertical++;
+                else {
+                    int a = points[j].x - points[i].x, b = points[j].y - points[i].y;
+                    int gcd = __gcd(a, b);
+                    a /= gcd;
+                    b /= gcd;
+                    lines[make_pair(a, b)]++;
+                    localmax = max(lines[make_pair(a, b)], localmax);
+                }
+                localmax = max(vertical, localmax);
+            }
+            result = max(result, localmax + overlap + 1);
+        }
+        return result;
+    }
+};
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    Solution s;
+    auto v = vector<Point>{ { 0, 0 }, { -1, -1 }, { 2, 2 } };
+    cout << s.maxPoints(v);
     return 0;
 }

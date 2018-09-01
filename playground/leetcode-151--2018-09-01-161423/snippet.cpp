@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -19,11 +20,11 @@ using namespace std;
  *
  * Given an input string, reverse the string word by word.
  *
- * Example:  
+ * Example:
  *
  *
  * Input: "the sky is blue",
- * Output: "blue is sky the".
+ * Output: "blue is sky the".
  *
  *
  * Note:
@@ -36,28 +37,26 @@ using namespace std;
  * the reversed string.
  *
  *
- * Follow up: For C programmers, try to solve it in-place in O(1) space.
+ * Follow up: For C programmers, try to solve it in-place in O(1) space.
  *
  */
 class Solution {
 public:
-    void reverseWords(string &s) {
-      size_t i, j = 0;
-      for (i = 0; i < s.size(); i++)
-        if (s[i] != ' ' || (j && s[j-1] != ' '))
-            s[j++] = s[i];
-      while (j && s[j-1] == ' ')
-        j--;
-      s.resize(j);
-      reverse(s.begin(), s.end());
-      for (size_t i = 0, j; i < s.size(); i = j+1) {
-        for (j = i; j < s.size() && s[j] != ' '; j++);
-        reverse(s.begin()+i, s.begin()+j);
-      }
+    void reverseWords(string& s) {
+        size_t i, j = 0;
+        for (i = 0; i < s.size(); i++)
+            if (s[i] != ' ' || (j && s[j - 1] != ' '))
+                s[j++] = s[i];
+        while (j && s[j - 1] == ' ')
+            j--;
+        s.resize(j);
+        reverse(s.begin(), s.end());
+        for (size_t i = 0, j; i < s.size(); i = j + 1) {
+            for (j = i; j < s.size() && s[j] != ' '; j++)
+                ;
+            reverse(s.begin() + i, s.begin() + j);
+        }
     }
-
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 18.9K
  * Testcase Example:  '[1]\n1'
  *
- * Return the length of the shortest, non-empty, contiguous subarray of A with
+ * Return the length of the shortest, non-empty, contiguous subarray of A with
  * sum at least K.
  *
  * If there is no non-empty subarray with sum at least K, return -1.
@@ -57,7 +57,7 @@ using namespace std;
  *
  *
  * 1 <= A.length <= 50000
- * -10 ^ 5 <= A[i] <= 10 ^ 5
+ * -10 ^ 5 <= A[i] <= 10 ^ 5
  * 1 <= K <= 10 ^ 9
  *
  *

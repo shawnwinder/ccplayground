@@ -22,7 +22,7 @@ using namespace std;
  *
  * Now rain starts to fall. At time t, the depth of the water everywhere is t.
  * You can swim from a square to another 4-directionally adjacent square if and
- * only if the elevation of both squares individually are at most t. You can
+ * only if the elevation of both squares individually are at most t. You can
  * swim infinite distance in zero time. Of course, you must stay within the
  * boundaries of the grid during your swim.
  *
@@ -50,7 +50,7 @@ using namespace std;
  * [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]
  * Output: 16
  * Explanation:
- * ⁠0  1  2  3  4
+ * 0  1  2  3  4
  * 24 23 22 21  5
  * 12 13 14 15 16
  * 11 17 18 19 20

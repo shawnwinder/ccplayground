@@ -40,7 +40,7 @@ using namespace std;
  *
  *
  * Example 1:
- * Input: board = ["O  ", "   ", "   "]
+ * Input: board = ["O  ", "   ", "   "]
  * Output: false
  * Explanation: The first player always plays "X".
  *

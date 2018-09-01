@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -49,16 +50,13 @@ class Solution {
 public:
     bool canJump(vector<int>& nums) {
         int last = nums.size() - 1;
-        for (int i=nums.size()-2; i>=0;i--) {
+        for (int i = nums.size() - 2; i >= 0; i--) {
             if (nums[i] + i >= last) {
                 last = i;
             }
         }
         return last == 0;
-        
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

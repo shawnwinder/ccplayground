@@ -18,7 +18,7 @@ using namespace std;
  * Testcase Example:  '           0 (00000000000000000000000000000000)'
  *
  * Write a function that takes an unsigned integer and returns the number of
- * '1' bits it has (also known as the Hamming weight).
+ * '1' bits it has (also known as the Hamming weight).
  *
  * Example 1:
  *
@@ -45,12 +45,10 @@ public:
         int cnt = 0;
         while (n) {
             n = n ^ (n & (-n));
-            cnt ++;
+            cnt++;
         }
         return cnt;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

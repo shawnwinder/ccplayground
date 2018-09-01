@@ -40,8 +40,8 @@ using namespace std;
  * Input: [[1,2], [1,3], [2,3]]
  * Output: [2,3]
  * Explanation: The given directed graph will be like this:
- * ⁠ 1
- * ⁠/ \
+ *  1
+ * / \
  * v   v
  * 2-->3
  *
@@ -52,9 +52,9 @@ using namespace std;
  * Output: [4,1]
  * Explanation: The given directed graph will be like this:
  * 5  2
- * ⁠    ^    |
- * ⁠    |    v
- * ⁠    4
+ *     ^    |
+ *     |    v
+ *     4
  *
  * Note:
  * The size of the input 2D-array will be between 3 and 1000.

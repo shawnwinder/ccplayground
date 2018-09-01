@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -30,7 +31,6 @@ using namespace std;
  * Input: "Hello World"
  * Output: 5
  *
- *
  */
 class Solution {
 public:
@@ -39,13 +39,12 @@ public:
         string t;
         string l;
         while (ss >> t) {
-            if (t == "") break;
+            if (t == "")
+                break;
             l = t;
         }
         return l.size();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -23,10 +23,10 @@ using namespace std;
  * Example 1:
  *
  * Input:
- * ⁠   5
- * ⁠  / \
- * ⁠ 3   6
- * ⁠/ \   \
+ *    5
+ *   / \
+ *  3   6
+ * / \   \
  * 2   4   7
  *
  * Target = 9
@@ -39,10 +39,10 @@ using namespace std;
  * Example 2:
  *
  * Input:
- * ⁠   5
- * ⁠  / \
- * ⁠ 3   6
- * ⁠/ \   \
+ *    5
+ *   / \
+ *  3   6
+ * / \   \
  * 2   4   7
  *
  * Target = 28
@@ -53,15 +53,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     void collect(TreeNode* root, vector<int>& v) {

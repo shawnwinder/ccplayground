@@ -34,24 +34,24 @@ using namespace std;
  *
  * Input:
  * A binary tree as following:
- * ⁠      4
- * ⁠    /   \
- * ⁠   2     6
- * ⁠  / \   /
- * ⁠ 3   1 5
+ *       4
+ *     /   \
+ *    2     6
+ *   / \   /
+ *  3   1 5
  *
  * v = 1
  *
  * d = 2
  *
  * Output:
- * ⁠      4
- * ⁠     / \
- * ⁠    1   1
- * ⁠   /     \
- * ⁠  2       6
- * ⁠ / \     /
- * ⁠3   1   5
+ *       4
+ *      / \
+ *     1   1
+ *    /     \
+ *   2       6
+ *  / \     /
+ * 3   1   5
  *
  *
  *
@@ -61,23 +61,23 @@ using namespace std;
  *
  * Input:
  * A binary tree as following:
- * ⁠     4
- * ⁠    /
- * ⁠   2
- * ⁠  / \
- * ⁠ 3   1
+ *      4
+ *     /
+ *    2
+ *   / \
+ *  3   1
  *
  * v = 1
  *
  * d = 3
  *
  * Output:
- * ⁠     4
- * ⁠    /
- * ⁠   2
- * ⁠  / \
- * ⁠ 1   1
- * ⁠/     \
+ *      4
+ *     /
+ *    2
+ *   / \
+ *  1   1
+ * /     \
  * 3       1
  *
  *
@@ -89,15 +89,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* addOneRow(TreeNode* root, int v, int d) {

@@ -14,7 +14,7 @@ using namespace std;
  * algorithms
  * Easy (47.20%)
  * Total Accepted:    28.4K
- * Total Submissions: 60.1K
+ * Total Submissions: .1K
  * Testcase Example:  '[1,2,2,3,1]'
  *
  * Given a non-empty array of non-negative integers nums, the degree of this

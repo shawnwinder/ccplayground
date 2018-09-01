@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ using namespace std;
  *
  * Input: 2, [[1,0]]
  * Output: [0,1]
- * Explanation: There are a total of 2 courses to take. To take course 1 you
+ * Explanation: There are a total of 2 courses to take. To take course 1 you
  * should have finished
  * course 0. So the correct course order is [0,1] .
  *
@@ -42,9 +43,9 @@ using namespace std;
  *
  * Input: 4, [[1,0],[2,0],[3,1],[3,2]]
  * Output: [0,1,2,3] or [0,2,1,3]
- * Explanation: There are a total of 4 courses to take. To take course 3 you
+ * Explanation: There are a total of 4 courses to take. To take course 3 you
  * should have finished both
- * ⁠            courses 1 and 2. Both courses 1 and 2 should be taken after you
+ *             courses 1 and 2. Both courses 1 and 2 should be taken after you
  * finished course 0.
  * So one correct course order is [0,1,2,3]. Another correct ordering is
  * [0,2,1,3] .
@@ -67,23 +68,26 @@ public:
         vector<vector<int>> e(n);
         vector<int> r;
         for (auto& pii : prerequisites) {
-            d[pii.first] ++;
+            d[pii.first]++;
             e[pii.second].push_back(pii.first);
         }
         vector<int> q;
-        for (int i=0;i<n;i++) if (!d[i]) q.push_back(i), d[i] = -1, r.push_back(i);
-        
-        while(q.size()) {
-            int tp = q.back(); q.pop_back();
-            for (int j:e[tp]) {
-                if (--d[j] == 0) q.push_back(j), d[j] = tp, r.push_back(j);
+        for (int i = 0; i < n; i++)
+            if (!d[i])
+                q.push_back(i), d[i] = -1, r.push_back(i);
+        while (q.size()) {
+            int tp = q.back();
+            q.pop_back();
+            for (int j : e[tp]) {
+                if (--d[j] == 0)
+                    q.push_back(j), d[j] = tp, r.push_back(j);
             }
         }
-        if (r.size() == n) return r; else return {};
-        
+        if (r.size() == n)
+            return r;
+        else
+            return {};
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

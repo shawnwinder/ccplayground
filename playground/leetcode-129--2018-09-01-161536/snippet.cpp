@@ -25,15 +25,15 @@ using namespace std;
  *
  * Find the total sum of all root-to-leaf numbers.
  *
- * Note: A leaf is a node with no children.
+ * Note: A leaf is a node with no children.
  *
  * Example:
  *
  *
  * Input: [1,2,3]
- * ⁠   1
- * ⁠  / \
- * ⁠ 2   3
+ *    1
+ *   / \
+ *  2   3
  * Output: 25
  * Explanation:
  * The root-to-leaf path 1->2 represents the number 12.
@@ -44,10 +44,10 @@ using namespace std;
  *
  *
  * Input: [4,9,0,5,1]
- * ⁠   4
- * ⁠  / \
- * ⁠ 9   0
- * / \
+ *     4
+ *    / \
+ *   9   0
+ *  / \
  * 5   1
  * Output: 1026
  * Explanation:
@@ -57,33 +57,38 @@ using namespace std;
  * Therefore, sum = 495 + 491 + 40 = 1026.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int sum = 0;
     void work(TreeNode* root, int num) {
-        int cur = num*10 + root->val;
+        int cur = num * 10 + root->val;
         if (root->left == NULL && root->right == NULL) {
             sum += cur;
-            return ;
+            return;
         }
-        if(root->left) work(root->left, cur);
-        if(root->right) work(root->right, cur);
+        if (root->left)
+            work(root->left, cur);
+        if (root->right)
+            work(root->right, cur);
     }
     int sumNumbers(TreeNode* root) {
-        if(root) work(root, 0);
+        if (root)
+            work(root, 0);
         return sum;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

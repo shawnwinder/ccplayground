@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 28.1K
  * Testcase Example:  '"loveleetcode"\n"e"'
  *
- * Given a string S and a character C, return an array of integers representing
+ * Given a string S and a character C, return an array of integers representing
  * the shortest distance from the character C in the string.
  *
  * Example 1:
@@ -32,8 +32,8 @@ using namespace std;
  * Note:
  *
  *
- * S string length is in [1, 10000].
- * C is a single character, and guaranteed to be in string S.
+ * S string length is in [1, 10000].
+ * C is a single character, and guaranteed to be in string S.
  * All letters in S and C are lowercase.
  *
  *

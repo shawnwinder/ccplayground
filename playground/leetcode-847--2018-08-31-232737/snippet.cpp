@@ -17,10 +17,10 @@ using namespace std;
  * Total Submissions: 7.3K
  * Testcase Example:  '[[1,2,3],[0],[0],[0]]'
  *
- * An undirected, connected graph of N nodes (labeled 0, 1, 2, ..., N-1) is
+ * An undirected, connected graph of N nodes (labeled 0, 1, 2, ..., N-1) is
  * given as graph.
  *
- * graph.length = N, and j != i is in the list graph[i] exactly once, if and
+ * graph.length = N, and j != i is in the list graph[i] exactly once, if and
  * only if nodes i and j are connected.
  *
  * Return the length of the shortest path that visits every node. You may start
@@ -53,7 +53,7 @@ using namespace std;
  *
  *
  * 1 <= graph.length <= 12
- * 0 <= graph[i].length < graph.length
+ * 0 <= graph[i].length < graph.length
  *
  */
 class Solution {

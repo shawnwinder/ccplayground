@@ -42,7 +42,7 @@ using namespace std;
  *
  *
  *
- * Given a particular n ≥ 1, find out how much money you need to have to
+ * Given a particular n >= 1, find out how much money you need to have to
  * guarantee a win.
  *
  * Credits:Special thanks to @agave and @StefanPochmann for adding this problem

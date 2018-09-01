@@ -26,8 +26,8 @@ using namespace std;
  * If n is the length of array, assume the following constraints are
  * satisfied:
  *
- * 1 ≤ n ≤ 1000
- * 1 ≤ m ≤ min(50, n)
+ * 1 <= n <= 1000
+ * 1 <= m <= min(50, n)
  *
  *
  *

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -26,52 +27,35 @@ using namespace std;
  * Input: 3
  * Output:
  * [
- * ⁠[ 1, 2, 3 ],
- * ⁠[ 8, 9, 4 ],
- * ⁠[ 7, 6, 5 ]
+ *  [ 1, 2, 3 ],
+ *  [ 8, 9, 4 ],
+ *  [ 7, 6, 5 ]
  * ]
- *
  *
  */
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
-        int d = 1;
-        vector<vector<int>> ret(n, vector<int>(n, 0));
-        pair<int, int> cur = {0, 0};
-        for (int i = 1;i<=n * n; i++) {
-            ret[cur.second][cur.first] = i;
-            switch (d) {
-                case 1:
-                    if (cur.first == n-1 || ret[cur.second][cur.first + 1]) {
-                        d = 2;
-                        cur.second ++;
-                    } else cur.first ++;
-                    break;
-                case 2:
-                    if (cur.second == n -1 || ret[cur.second + 1][cur.first]) {
-                        d = 3;
-                        cur.first --;
-                    } else cur.second ++;
-                    break;
-                case 3:
-                    if (cur.first == 0 || ret[cur.second][cur.first - 1]) {
-                        d = 4;
-                        cur.second --;
-                    } else cur.first --;
-                    break;
-                case 4:
-                    if (cur.second == 0 || ret[cur.second - 1][cur.first]) {
-                        cur.first ++;
-                        d = 1;
-                    } else cur.second --;
-                    break;
-            }
+        vector<vector<int>> ret(n, vector<int>(n));
+        int k = 1, i = 0;
+        while (k <= n * n) {
+            int j = i;
+            // four steps
+            while (j < n - i) // 1. horizonal, left to right
+                ret[i][j++] = k++;
+            j = i + 1;
+            while (j < n - i) // 2. vertical, top to bottom
+                ret[j++][n - i - 1] = k++;
+            j = n - i - 2;
+            while (j > i) // 3. horizonal, right to left
+                ret[n - i - 1][j--] = k++;
+            j = n - i - 1;
+            while (j > i) // 4. vertical, bottom to  top
+                ret[j--][i] = k++;
+            i++; // next loop
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

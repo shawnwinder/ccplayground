@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -19,7 +21,7 @@ using namespace std;
  *
  * Given two binary strings, return their sum (also a binary string).
  *
- * The input strings are both non-empty and contains only characters 1 or 0.
+ * The input strings are both non-empty and contains only characters 1 or 0.
  *
  * Example 1:
  *
@@ -37,25 +39,16 @@ using namespace std;
 class Solution {
 public:
     string addBinary(string a, string b) {
-        int c = 0;
-        stringstream ret;
-        reverse(a.begin(), a.end());
-        reverse(b.begin(), b.end());
-        
-        for (int i=0; i<a.size() || i<b.size(); i++) {
-            int x = i<a.size() ? a[i] - '0' : 0;
-            int y = i<b.size() ? b[i] - '0' : 0;
-            int v = x + y + c;
-            ret << (v == 1 || v == 3);
-            c = (v>1);
+        string s = "";
+        int c = 0, i = a.size() - 1, j = b.size() - 1;
+        while (i >= 0 || j >= 0 || c == 1) {
+            c += i >= 0 ? a[i--] - '0' : 0;
+            c += j >= 0 ? b[j--] - '0' : 0;
+            s = char(c % 2 + '0') + s;
+            c /= 2;
         }
-        if (c > 0) ret << c;
-        string ans = ret.str();
-        reverse(ans.begin(), ans.end());
-        return ans;
+        return s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

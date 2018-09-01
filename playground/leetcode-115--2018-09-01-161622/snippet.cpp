@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ using namespace std;
  *
  *
  * Input: S = "rabbbit", T = "rabbit"
- * Output: 3
+ * Output: 3
  * Explanation:
  *
  * As shown below, there are 3 ways you can generate "rabbit" from S.
@@ -47,7 +48,7 @@ using namespace std;
  *
  *
  * Input: S = "babgbag", T = "bag"
- * Output: 5
+ * Output: 5
  * Explanation:
  *
  * As shown below, there are 5 ways you can generate "bag" from S.
@@ -60,19 +61,28 @@ using namespace std;
  * babgbag
  * ^    ^^
  * babgbag
- * ⁠ ^  ^^
+ *  ^  ^^
  * babgbag
- * ⁠   ^^^
+ *    ^^^
  *
  *
  */
 class Solution {
 public:
     int numDistinct(string s, string t) {
-
+        int m = t.length(), n = s.length();
+        vector<int> cur(m + 1, 0);
+        cur[0] = 1;
+        for (int j = 1; j <= n; j++) {
+            int pre = 1;
+            for (int i = 1; i <= m; i++) {
+                int temp = cur[i];
+                cur[i] = cur[i] + (t[i - 1] == s[j - 1] ? pre : 0);
+                pre = temp;
+            }
+        }
+        return cur[m];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

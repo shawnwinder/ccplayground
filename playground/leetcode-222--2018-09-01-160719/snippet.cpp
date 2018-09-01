@@ -30,24 +30,28 @@ using namespace std;
  *
  *
  * Input:
- * ⁠   1
- * ⁠  / \
- * ⁠ 2   3
- * ⁠/ \  /
+ *    1
+ *   / \
+ *  2   3
+ * / \  /
  * 4  5 6
  *
  * Output: 6
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
   int countNodes(TreeNode* root) {

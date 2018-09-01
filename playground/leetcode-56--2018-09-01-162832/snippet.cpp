@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -36,33 +38,36 @@ using namespace std;
  * Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
  *
  */
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct Interval {
+    int start;
+    int end;
+    Interval()
+        : start(0)
+        , end(0) {}
+    Interval(int s, int e)
+        : start(s)
+        , end(e) {}
+};
+#endif
+
 class Solution {
 public:
     vector<Interval> merge(vector<Interval>& intervals) {
         vector<Interval> r;
-        sort(intervals.begin(), intervals.end(), [](const Interval &x, const Interval &y) { return x.start < y.start; });
-        for (auto &i: intervals)
-          if (r.empty() || r.back().end < i.start)
-            r.push_back(i);
-          else {
-            Interval &x = r.back();
-            x.start = min(x.start, i.start);
-            x.end = max(x.end, i.end);
-          }
+        sort(intervals.begin(), intervals.end(),
+            [](const Interval& x, const Interval& y) { return x.start < y.start; });
+        for (auto& i : intervals)
+            if (r.empty() || r.back().end < i.start)
+                r.push_back(i);
+            else {
+                Interval& x = r.back();
+                x.start = min(x.start, i.start);
+                x.end = max(x.end, i.end);
+            }
         return r;
-
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -24,7 +24,7 @@ using namespace std;
  *
  * Input: 1
  * Output: true
- * Explanation: 20 = 1
+ * Explanation: 20 = 1
  *
  *
  * Example 2:
@@ -32,7 +32,7 @@ using namespace std;
  *
  * Input: 16
  * Output: true
- * Explanation: 24 = 16
+ * Explanation: 24 = 16
  *
  * Example 3:
  *

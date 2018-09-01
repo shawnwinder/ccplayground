@@ -33,10 +33,10 @@ using namespace std;
  * ?????
  * ?   ?
  * ???????>
- * ⁠   ?
+ *    ?
  *
  * Input: true
- * Explanation: self crossing
+ * Explanation: self crossing
  *
  *
  * Example 2:
@@ -64,7 +64,7 @@ using namespace std;
  * ?????>
  *
  * Output: true
- * Explanation: self crossing
+ * Explanation: self crossing
  *
  *
  */

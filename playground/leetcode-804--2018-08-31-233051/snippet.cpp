@@ -31,7 +31,7 @@ using namespace std;
  * Now, given a list of words, each word can be written as a concatenation of
  * the Morse code of each letter. For example, "cab" can be written as
  * "-.-.-....-", (which is the concatenation "-.-." + "-..." + ".-"). We'll
- * call such a concatenation, the transformation of a word.
+ * call such a concatenation, the transformation of a word.
  *
  * Return the number of different transformations among all words we have.
  *
@@ -56,7 +56,7 @@ using namespace std;
  *
  * The length of words will be at most 100.
  * Each words[i] will have length in range [1, 12].
- * ⁠   words[i] will only consist of lowercase letters.
+ *    words[i] will only consist of lowercase letters.
  *
  */
 class Solution {

@@ -32,14 +32,14 @@ using namespace std;
  *
  * Input: [3,2,3,null,3,null,1]
  *
- * ⁠    3
- * ⁠   / \
- * ⁠  2   3
- * ⁠   \   \
- * ⁠    3   1
+ *     3
+ *    / \
+ *   2   3
+ *    \   \
+ *     3   1
  *
  * Output: 7
- * Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
+ * Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
  *
  * Example 2:
  *
@@ -47,25 +47,29 @@ using namespace std;
  * Input: [3,4,5,1,3,null,1]
  *
  * 3
- * ⁠   / \
- * ⁠  4   5
- * ⁠ / \   \
- * ⁠1   3   1
+ *    / \
+ *   4   5
+ *  / \   \
+ * 1   3   1
  *
  * Output: 9
- * Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
+ * Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int solve(TreeNode* root, bool can_rob) {

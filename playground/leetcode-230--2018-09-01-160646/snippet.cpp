@@ -21,16 +21,16 @@ using namespace std;
  * smallest element in it.
  *
  * Note:
- * You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
+ * You may assume k is always valid, 1 <= k <= BST's total elements.
  *
  * Example 1:
  *
  *
  * Input: root = [3,1,4,null,2], k = 1
- * ⁠  3
- * ⁠ / \
- * ⁠1   4
- * ⁠ \
+ *   3
+ *  / \
+ * 1   4
+ *  \
  * 2
  * Output: 1
  *
@@ -38,13 +38,13 @@ using namespace std;
  *
  *
  * Input: root = [5,3,6,2,4,null,null,1], k = 3
- * ⁠      5
- * ⁠     / \
- * ⁠    3   6
- * ⁠   / \
- * ⁠  2   4
- * ⁠ /
- * ⁠1
+ *       5
+ *      / \
+ *     3   6
+ *    / \
+ *   2   4
+ *  /
+ * 1
  * Output: 3
  *
  *
@@ -54,15 +54,19 @@ using namespace std;
  * routine?
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution(object):
     def kthSmallest(self, root, k):
         """

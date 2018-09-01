@@ -19,7 +19,7 @@ using namespace std;
  * Total Submissions: 13.6K
  * Testcase Example:  '[4,-1,3]\n[]'
  *
- * A robot on an infinite grid starts at point (0, 0) and faces north.  The
+ * A robot on an infinite grid starts at point (0, 0) and faces north.  The
  * robot can receive one of three possible types of commands:
  *
  *
@@ -28,7 +28,7 @@ using namespace std;
  * 1 <= x <= 9: move forward x units
  *
  *
- * Some of the grid squares are obstacles. 
+ * Some of the grid squares are obstacles.
  *
  * The i-th obstacle is at grid point (obstacles[i][0], obstacles[i][1])
  *
@@ -98,8 +98,5 @@ public:
         return res;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

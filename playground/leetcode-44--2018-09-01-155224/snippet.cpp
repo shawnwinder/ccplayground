@@ -30,9 +30,9 @@ using namespace std;
  * Note:
  *
  *
- * s could be empty and contains only lowercase letters a-z.
+ * s could be empty and contains only lowercase letters a-z.
  * p could be empty and contains only lowercase letters a-z, and characters
- * like ? or *.
+ * like ? or *.
  *
  *
  * Example 1:
@@ -52,7 +52,7 @@ using namespace std;
  * s = "aa"
  * p = "*"
  * Output: true
- * Explanation: '*' matches any sequence.
+ * Explanation: '*' matches any sequence.
  *
  *
  * Example 3:
@@ -62,7 +62,7 @@ using namespace std;
  * s = "cb"
  * p = "?a"
  * Output: false
- * Explanation: '?' matches 'c', but the second letter is 'a', which does not
+ * Explanation: '?' matches 'c', but the second letter is 'a', which does not
  * match 'b'.
  *
  *
@@ -73,7 +73,7 @@ using namespace std;
  * s = "adceb"
  * p = "*a*b"
  * Output: true
- * Explanation: The first '*' matches the empty sequence, while the second '*'
+ * Explanation: The first '*' matches the empty sequence, while the second '*'
  * matches the substring "dce".
  *
  *

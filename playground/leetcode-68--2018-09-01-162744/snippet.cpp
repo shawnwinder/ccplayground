@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
  * Total Submissions: 367.3K
  * Testcase Example:  '["This", "is", "an", "example", "of", "text", "justification."]\n16'
  *
- * Given an array of words and a width maxWidth, format the text such that each
+ * Given an array of words and a width maxWidth, format the text such that each
  * line has exactly maxWidth characters and is fully (left and right)
  * justified.
  *
@@ -35,11 +36,11 @@ using namespace std;
  * Note:
  *
  *
- * A word is defined as a character sequence consisting of non-space characters
+ * A word is defined as a character sequence consisting of non-space characters
  * only.
- * Each word's length is guaranteed to be greater than 0 and not exceed
+ * Each word's length is guaranteed to be greater than 0 and not exceed
  * maxWidth.
- * The input array words contains at least one word.
+ * The input array words contains at least one word.
  *
  *
  * Example 1:
@@ -50,9 +51,9 @@ using namespace std;
  * maxWidth = 16
  * Output:
  * [
- * "This    is    an",
- * "example  of text",
- * "justification.  "
+ * "This    is    an",
+ * "example  of text",
+ * "justification.  "
  * ]
  *
  *
@@ -64,14 +65,14 @@ using namespace std;
  * maxWidth = 16
  * Output:
  * [
- * "What   must   be",
- * "acknowledgment  ",
- * "shall be        "
+ *  "What   must   be",
+ *  "acknowledgment  ",
+ *  "shall be        "
  * ]
  * Explanation: Note that the last line is "shall be    " instead of "shall
  * be",
  * because the last line must be left-justified instead of fully-justified.
- * ⁠            Note that the second line is also left-justified becase it
+ * Note that the second line is also left-justified becase it
  * contains only one word.
  *
  *
@@ -85,29 +86,31 @@ using namespace std;
  * maxWidth = 20
  * Output:
  * [
- * "Science  is  what we",
- * ⁠ "understand      well",
- * "enough to explain to",
- * "a  computer.  Art is",
- * "everything  else  we",
- * "do                  "
+ *  "Science  is  what we",
+ *  "understand      well",
+ *  "enough to explain to",
+ *  "a  computer.  Art is",
+ *  "everything  else  we",
+ *  "do                  "
  * ]
  *
  *
  */
 class Solution {
 public:
-    vector<string> fullJustify(vector<string> &words, int L) {
+    vector<string> fullJustify(vector<string>& words, int L) {
         vector<string> res;
-        for(int i = 0, k, l; i < words.size(); i += k) {
-            for(k = l = 0; i + k < words.size() and l + words[i+k].size() <= L - k; k++) {
-                l += words[i+k].size();
+        for (int i = 0, k, l; i < words.size(); i += k) {
+            for (k = l = 0; i + k < words.size() and l + words[i + k].size() <= L - k; k++) {
+                l += words[i + k].size();
             }
             string tmp = words[i];
-            for(int j = 0; j < k - 1; j++) {
-                if(i + k >= words.size()) tmp += " ";
-                else tmp += string((L - l) / (k - 1) + (j < (L - l) % (k - 1)), ' ');
-                tmp += words[i+j+1];
+            for (int j = 0; j < k - 1; j++) {
+                if (i + k >= words.size())
+                    tmp += " ";
+                else
+                    tmp += string((L - l) / (k - 1) + (j < (L - l) % (k - 1)), ' ');
+                tmp += words[i + j + 1];
             }
             tmp += string(L - tmp.size(), ' ');
             res.push_back(tmp);
@@ -116,6 +119,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

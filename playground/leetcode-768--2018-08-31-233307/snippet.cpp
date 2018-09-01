@@ -25,7 +25,7 @@ using namespace std;
  *
  * Given an array arr of integers (not necessarily distinct), we split the
  * array into some number of "chunks" (partitions), and individually sort each
- * chunk.  After concatenating them, the result equals the sorted array.
+ * chunk.  After concatenating them, the result equals the sorted array.
  *
  * What is the most number of chunks we could have made?
  *

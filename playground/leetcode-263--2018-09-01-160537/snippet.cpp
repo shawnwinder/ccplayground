@@ -26,14 +26,14 @@ using namespace std;
  *
  * Input: 6
  * Output: true
- * Explanation: 6 = 2 × 3
+ * Explanation: 6 = 2 x 3
  *
  * Example 2:
  *
  *
  * Input: 8
  * Output: true
- * Explanation: 8 = 2 × 2 × 2
+ * Explanation: 8 = 2 x 2 x 2
  *
  *
  * Example 3:
@@ -48,7 +48,7 @@ using namespace std;
  *
  *
  * 1 is typically treated as an ugly number.
- * Input is within the 32-bit signed integer range: [−231,  231 − 1].
+ * Input is within the 32-bit signed integer range: [-231,  231 - 1].
  *
  *
  */

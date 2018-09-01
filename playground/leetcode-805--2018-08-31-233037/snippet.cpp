@@ -36,7 +36,7 @@ using namespace std;
  * Note:
  *
  *
- * The length of A will be in the range [1, 30].
+ * The length of A will be in the range [1, 30].
  * A[i] will be in the range of [0, 10000].
  *
  *

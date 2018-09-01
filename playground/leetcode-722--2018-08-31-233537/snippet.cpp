@@ -66,12 +66,12 @@ using namespace std;
  * /*Test program */
  * int main()
  * {
- * ⁠ // variable declaration
+ *  // variable declaration
  * int a, b, c;
  * /* This is a test
- * ⁠  multiline
- * ⁠  comment for
- * ⁠  testing */
+ *   multiline
+ *   comment for
+ *   testing */
  * a = b + c;
  * }
  *
@@ -80,7 +80,7 @@ using namespace std;
  * The line by line code is visualized as below:
  * int main()
  * {
- * ⁠
+ * 
  * int a, b, c;
  * a = b + c;
  * }

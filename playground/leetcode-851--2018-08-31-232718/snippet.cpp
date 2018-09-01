@@ -22,14 +22,14 @@ using namespace std;
  *
  * For convenience, we'll call the person with label x, simply "person x".
  *
- * We'll say that richer[i] = [x, y] if person x definitely has more money than
- * person y.  Note that richer may only be a subset of valid observations.
+ * We'll say that richer[i] = [x, y] if person x definitely has more money than
+ * person y.  Note that richer may only be a subset of valid observations.
  *
- * Also, we'll say quiet[x] = q if person x has quietness q.
+ * Also, we'll say quiet[x] = q if person x has quietness q.
  *
  * Now, return answer, where answer[x] = y if y is the least quiet person (that
- * is, the person y with the smallest value of quiet[y]), among all people who
- * definitely have equal to or more money than person x.
+ * is, the person y with the smallest value of quiet[y]), among all people who
+ * definitely have equal to or more money than person x.
  *
  *
  *
@@ -66,7 +66,7 @@ using namespace std;
  * 0 <= richer[i][j] < N
  * richer[i][0] != richer[i][1]
  * richer[i]'s are all different.
- * The observations in richer are all logically consistent.
+ * The observations in richer are all logically consistent.
  *
  */
 class Solution {

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ using namespace std;
  * Testcase Example:  '[1,1,1,2,2,3]'
  *
  * Given a sorted array nums, remove the duplicates in-place such that
- * duplicates appeared at most twice and return the new length.
+ * duplicates appeared at most twice and return the new length.
  *
  * Do not allocate extra space for another array, you must do this by modifying
  * the input array in-place with O(1) extra memory.
@@ -39,9 +40,9 @@ using namespace std;
  * Given nums = [0,0,1,1,1,1,2,3,3],
  *
  * Your function should return length = 7, with the first seven elements of
- * nums being modified to 0, 0, 1, 1, 2, 3 and 3 respectively.
+ * nums being modified to 0, 0, 1, 1, 2, 3 and 3 respectively.
  *
- * It doesn't matter what values are set beyond the returned length.
+ * It doesn't matter what values are set beyond the returned length.
  *
  *
  * Clarification:
@@ -66,26 +67,25 @@ using namespace std;
  *
  *
  */
- class Solution {
- public:
-   int removeDuplicates(vector<int>& nums) {
-     if (nums.size() <= 2) return nums.size();
-     int l = 2; // spare place
-     int r = 2;
-     int l1 = nums[1];
-     int l2 = nums[0];
-     while (r < nums.size()) {
-       if (l2 != nums[r]) {
-         l2 = l1;
-         l1 = nums[r];
-         nums[l++] = nums[r++];
-       } else r ++;
-     }
-     return l;
-   }
- };
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.size() <= 2)
+            return nums.size();
+        int l = 2; // spare place
+        int r = 2;
+        int l1 = nums[1];
+        int l2 = nums[0];
+        while (r < nums.size()) {
+            if (l2 != nums[r]) {
+                l2 = l1;
+                l1 = nums[r];
+                nums[l++] = nums[r++];
+            } else
+                r++;
+        }
+        return l;
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

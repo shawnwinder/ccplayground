@@ -43,7 +43,7 @@ using namespace std;
  *
  *
  *
- * ⁠Note:
+ * Note:
  *
  * All trees should be enclosed together. You cannot cut the rope to enclose
  * trees that will separate them in more than one group.

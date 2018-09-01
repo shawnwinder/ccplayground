@@ -34,18 +34,18 @@ using namespace std;
  * Explanation:
  * Initially, M =
  * [[0, 0, 0],
- * ⁠[0, 0, 0],
- * ⁠[0, 0, 0]]
+ * [0, 0, 0],
+ * [0, 0, 0]]
  *
  * After performing [2,2], M =
  * [[1, 1, 0],
- * ⁠[1, 1, 0],
- * ⁠[0, 0, 0]]
+ * [1, 1, 0],
+ * [0, 0, 0]]
  *
  * After performing [3,3], M =
  * [[2, 2, 1],
- * ⁠[2, 2, 1],
- * ⁠[1, 1, 1]]
+ * [2, 2, 1],
+ * [1, 1, 1]]
  *
  * So the maximum integer in M is 2, and there are four of it in M. So return
  * 4.

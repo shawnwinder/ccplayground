@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -36,11 +37,11 @@ using namespace std;
  * Given BST [1,null,2,2],
  *
  *
- * ⁠  1
- * ⁠   \
- * ⁠    2
- * ⁠   /
- * ⁠  2
+ *   1
+ *    \
+ *     2
+ *    /
+ *   2
  *
  *
  *
@@ -53,46 +54,50 @@ using namespace std;
  * implicit stack space incurred due to recursion does not count).
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
- class Solution {
- public:
-   vector<int> findMode(TreeNode* root) {
-     vector<int> ret;
-     int last = 0;
-     int cnt = 0;
-     int ans = 0;
 
-     while (root) {
-       auto l = root->left;
-       if (l) {
-         while (l->right && l->right != root) l = l->right;
-         if (l->right == root) {
-           l->right = nullptr;
-         } else {
-           l->right = root;
-           root = root->left;
-           continue;
-         }
-       }
-       if (ret.empty() || last == root->val) cnt ++; else cnt = 1;
-       if (cnt > ans) {ans = cnt; ret = { root-> val} ; }
-       else if (cnt == ans) ret.push_back(root->val);
-       last = root->val;
-       root = root -> right;
-     }
-     return ret;
-   }
- };
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+#endif
 
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        vector<int> ret;
+        int last = 0;
+        int cnt = 0;
+        int ans = 0;
+        while (root) {
+            auto l = root->left;
+            if (l) {
+                while (l->right && l->right != root)
+                    l = l->right;
+                if (l->right == root) {
+                    l->right = nullptr;
+                } else {
+                    l->right = root;
+                    root = root->left;
+                    continue;
+                }
+            }
+            if (ret.empty() || last == root->val)
+                cnt++;
+            else
+                cnt = 1;
+            if (cnt > ans) {
+                ans = cnt;
+                ret = { root->val };
+            } else if (cnt == ans)
+                ret.push_back(root->val);
+            last = root->val;
+            root = root->right;
+        }
+        return ret;
+    }
+};
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

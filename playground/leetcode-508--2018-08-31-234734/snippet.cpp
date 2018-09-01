@@ -28,8 +28,8 @@ using namespace std;
  * Examples 1
  * Input:
  *
- * ⁠ 5
- * ⁠/  \
+ *  5
+ * /  \
  * 2   -3
  *
  * return [2, -3, 4], since all the values happen only once, return all of them
@@ -39,8 +39,8 @@ using namespace std;
  * Examples 2
  * Input:
  *
- * ⁠ 5
- * ⁠/  \
+ *  5
+ * /  \
  * 2   -5
  *
  * return [2], since 2 happens twice, however -5 only occur once.
@@ -51,15 +51,19 @@ using namespace std;
  * signed integer.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int sum(TreeNode* root, unordered_map<int, int>& m) {

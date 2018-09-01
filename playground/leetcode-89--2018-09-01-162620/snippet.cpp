@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <cmath>
+#include <deque>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -27,15 +30,15 @@ using namespace std;
  * Example 1:
  *
  *
- * Input: 2
- * Output: [0,1,3,2]
+ * Input: 2
+ * Output: [0,1,3,2]
  * Explanation:
  * 00 - 0
  * 01 - 1
  * 11 - 3
  * 10 - 2
  *
- * For a given n, a gray code sequence may not be uniquely defined.
+ * For a given n, a gray code sequence may not be uniquely defined.
  * For example, [0,2,3,1] is also a valid gray code sequence.
  *
  * 00 - 0
@@ -47,8 +50,8 @@ using namespace std;
  * Example 2:
  *
  *
- * Input: 0
- * Output: [0]
+ * Input: 0
+ * Output: [0]
  * Explanation: We define the gray code sequence to begin with 0.
  * A gray code sequence of n has size = 2n, which for n = 0 the size is 20 =
  * 1.
@@ -59,23 +62,22 @@ using namespace std;
 class Solution {
 public:
     vector<int> grayCode(int n) {
-        deque<int> ret;
-        if (n == 0) return {0};
+        vector<int> ret;
+        if (n == 0)
+            return { 0 };
         ret.push_back(0);
         ret.push_back(1);
         int i = 1;
         while (i < n) {
             int bit = log2(ret.back() & (-ret.back())) + 1;
             int x = 1 << bit;
-            for (int j = ret.size() - 1; j >=0; j--) {
+            for (int j = ret.size() - 1; j >= 0; j--) {
                 ret.push_back(x + ret[j]);
             }
-            i ++;
+            i++;
         }
-        return vector<int>(ret.begin(), ret.end());
+        return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

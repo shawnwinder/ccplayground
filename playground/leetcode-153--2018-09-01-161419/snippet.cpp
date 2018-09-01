@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ using namespace std;
  * Suppose an array sorted in ascending order is rotated at some pivot unknown
  * to you beforehand.
  *
- * (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
+ * (i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).
  *
  * Find the minimum element.
  *
@@ -44,23 +45,18 @@ using namespace std;
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-        int left = 0,  right = nums.size() - 1;
-        while(left < right) {
-            if(nums[left] < nums[right]) 
+        int left = 0, right = nums.size() - 1;
+        while (left < right) {
+            if (nums[left] < nums[right])
                 return nums[left];
-
-            int mid = (left + right)/2;
-            if(nums[mid] > nums[right])
+            int mid = (left + right) / 2;
+            if (nums[mid] > nums[right])
                 left = mid + 1;
             else
                 right = mid;
         }
-
         return nums[left];
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

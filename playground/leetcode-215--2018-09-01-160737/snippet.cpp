@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -34,43 +35,40 @@ using namespace std;
  * Output: 4
  *
  * Note:
- * You may assume k is always valid, 1 ≤ k ≤ array's length.
+ * You may assume k is always valid, 1 <= k <= array's length.
  *
  */
- class Solution {
- public:
-   int findKthLargest(vector<int>& nums, int k) {
-     int s = 0;
-     int t = nums.size() - 1;
-     k --;
-     default_random_engine gen;
-     while (s <= t) {
-       uniform_int_distribution<int> ui(s, t);
-       int mid = nums[ui(gen)];
-       int i = s;
-       int j = s;
-       int n = t;
-       while (j <= n) {
-         if (nums[j] > mid) {
-           swap(nums[i++], nums[j ++]);
-         } else if (nums[j] < mid) {
-           swap(nums[j], nums[n--]);
-         } else {
-           j ++;
-         }
-       }
-       if (k < i) {
-         t = i-1;
-       } else if (k > n) {
-         s = n + 1;
-       } else return mid;
-     }
-     return -1;
-   }
- };
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int s = 0;
+        int t = nums.size() - 1;
+        k--;
+        default_random_engine gen;
+        while (s <= t) {
+            uniform_int_distribution<int> ui(s, t);
+            int mid = nums[ui(gen)];
+            int i = s;
+            int j = s;
+            int n = t;
+            while (j <= n) {
+                if (nums[j] > mid) {
+                    swap(nums[i++], nums[j++]);
+                } else if (nums[j] < mid) {
+                    swap(nums[j], nums[n--]);
+                } else {
+                    j++;
+                }
+            }
+            if (k < i) {
+                t = i - 1;
+            } else if (k > n) {
+                s = n + 1;
+            } else
+                return mid;
+        }
+        return -1;
+    }
+};
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

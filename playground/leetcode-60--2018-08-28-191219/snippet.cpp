@@ -2,11 +2,11 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
-#include <iostream>
-#include <vector>
-#include <numeric>
 #include <algorithm>
+#include <iostream>
+#include <numeric>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -41,7 +41,7 @@ using namespace std;
  *
  *
  * Given n will be between 1 and 9 inclusive.
- * Given k will be between 1 and n! inclusive.
+ * Given k will be between 1 and n! inclusive.
  *
  *
  * Example 1:
@@ -62,27 +62,27 @@ using namespace std;
 class Solution {
 public:
     string getPermutation(int n, int k) {
-        std::vector<int> w(n);
-        std::iota(w.begin(), w.end(), 1);
-        for (auto i = 0u; i < k-1; ++i) {
-            std::next_permutation(w.begin(), w.end());
+        int i, j, fact = 1;
+        string s(n, '0');
+        for (i = 1; i <= n; i++) {
+            fact *= i;
+            s[i - 1] += i;
         }
-        std::stringstream ss;
-        for (auto e : w) {
-            ss << e;
+        for (i = 0, k--; i < n; i++) {
+            fact /= n - i;
+            j = i + k / fact; // calculate index of char to put at s[i]
+            char c = s[j];
+            // remove c by shifting to cover up (adjust the right part).
+            for (; j > i; j--)
+                s[j] = s[j - 1];
+            k %= fact;
+            s[i] = c;
         }
-        return ss.str();
+        return s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    Solution s;
-    std::cout << s.getPermutation(5, 2) << std::endl;
-    return 0;
-}
-
-
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
     Solution s;
     std::cout << s.getPermutation(5, 2) << std::endl;
     return 0;

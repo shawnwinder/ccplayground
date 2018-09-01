@@ -22,7 +22,7 @@ using namespace std;
  * Return any binary tree that matches the given preorder and postorder
  * traversals.
  *
- * Values in the traversals pre and post are distinct positive integers.
+ * Values in the traversals pre and post are distinct positive integers.
  *
  *
  *
@@ -40,7 +40,7 @@ using namespace std;
  *
  *
  * 1 <= pre.length == post.length <= 30
- * pre[] and post[] are both permutations of 1, 2, ..., pre.length.
+ * pre[] and post[] are both permutations of 1, 2, ..., pre.length.
  * It is guaranteed an answer exists. If there exists multiple answers, you can
  * return any of them.
  *
@@ -111,8 +111,10 @@ public:
     // We will **preorder** generate TreeNodes, push them to `stack` and **postorder** pop them out.
     // 1. Loop on `pre` array and construct node one by one.
     // 2. `stack` save the current path of tree.
-    // 3. `node = new TreeNode(pre[i])`, if not left child, add node to the left. otherwise add it to the right.
-    // 4. If we meet a same value in the pre and post, it means we complete the construction for current subtree. We pop it from `stack`.
+    // 3. `node = new TreeNode(pre[i])`, if not left child, add node to the left. otherwise add it
+    // to the right.
+    // 4. If we meet a same value in the pre and post, it means we complete the construction for
+    // current subtree. We pop it from `stack`.
     TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
         vector<TreeNode*> s;
         s.push_back(new TreeNode(pre[0]));
@@ -120,22 +122,15 @@ public:
             TreeNode* node = new TreeNode(pre[i]);
             while (s.back()->val == post[j])
                 s.pop_back(), j++;
-            if (s.back()->left == NULL) s.back()->left = node;
-            else s.back()->right = node;
+            if (s.back()->left == NULL)
+                s.back()->left = node;
+            else
+                s.back()->right = node;
             s.push_back(node);
         }
         return s[0];
     }
 };
-
-int mymain(int argc, char *argv[]) {
-    Solution s;
-    vector<int> pre = {1,2,4,5,3,6,7};
-    vector<int> post = {4,5,2,6,7,3,1};
-    s.constructFromPrePost(pre, post);
-    return 0;
-}
-
 
 int mymain(int argc, char* argv[]) {
     Solution s;

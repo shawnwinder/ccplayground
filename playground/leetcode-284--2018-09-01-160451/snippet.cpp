@@ -13,7 +13,7 @@ using namespace std;
  *
  * algorithms
  * Medium (36.63%)
- * Total Accepted:    60.7K
+ * Total Accepted:    .7K
  * Total Submissions: 165.7K
  * Testcase Example:  '["PeekingIterator","next","peek","next","next","hasNext"]\n[[[1,2,3]],[],[],[],[],[]]'
  *

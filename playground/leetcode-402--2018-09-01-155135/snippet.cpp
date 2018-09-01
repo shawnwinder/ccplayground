@@ -23,7 +23,7 @@ using namespace std;
  *
  * Note:
  *
- * The length of num is less than 10002 and will be ≥ k.
+ * The length of num is less than 10002 and will be >= k.
  * The given num does not contain any leading zero.
  *
  *

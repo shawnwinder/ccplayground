@@ -2,9 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -25,7 +25,7 @@ using namespace std;
  * Each boat carries at most 2 people at the same time, provided the sum of the
  * weight of those people is at most limit.
  *
- * Return the minimum number of boats to carry every given person.  (It is
+ * Return the minimum number of boats to carry every given person.  (It is
  * guaranteed each person can be carried by a boat.)
  *
  *
@@ -59,8 +59,8 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= people.length <= 50000
- * 1 <= people[i] <= limit <= 30000
+ * 1 <= people.length <= 50000
+ * 1 <= people[i] <= limit <= 30000
  *
  *
  *
@@ -78,8 +78,5 @@ public:
         return i;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

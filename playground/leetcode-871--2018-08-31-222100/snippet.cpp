@@ -22,21 +22,21 @@ using namespace std;
  * A car travels from a starting position to a destination which is target
  * miles east of the starting position.
  *
- * Along the way, there are gas stations.  Each station[i] represents a gas
+ * Along the way, there are gas stations.  Each station[i] represents a gas
  * station that is station[i][0] miles east of the starting position, and has
  * station[i][1] liters of gas.
  *
- * The car starts with an infinite tank of gas, which initially has startFuel
- * liters of fuel in it.  It uses 1 liter of gas per 1 mile that it drives.
+ * The car starts with an infinite tank of gas, which initially has startFuel
+ * liters of fuel in it.  It uses 1 liter of gas per 1 mile that it drives.
  *
- * When the car reaches a gas station, it may stop and refuel, transferring all
+ * When the car reaches a gas station, it may stop and refuel, transferring all
  * the gas from the station into the car.
  *
  * What is the least number of refueling stops the car must make in order to
- * reach its destination?  If it cannot reach the destination, return -1.
+ * reach its destination?  If it cannot reach the destination, return -1.
  *
  * Note that if the car reaches a gas station with 0 fuel left, the car can
- * still refuel there.  If the car reaches the destination with 0 fuel left, it
+ * still refuel there.  If the car reaches the destination with 0 fuel left, it
  * is still considered to have arrived.
  *
  *
@@ -67,8 +67,8 @@ using namespace std;
  * Explanation:
  * We start with 10 liters of fuel.
  * We drive to position 10, expending 10 liters of fuel.  We refuel from 0
- * liters to 60 liters of gas.
- * Then, we drive from position 10 to position 60 (expending 50 liters of
+ * liters to  liters of gas.
+ * Then, we drive from position 10 to position  (expending 50 liters of
  * fuel),
  * and refuel from 10 liters to 50 liters of gas.  We then drive to and reach
  * the target.
@@ -108,9 +108,9 @@ public:
     }
 };
 
-
 int mymain(int argc, char* argv[]) {
-    vector<vector<int>> stations = {{13,21},{26,115},{100,47},{225,99},{299,141},{444,198},{608,190},{636,157},{647,255},{841,123}};
+    vector<vector<int>> stations = { { 13, 21 }, { 26, 115 }, { 100, 47 }, { 225, 99 },
+        { 299, 141 }, { 444, 198 }, { 608, 190 }, { 636, 157 }, { 647, 255 }, { 841, 123 } };
     Solution s;
     cout << s.minRefuelStops(1000, 299, stations);
     return 0;

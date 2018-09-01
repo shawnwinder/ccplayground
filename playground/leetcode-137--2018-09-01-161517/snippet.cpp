@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
  * Total Submissions: 328.2K
  * Testcase Example:  '[2,2,3,2]'
  *
- * Given a non-empty array of integers, every element appears three times
+ * Given a non-empty array of integers, every element appears three times
  * except for one, which appears exactly once. Find that single one.
  *
  * Note:
@@ -42,15 +43,13 @@ using namespace std;
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
- 		int ones = 0, twos = 0;
-		for (int i = 0; i < nums.size(); i++) {
-			ones = (ones ^ nums[i]) & ~twos;
-			twos = (twos ^ nums[i]) & ~ones;
-		}
-		return ones;       
+        int ones = 0, twos = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            ones = (ones ^ nums[i]) & ~twos;
+            twos = (twos ^ nums[i]) & ~ones;
+        }
+        return ones;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

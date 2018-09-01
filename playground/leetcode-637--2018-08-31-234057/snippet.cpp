@@ -23,11 +23,11 @@ using namespace std;
  * Example 1:
  *
  * Input:
- * ⁠   3
- * ⁠  / \
- * ⁠ 9  20
- * ⁠   /  \
- * ⁠  15   7
+ *    3
+ *   / \
+ *  9  20
+ *    /  \
+ *   15   7
  * Output: [3, 14.5, 11]
  * Explanation:
  * The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on
@@ -41,15 +41,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {

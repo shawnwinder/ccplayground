@@ -34,7 +34,7 @@ using namespace std;
  *
  *
  *
- * ⁠ Example 2:
+ *  Example 2:
  *
  * Input:
  *

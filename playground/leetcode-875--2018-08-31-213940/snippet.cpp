@@ -18,11 +18,11 @@ using namespace std;
  * Total Submissions: 11.3K
  * Testcase Example:  '[3,6,7,11]\n8'
  *
- * Koko loves to eat bananas.  There are N piles of bananas, the i-th pile has
- * piles[i] bananas.  The guards have gone and will come back in H hours.
+ * Koko loves to eat bananas.  There are N piles of bananas, the i-th pile has
+ * piles[i] bananas.  The guards have gone and will come back in H hours.
  *
- * Koko can decide her bananas-per-hour eating speed of K.  Each hour, she
- * chooses some pile of bananas, and eats K bananas from that pile.  If the
+ * Koko can decide her bananas-per-hour eating speed of K.  Each hour, she
+ * chooses some pile of bananas, and eats K bananas from that pile.  If the
  * pile has less than K bananas, she eats all of them instead, and won't eat
  * any more bananas during this hour.
  *
@@ -69,7 +69,7 @@ class Solution {
 public:
     // Binary search between `[1, 10^9]` or `[1, max(piles)]` to find the result.
     int minEatingSpeed(vector<int>& piles, int H) {
-        int l = 1, r = 1000000000;
+        int l = 1, r = 1e9;
         while (l < r) {
             int m = (l + r) / 2, total = 0;
             for (int p : piles)
@@ -82,8 +82,5 @@ public:
         return l;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

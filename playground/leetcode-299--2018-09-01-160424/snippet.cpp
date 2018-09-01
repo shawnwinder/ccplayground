@@ -26,7 +26,7 @@ using namespace std;
  * successive guesses and hints to eventually derive the secret number.
  *
  * Write a function to return a hint according to the secret number and
- * friend's guess, use A to indicate the bulls and B to indicate the cows. 
+ * friend's guess, use A to indicate the bulls and B to indicate the cows. 
  *
  * Please note that both secret number and friend's guess may contain duplicate
  * digits.

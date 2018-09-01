@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -25,7 +27,7 @@ using namespace std;
  * Example:
  *
  *
- * Input: [100, 4, 200, 1, 3, 2]
+ * Input: [100, 4, 200, 1, 3, 2]
  * Output: 4
  * Explanation: The longest consecutive elements sequence is [1, 2, 3, 4].
  * Therefore its length is 4.
@@ -34,22 +36,21 @@ using namespace std;
  */
 class Solution {
 public:
-  int longestConsecutive(vector<int> &num) {
-    int r = 0;
-    unordered_set<int> s;
-    for (auto i: num)
-      s.insert(i);
-    for (auto i: num) {
-      int j = i, k = i+1;
-      while (s.count(j-1)) s.erase(j--);
-      while (s.count(k)) s.erase(k++);
-      r = max(r, k-j);
+    int longestConsecutive(vector<int>& num) {
+        int r = 0;
+        unordered_set<int> s;
+        for (auto i : num)
+            s.insert(i);
+        for (auto i : num) {
+            int j = i, k = i + 1;
+            while (s.count(j - 1))
+                s.erase(j--);
+            while (s.count(k))
+                s.erase(k++);
+            r = max(r, k - j);
+        }
+        return r;
     }
-    return r;
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

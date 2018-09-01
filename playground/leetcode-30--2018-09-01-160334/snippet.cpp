@@ -28,8 +28,8 @@ using namespace std;
  *
  *
  * Input:
- * ⁠ s = "barfoothefoobarman",
- * ⁠ words = ["foo","bar"]
+ *  s = "barfoothefoobarman",
+ *  words = ["foo","bar"]
  * Output: [0,9]
  * Explanation: Substrings starting at index 0 and 9 are "barfoor" and "foobar"
  * respectively.
@@ -40,8 +40,8 @@ using namespace std;
  *
  *
  * Input:
- * ⁠ s = "wordgoodstudentgoodword",
- * ⁠ words = ["word","student"]
+ *  s = "wordgoodstudentgoodword",
+ *  words = ["word","student"]
  * Output: []
  *
  *

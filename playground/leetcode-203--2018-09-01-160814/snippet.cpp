@@ -27,34 +27,29 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode* p = head, *op = new ListNode(0);
-        op->next = p;
-        head = op;
-        while(p) {
-            if(p->val == val) {
-                op->next = p->next;
-                delete p;
-                p = op->next;
-            } else {
-                op = p;
-                p = p->next;
-            }
+        ListNode** list = &head;
+        while (*list) {
+            if ((*list)->val == val)
+                *list = (*list)->next;
+            else
+                list = &(*list)->next;
         }
-        return head->next;
+        return head;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

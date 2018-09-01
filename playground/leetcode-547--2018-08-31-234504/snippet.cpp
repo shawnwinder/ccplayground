@@ -36,8 +36,8 @@ using namespace std;
  *
  * Input:
  * [[1,1,0],
- * ⁠[1,1,0],
- * ⁠[0,0,1]]
+ * [1,1,0],
+ * [0,0,1]]
  * Output: 2
  * Explanation:The 0th and 1st students are direct friends, so they are in a
  * friend circle. The 2nd student himself is in a friend circle. So return
@@ -49,8 +49,8 @@ using namespace std;
  *
  * Input:
  * [[1,1,0],
- * ⁠[1,1,1],
- * ⁠[0,1,1]]
+ * [1,1,1],
+ * [0,1,1]]
  * Output: 1
  * Explanation:The 0th and 1st students are direct friends, the 1st and 2nd
  * students are direct friends, so the 0th and 2nd students are indirect

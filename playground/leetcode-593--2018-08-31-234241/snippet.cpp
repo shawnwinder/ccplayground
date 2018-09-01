@@ -30,7 +30,7 @@ using namespace std;
  *
  *
  *
- * ⁠Note:
+ * Note:
  *
  * All the input integers are in the range [-10000, 10000].
  * A valid square has four equal sides with positive length and four equal

@@ -18,7 +18,7 @@ using namespace std;
  * Testcase Example:  '1'
  *
  * Given a function rand7 which generates a uniform random integer in the range
- * 1 to 7, write a function rand10 which generates a uniform random integer in
+ * 1 to 7, write a function rand10 which generates a uniform random integer in
  * the range 1 to 10.
  *
  * Do NOT use system's Math.random().
@@ -58,7 +58,7 @@ using namespace std;
  *
  *
  * rand7 is predefined.
- * Each testcase has one argument: n, the number of times that rand10 is
+ * Each testcase has one argument: n, the number of times that rand10 is
  * called.
  *
  *
@@ -67,7 +67,7 @@ using namespace std;
  * Follow up:
  *
  *
- * What is the expected value for the number of calls to rand7() function?
+ * What is the expected value for the number of calls to rand7() function?
  * Could you minimize the number of calls to rand7()?
  *
  *

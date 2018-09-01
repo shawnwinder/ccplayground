@@ -45,9 +45,9 @@ using namespace std;
  *
  *
  * Note:
- * ⁠
- * ⁠len(row) is even and in the range of [4, 60].
- * ⁠row is guaranteed to be a permutation of 0...len(row)-1.
+ * 
+ * len(row) is even and in the range of [4, ].
+ * row is guaranteed to be a permutation of 0...len(row)-1.
  *
  */
 class Solution {

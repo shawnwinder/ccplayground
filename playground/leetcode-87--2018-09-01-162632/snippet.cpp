@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -23,13 +24,13 @@ using namespace std;
  * Below is one possible representation of s1 = "great":
  *
  *
- * ⁠   great
- * ⁠  /    \
- * ⁠ gr    eat
- * ⁠/ \    /  \
+ *     great
+ *    /    \
+ *   gr    eat
+ *  / \    /  \
  * g   r  e   at
- * ⁠          / \
- * ⁠         a   t
+ *            / \
+ *           a   t
  *
  *
  * To scramble the string, we may choose any non-leaf node and swap its two
@@ -39,13 +40,13 @@ using namespace std;
  * produces a scrambled string "rgeat".
  *
  *
- * ⁠   rgeat
- * ⁠  /    \
- * ⁠ rg    eat
- * ⁠/ \    /  \
+ *     rgeat
+ *    /    \
+ *   rg    eat
+ *  / \    /  \
  * r   g  e   at
- * ⁠          / \
- * ⁠         a   t
+ *            / \
+ *           a   t
  *
  *
  * We say that "rgeat" is a scrambled string of "great".
@@ -54,13 +55,13 @@ using namespace std;
  * produces a scrambled string "rgtae".
  *
  *
- * ⁠   rgtae
- * ⁠  /    \
- * ⁠ rg    tae
- * ⁠/ \    /  \
+ *     rgtae
+ *    /    \
+ *   rg    tae
+ *  / \    /  \
  * r   g  ta  e
- * ⁠      / \
- * ⁠     t   a
+ *        / \
+ *       t   a
  *
  *
  * We say that "rgtae" is a scrambled string of "great".
@@ -89,40 +90,29 @@ public:
         size_t n = s1.length();
         if (n > 0) // if s1 is empty, return true
         {
-            // Dynamic Programming: 
+            // Dynamic Programming:
             // eq[first1][first2][len] == true iff s1[first1 ... first1+len) == s2[first2 ... first2+len)
-            vector<vector<vector<bool> > > eq
-                (n, vector<vector<bool>>(n, vector<bool>(n + 1, false))); // initialize: all false
-
+            vector<vector<vector<bool>>> eq(n, vector<vector<bool>>(n, vector<bool>(n + 1, false)));
             // initialize: eq[first1][first2][1] = true iff s1[first1] == s2[first2]
-            for (int first1 = 0; first1 < n; ++first1)
-            {
-                for (int first2 = 0; first2 < n; ++first2)
-                {
+            for (int first1 = 0; first1 < n; ++first1) {
+                for (int first2 = 0; first2 < n; ++first2) {
                     eq[first1][first2][1] = (s1[first1] == s2[first2]);
                 }
             }
-
             // dp: eq[first1][first2][len] = true iff two substrings are both matched.
-            for (size_t len = 2; len <= n; ++len)
-            {
-                for (size_t first1 = 0; first1 + len <= n; ++first1)
-                {
-                    for (size_t first2 = 0; first2 + len <= n; ++first2)
-                    {
-                        for (size_t len1 = 1; len1 < len; ++len1)
-                        {
+            for (size_t len = 2; len <= n; ++len) {
+                for (size_t first1 = 0; first1 + len <= n; ++first1) {
+                    for (size_t first2 = 0; first2 + len <= n; ++first2) {
+                        for (size_t len1 = 1; len1 < len; ++len1) {
                             size_t len2 = len - len1;
-
                             // two substrings are not swapped
-                            if (eq[first1][first2][len1] && eq[first1 + len1][first2 + len1][len2])
-                            {
+                            if (eq[first1][first2][len1]
+                                && eq[first1 + len1][first2 + len1][len2]) {
                                 eq[first1][first2][len] = true;
                             }
-
                             // two substrings are swapped
-                            if (eq[first1][first2 + len2][len1] && eq[first1 + len1][first2][len2])
-                            {
+                            if (eq[first1][first2 + len2][len1]
+                                && eq[first1 + len1][first2][len2]) {
                                 eq[first1][first2][len] = true;
                             }
                         }
@@ -135,6 +125,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

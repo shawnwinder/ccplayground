@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ using namespace std;
  * Testcase Example:  '[3,2,3]'
  *
  * Given an array of size n, find the majority element. The majority element is
- * the element that appears more than ⌊ n/2 ⌋ times.
+ * the element that appears more than ? n/2 ? times.
  *
  * You may assume that the array is non-empty and the majority element always
  * exist in the array.
@@ -42,20 +43,17 @@ public:
     int majorityElement(vector<int>& nums) {
         int c = 0;
         int m = 0;
-        for (int i:nums) {
+        for (int i : nums) {
             if (c == 0) {
                 m = i;
-                c ++;
+                c++;
             } else if (i == m) {
-                c ++;
-            } else c --;
+                c++;
+            } else
+                c--;
         }
         return m;
     }
 };
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 7.4K
  * Testcase Example:  '[[0,0,1,1],[1,0,1,0],[1,1,0,0]]'
  *
- * We have a two dimensional matrix A where each value is 0 or 1.
+ * We have a two dimensional matrix A where each value is 0 or 1.
  *
  * A move consists of choosing any row or column, and toggling each value in
  * that row or column: changing all 0s to 1s, and all 1s to 0s.
@@ -25,7 +25,7 @@ using namespace std;
  * After making any number of moves, every row of this matrix is interpreted as
  * a binary number, and the score of the matrix is the sum of these numbers.
  *
- * Return the highest possible score.
+ * Return the highest possible score.
  *
  *
  *
@@ -49,7 +49,7 @@ using namespace std;
  *
  * 1 <= A.length <= 20
  * 1 <= A[0].length <= 20
- * A[i][j] is 0 or 1.
+ * A[i][j] is 0 or 1.
  *
  *
  */

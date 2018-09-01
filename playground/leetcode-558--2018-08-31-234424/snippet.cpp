@@ -59,10 +59,10 @@ using namespace std;
  * +-------+-------+
  * topLeft: T
  * topRight:
- * ⁠    topLeft: F
- * ⁠    topRight: F
- * ⁠    bottomLeft: T
- * ⁠    bottomRight: T
+ *     topLeft: F
+ *     topRight: F
+ *     bottomLeft: T
+ *     bottomRight: T
  * bottomLeft: T
  * bottomRight: F
  *
@@ -88,7 +88,7 @@ using namespace std;
  * Note:
  *
  *
- * Both A and B represent grids of size N * N.
+ * Both A and B represent grids of size N * N.
  * N is guaranteed to be a power of 2.
  * If you want to know more about the quad tree, you can refer to its wiki.
  * The logic OR operation is defined as this: "A or B" is true if A is true, or

@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 337.9K
  * Testcase Example:  '[1,2,3,4]'
  *
- * Given an array nums of n integers where n > 1,  return an array output such
+ * Given an array nums of n integers where n > 1,  return an array output such
  * that output[i] is equal to the product of all the elements of nums except
  * nums[i].
  *

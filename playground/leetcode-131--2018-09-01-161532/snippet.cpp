@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -25,53 +26,45 @@ using namespace std;
  * Example:
  *
  *
- * Input: "aab"
+ * Input: "aab"
  * Output:
  * [
- * ⁠ ["aa","b"],
- * ⁠ ["a","a","b"]
+ *  ["aa","b"],
+ *  ["a","a","b"]
  * ]
  *
  *
  */
 class Solution {
 public:
-    vector<vector<string>> ans;
-    vector<vector<bool>> good;
-    string str;
-    int N;
-    void work(vector<string>& cur, int pos) {
-        if(pos == N) {
-            ans.push_back(cur);
+    vector<vector<string>> partition(string s) {
+        vector<vector<string>> ret;
+        if (s.empty())
+            return ret;
+        vector<string> path;
+        dfs(0, s, path, ret);
+        return ret;
+    }
+    void dfs(int index, string& s, vector<string>& path, vector<vector<string>>& ret) {
+        if (index == s.size()) {
+            ret.push_back(path);
             return;
         }
-        for(int l=1; l< N - pos + 1; l++ ) {
-            if(good[pos][pos + l - 1]) {
-                cur.push_back(str.substr(pos, l));
-                work(cur, pos + l);
-                cur.pop_back();
+        for (int i = index; i < s.size(); ++i) {
+            if (isPalindrome(s, index, i)) {
+                path.push_back(s.substr(index, i - index + 1));
+                dfs(i + 1, s, path, ret);
+                path.pop_back();
             }
         }
-        
     }
-    vector<vector<string>> partition(string s) {
-        good = vector<vector<bool>>(s.size(), vector<bool>(s.size(), false));
-        str = s;
-        N = s.size();
-        for(int i=0;i<N;i++) {
-            for(int j=0; i-j>=0 && i+j<N && s[i-j] == s[i+j]; j++) {
-                good[i-j][i+j] = true;
-            }
-            for(int j=1; i-j>=0 && i+j-1<N && s[i-j] == s[i+j-1]; j++) {
-                good[i-j][i+j-1] = true;
-            }
+    bool isPalindrome(const string& s, int start, int end) {
+        while (start <= end) {
+            if (s[start++] != s[end--])
+                return false;
         }
-        vector<string> cur;
-        work(cur, 0);
-        return ans;
+        return true;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -51,7 +51,7 @@ public:
     int climbStairs(int n) {
         int l = 0;
         int c = 1;
-        for (int i = 1; i < n; i ++) {
+        for (int i = 1; i < n; i++) {
             int tmp = c;
             c = l + c;
             l = tmp;
@@ -60,6 +60,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

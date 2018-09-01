@@ -27,10 +27,10 @@ using namespace std;
  *
  *
  * Input:     1         1
- * ⁠         / \       / \
- * ⁠        2   3     2   3
+ *           / \       / \
+ *          2   3     2   3
  *
- * ⁠       [1,2,3],   [1,2,3]
+ *         [1,2,3],   [1,2,3]
  *
  * Output: true
  *
@@ -39,10 +39,10 @@ using namespace std;
  *
  *
  * Input:     1         1
- * ⁠         /           \
- * ⁠        2             2
+ *           /           \
+ *          2             2
  *
- * ⁠       [1,2],     [1,null,2]
+ *         [1,2],     [1,null,2]
  *
  * Output: false
  *
@@ -51,35 +51,35 @@ using namespace std;
  *
  *
  * Input:     1         1
- * ⁠         / \       / \
- * ⁠        2   1     1   2
+ *           / \       / \
+ *          2   1     1   2
  *
- * ⁠       [1,2,1],   [1,1,2]
+ *         [1,2,1],   [1,1,2]
  *
  * Output: false
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if (p==nullptr && q!=nullptr) return false;
-        if (p!=nullptr && q==nullptr) return false;
-        if (p==nullptr && q==nullptr) return true;
-        if (p->val != q->val) return false;
-        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        if (p == NULL || q == NULL)
+            return (p == q);
+        return p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

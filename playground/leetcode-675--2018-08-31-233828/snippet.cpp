@@ -49,9 +49,9 @@ using namespace std;
  *
  * Input:
  * [
- * ⁠[1,2,3],
- * ⁠[0,0,4],
- * ⁠[7,6,5]
+ * [1,2,3],
+ * [0,0,4],
+ * [7,6,5]
  * ]
  * Output: 6
  *
@@ -61,9 +61,9 @@ using namespace std;
  *
  * Input:
  * [
- * ⁠[1,2,3],
- * ⁠[0,0,0],
- * ⁠[7,6,5]
+ * [1,2,3],
+ * [0,0,0],
+ * [7,6,5]
  * ]
  * Output: -1
  *
@@ -73,9 +73,9 @@ using namespace std;
  *
  * Input:
  * [
- * ⁠[2,3,4],
- * ⁠[0,0,5],
- * ⁠[8,7,6]
+ * [2,3,4],
+ * [0,0,5],
+ * [8,7,6]
  * ]
  * Output: 6
  * Explanation: You started from the point (0,0) and you can cut off the tree

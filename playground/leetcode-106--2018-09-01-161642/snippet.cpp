@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -25,46 +27,49 @@ using namespace std;
  * For example, given
  *
  *
- * inorder = [9,3,15,20,7]
+ * inorder = [9,3,15,20,7]
  * postorder = [9,15,7,20,3]
  *
  * Return the following binary tree:
  *
  *
- * ⁠   3
- * ⁠  / \
- * ⁠ 9  20
- * ⁠   /  \
- * ⁠  15   7
+ *     3
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-  TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
-      if (inorder.empty()) return nullptr;
-    return f(&postorder[0], &*postorder.end(), &inorder[0], &*inorder.end());
-  }
-  TreeNode *f(int *l, int *h, int *ll, int *hh) {
-    if (l == h) return nullptr;
-    auto r = new TreeNode(h[-1]);
-    int *m = find(ll, hh, h[-1]);
-    r->left = f(l, l+(m-ll), ll, m);
-    r->right = f(l+(m-ll), h-1, m+1, hh);
-    return r;
-  }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        if (inorder.empty())
+            return nullptr;
+        return f(&postorder[0], &*postorder.end(), &inorder[0], &*inorder.end());
+    }
+    TreeNode* f(int* l, int* h, int* ll, int* hh) {
+        if (l == h)
+            return nullptr;
+        auto r = new TreeNode(h[-1]);
+        int* m = find(ll, hh, h[-1]);
+        r->left = f(l, l + (m - ll), ll, m);
+        r->right = f(l + (m - ll), h - 1, m + 1, hh);
+        return r;
+    }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

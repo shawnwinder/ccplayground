@@ -33,7 +33,7 @@ using namespace std;
  * array is any pair of integers (P, Q) such that 0
  *
  * A slice (P, Q) of array A is called arithmetic if the sequence:
- * ⁠   A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this
+ *    A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this
  * means that P + 1 < Q.
  *
  * The function should return the number of arithmetic slices in the array

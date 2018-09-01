@@ -3,9 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
 #include <unordered_map>
 #include <vector>
-#include <sstream>
 
 using namespace std;
 
@@ -20,13 +20,13 @@ using namespace std;
  * Total Submissions: 12.9K
  * Testcase Example:  '"this apple is sweet"\n"this apple is sour"'
  *
- * We are given two sentences A and B.  (A sentence is a string of space
- * separated words.  Each word consists only of lowercase letters.)
+ * We are given two sentences A and B.  (A sentence is a string of space
+ * separated words.  Each word consists only of lowercase letters.)
  *
- * A word is uncommon if it appears exactly once in one of the sentences, and
+ * A word is uncommon if it appears exactly once in one of the sentences, and
  * does not appear in the other sentence.
  *
- * Return a list of all uncommon words. 
+ * Return a list of all uncommon words.
  *
  * You may return the list in any order.
  *
@@ -77,8 +77,5 @@ public:
         return res;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

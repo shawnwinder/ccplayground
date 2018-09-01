@@ -32,11 +32,11 @@ using namespace std;
  *
  * Input:
  *
- * ⁠             5
- * ⁠            / \
- * ⁠           4   5
- * ⁠          / \   \
- * ⁠         1   1   5
+ *              5
+ *             / \
+ *            4   5
+ *           / \   \
+ *          1   1   5
  *
  *
  *
@@ -55,11 +55,11 @@ using namespace std;
  *
  * Input:
  *
- * ⁠             1
- * ⁠            / \
- * ⁠           4   5
- * ⁠          / \   \
- * ⁠         4   4   5
+ *              1
+ *             / \
+ *            4   5
+ *           / \   \
+ *          4   4   5
  *
  *
  *
@@ -75,15 +75,19 @@ using namespace std;
  * is not more than 1000.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int longestUnivaluePath(TreeNode* root) {

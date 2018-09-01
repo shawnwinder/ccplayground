@@ -37,7 +37,7 @@ using namespace std;
  * Note:
  *
  *
- * L, R  and A[i] will be an integer in the range [0, 10^9].
+ * L, R  and A[i] will be an integer in the range [0, 10^9].
  * The length of A will be in the range of [1, 50000].
  *
  *

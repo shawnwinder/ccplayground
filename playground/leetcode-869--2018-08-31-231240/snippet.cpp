@@ -21,7 +21,7 @@ using namespace std;
  * Starting with a positive integer N, we reorder the digits in any order
  * (including the original order) such that the leading digit is not zero.
  *
- * Return true if and only if we can do this in a way such that the resulting
+ * Return true if and only if we can do this in a way such that the resulting
  * number is a power of 2.
  *
  *
@@ -92,8 +92,5 @@ public:
         return res;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

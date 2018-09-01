@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -56,31 +58,30 @@ using namespace std;
  *
  *
  */
- class Solution {
- public:
-   bool work(int start, vector<bool>& rem, string& s, unordered_set<string>& m) {
-     if (start >= s.size()) return true;
-     rem[start] = true;
-     vector<int> ans;
-     for (int i = start; i < s.size(); ++i) {
-       if (m.find(s.substr(start, i-start + 1)) != m.end()) {
-         ans.push_back(i+1);
-       }
-     }
-     for (int i = ans.size() -1; i >= 0; --i) {
-       if(!rem[ans[i]] && work(ans[i], rem, s, m)) return true;
-     }
-     return false;
-   }
-   bool wordBreak(string s, vector<string> wordDict) {
-     unordered_set<string> m(wordDict.begin(), wordDict.end());
-     vector<bool> rem(s.size(), false);
-     return work(0, rem, s, m);
-   }
- };
+class Solution {
+public:
+    // We use a boolean vector dp[]. dp[i] is set to true if a valid word (word sequence) ends
+    // there. The optimization is to look from current position i back and only substring and do
+    // dictionary look up in case the preceding position j with dp[j] == true is found.
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+        if (dict.size() == 0)
+            return false;
+        vector<bool> dp(s.size() + 1, false);
+        dp[0] = true;
+        for (int i = 1; i <= s.size(); i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (dp[j]) {
+                    string word = s.substr(j, i - j);
+                    if (dict.find(word) != dict.end()) {
+                        dp[i] = true;
+                        break; // next i
+                    }
+                }
+            }
+        }
+        return dp[s.size()];
+    }
+};
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

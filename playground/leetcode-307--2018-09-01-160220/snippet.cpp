@@ -18,7 +18,7 @@ using namespace std;
  * Testcase Example:  '["NumArray","sumRange","update","sumRange"]\n[[[1,3,5]],[0,2],[1,2],[0,2]]'
  *
  * Given an integer array nums, find the sum of the elements between indices i
- * and j (i ≤ j), inclusive.
+ * and j (i <= j), inclusive.
  *
  * The update(i, val) function modifies nums by updating the element at index i
  * to val.

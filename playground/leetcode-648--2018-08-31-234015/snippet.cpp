@@ -49,10 +49,10 @@ using namespace std;
  * Note:
  *
  * The input will only have lower-case letters.
- * ⁠1
- * ⁠1
- * ⁠1
- * ⁠1
+ * 1
+ * 1
+ * 1
+ * 1
  *
  *
  */

@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
+#include <cmath>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -33,15 +36,14 @@ public:
     int countPrimes(int n) {
         vector<bool> p(n, true);
         p[0] = p[1] = false;
-        for (int i=2;i<sqrt(n);i++) {
+        for (int i = 2; i < sqrt(n); i++) {
             if (p[i]) {
-                for (int j=i*i;j<n;j+=i) p[j] = false;
+                for (int j = i * i; j < n; j += i)
+                    p[j] = false;
             }
         }
         return count(p.begin(), p.end(), true);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

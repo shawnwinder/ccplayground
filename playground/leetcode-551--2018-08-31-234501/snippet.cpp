@@ -24,7 +24,7 @@ using namespace std;
  *
  * 'A' : Absent.
  * 'L' : Late.
- * ⁠'P' : Present.
+ * 'P' : Present.
  *
  *
  *

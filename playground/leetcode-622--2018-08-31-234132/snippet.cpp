@@ -51,15 +51,15 @@ using namespace std;
  *
  * MyCircularQueue circularQueue = new MycircularQueue(3); // set the size to
  * be 3
- * circularQueue.enQueue(1);  // return true
- * circularQueue.enQueue(2);  // return true
- * circularQueue.enQueue(3);  // return true
- * circularQueue.enQueue(4);  // return false, the queue is full
- * circularQueue.Rear();  // return 3
- * circularQueue.isFull();  // return true
- * circularQueue.deQueue();  // return true
- * circularQueue.enQueue(4);  // return true
- * circularQueue.Rear();  // return 4
+ * circularQueue.enQueue(1);  // return true
+ * circularQueue.enQueue(2);  // return true
+ * circularQueue.enQueue(3);  // return true
+ * circularQueue.enQueue(4);  // return false, the queue is full
+ * circularQueue.Rear();  // return 3
+ * circularQueue.isFull();  // return true
+ * circularQueue.deQueue();  // return true
+ * circularQueue.enQueue(4);  // return true
+ * circularQueue.Rear();  // return 4
  *
  *
  *
@@ -67,7 +67,7 @@ using namespace std;
  *
  *
  * All values will be in the range of [0, 1000].
- * The number of operations will be in the range of [1, 1000].
+ * The number of operations will be in the range of [1, 1000].
  * Please do not use the built-in Queue library.
  *
  *

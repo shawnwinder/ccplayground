@@ -18,7 +18,7 @@ using namespace std;
  * Total Submissions: 340.6K
  * Testcase Example:  '3'
  *
- * Roman numerals are represented by seven different symbols: I, V, X, L, C, D
+ * Roman numerals are represented by seven different symbols: I, V, X, L, C, D
  * and M.
  *
  *
@@ -31,7 +31,7 @@ using namespace std;
  * D             500
  * M             1000
  *
- * For example, two is written as II in Roman numeral, just two one's added
+ * For example, two is written as II in Roman numeral, just two one's added
  * together. Twelve is written as, XII, which is simply X + II. The number
  * twenty seven is written as XXVII, which is XX + V + II.
  *
@@ -42,8 +42,8 @@ using namespace std;
  * There are six instances where subtraction is used:
  *
  *
- * I can be placed before V (5) and X (10) to make 4 and 9. 
- * X can be placed before L (50) and C (100) to make 40 and 90. 
+ * I can be placed before V (5) and X (10) to make 4 and 9. 
+ * X can be placed before L (50) and C (100) to make 40 and 90. 
  * C can be placed before D (500) and M (1000) to make 400 and 900.
  *
  *
@@ -53,25 +53,25 @@ using namespace std;
  * Example 1:
  *
  *
- * Input: 3
+ * Input: 3
  * Output: "III"
  *
  * Example 2:
  *
  *
- * Input: 4
+ * Input: 4
  * Output: "IV"
  *
  * Example 3:
  *
  *
- * Input: 9
+ * Input: 9
  * Output: "IX"
  *
  * Example 4:
  *
  *
- * Input: 58
+ * Input: 58
  * Output: "LVIII"
  * Explanation: C = 100, L = 50, XXX = 30 and III = 3.
  *
@@ -79,7 +79,7 @@ using namespace std;
  * Example 5:
  *
  *
- * Input: 1994
+ * Input: 1994
  * Output: "MCMXCIV"
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  *

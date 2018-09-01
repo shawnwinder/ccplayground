@@ -41,9 +41,9 @@ using namespace std;
  *
  * Input: grid =
  * [[0,1,0,0,0,0,0,1],
- * ⁠[0,1,0,0,0,0,0,1],
- * ⁠[0,0,0,0,0,0,0,1],
- * ⁠[0,0,0,0,0,0,0,0]]
+ * [0,1,0,0,0,0,0,1],
+ * [0,0,0,0,0,0,0,1],
+ * [0,0,0,0,0,0,0,0]]
  * Output: 10
  * Explanation:
  * There are 2 contaminated regions.
@@ -51,9 +51,9 @@ using namespace std;
  * The board after the virus spreads is:
  *
  * [[0,1,0,0,0,0,1,1],
- * ⁠[0,1,0,0,0,0,1,1],
- * ⁠[0,0,0,0,0,0,1,1],
- * ⁠[0,0,0,0,0,0,0,1]]
+ * [0,1,0,0,0,0,1,1],
+ * [0,0,0,0,0,0,1,1],
+ * [0,0,0,0,0,0,0,1]]
  *
  * On the second day, add 5 walls to quarantine the viral region on the right.
  * The virus is fully contained.
@@ -64,8 +64,8 @@ using namespace std;
  *
  * Input: grid =
  * [[1,1,1],
- * ⁠[1,0,1],
- * ⁠[1,1,1]]
+ * [1,0,1],
+ * [1,1,1]]
  * Output: 4
  * Explanation: Even though there is only one cell saved, there are 4 walls
  * built.
@@ -78,8 +78,8 @@ using namespace std;
  *
  * Input: grid =
  * [[1,1,1,0,0,0,0,0,0],
- * ⁠[1,0,1,0,1,1,1,1,1],
- * ⁠[1,1,1,0,0,0,0,0,0]]
+ * [1,0,1,0,1,1,1,1,1],
+ * [1,1,1,0,0,0,0,0,0]]
  * Output: 13
  * Explanation: The region on the left only builds two new walls.
  *

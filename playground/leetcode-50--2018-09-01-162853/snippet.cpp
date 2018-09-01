@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 895.1K
  * Testcase Example:  '2.00000\n10'
  *
- * Implement pow(x, n), which calculates x raised to the power n (xn).
+ * Implement pow(x, n), which calculates x raised to the power n (xn).
  *
  * Example 1:
  *
@@ -45,7 +45,7 @@ using namespace std;
  *
  *
  * -100.0 < x < 100.0
- * n is a 32-bit signed integer, within the range [−231, 231 − 1]
+ * n is a 32-bit signed integer, within the range [-231, 231 - 1]
  *
  *
  */

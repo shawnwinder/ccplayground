@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 15.5K
  * Testcase Example:  '5'
  *
- * Given a positive integer N, how many ways can we write it as a sum of
+ * Given a positive integer N, how many ways can we write it as a sum of
  * consecutive positive integers?
  *
  * Example 1:
@@ -41,7 +41,7 @@ using namespace std;
  * Output: 4
  * Explanation: 15 = 15 = 8 + 7 = 4 + 5 + 6 = 1 + 2 + 3 + 4 + 5
  *
- * Note: 1 <= N <= 10 ^ 9.
+ * Note: 1 <= N <= 10 ^ 9.
  */
 class Solution {
 public:

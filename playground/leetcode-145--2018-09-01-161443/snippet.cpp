@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -22,28 +23,32 @@ using namespace std;
  * Example:
  *
  *
- * Input: [1,null,2,3]
- * ⁠  1
- * ⁠   \
- * ⁠    2
- * ⁠   /
- * ⁠  3
+ * Input: [1,null,2,3]
+ *   1
+ *    \
+ *     2
+ *    /
+ *   3
  *
- * Output: [3,2,1]
+ * Output: [3,2,1]
  *
  *
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* reverse(TreeNode* root) {
@@ -56,9 +61,8 @@ public:
         }
         return l;
     }
-    
+
     vector<int> postorderTraversal(TreeNode* root) {
-        
         TreeNode* proot = new TreeNode(0);
         proot->left = root;
         root = proot;
@@ -84,13 +88,11 @@ public:
                     root = root->right;
                 }
             } else { // no left
-                root = root->right;    
+                root = root->right;
             }
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

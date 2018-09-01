@@ -26,7 +26,7 @@ using namespace std;
  * The number of local inversions is the number of i with 0 <= i < N and A[i] >
  * A[i+1].
  *
- * Return true if and only if the number of global inversions is equal to the
+ * Return true if and only if the number of global inversions is equal to the
  * number of local inversions.
  *
  * Example 1:

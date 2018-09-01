@@ -17,8 +17,8 @@ using namespace std;
  * Total Submissions: 35.6K
  * Testcase Example:  '"ab"\n"ba"'
  *
- * Given two strings A and B of lowercase letters, return true if and only if
- * we can swap two letters in A so that the result equals B.
+ * Given two strings A and B of lowercase letters, return true if and only if
+ * we can swap two letters in A so that the result equals B.
  *
  *
  *
@@ -69,7 +69,7 @@ using namespace std;
  *
  * 0 <= A.length <= 20000
  * 0 <= B.length <= 20000
- * A and B consist only of lowercase letters.
+ * A and B consist only of lowercase letters.
  *
  *
  *

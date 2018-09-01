@@ -31,39 +31,32 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-  ListNode *partition(ListNode *p, int x) {
-    ListNode *lh = nullptr, *lt = nullptr, *gh = nullptr, *gt = nullptr;
-    for (; p; p = p->next)
-      if (p->val < x) {
-        if (! lh)
-          lh = lt = p;
-        else
-          lt->next = p, lt = p;
-      } else {
-        if (! gh)
-          gh = gt = p;
-        else
-          gt->next = p, gt = p;
-      }
-    if (lt)
-      lt->next = gh;
-    if (gt)
-      gt->next = nullptr;
-    return lh ? lh : gh;
-  }
+    ListNode* partition(ListNode* head, int x) {
+        ListNode left(0), right(0);
+        ListNode *l = &left, *r = &right;
+        while (head) {
+            ListNode*& ref = head->val < x ? l : r;
+            ref->next = head;
+            ref = ref->next;
+            head = head->next;
+        }
+        l->next = right.next;
+        r->next = NULL;
+        return left.next;
+    }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

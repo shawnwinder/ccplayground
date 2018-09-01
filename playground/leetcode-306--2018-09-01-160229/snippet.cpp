@@ -44,7 +44,7 @@ using namespace std;
  *
  * Input: "199100199"
  * Output: true
- * Explanation: The additive sequence is: 1, 99, 100, 199. 
+ * Explanation: The additive sequence is: 1, 99, 100, 199. 
  * 1 + 99 = 100, 99 + 100 = 199
  *
  * Follow up:

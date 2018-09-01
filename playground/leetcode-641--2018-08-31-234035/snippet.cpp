@@ -35,7 +35,7 @@ using namespace std;
  * return -1.
  * getRear(): Gets the last item from Deque. If the deque is empty, return
  * -1.
- * isEmpty(): Checks whether Deque is empty or not. 
+ * isEmpty(): Checks whether Deque is empty or not. 
  * isFull(): Checks whether Deque is full or not.
  *
  *
@@ -63,7 +63,7 @@ using namespace std;
  *
  *
  * All values will be in the range of [0, 1000].
- * The number of operations will be in the range of [1, 1000].
+ * The number of operations will be in the range of [1, 1000].
  * Please do not use the built-in Deque library.
  *
  *

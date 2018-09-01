@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -53,47 +55,48 @@ using namespace std;
  *
  * Visually, the graph looks like the following:
  *
- * ⁠      1
- * ⁠     / \
- * ⁠    /   \
- * ⁠   0 --- 2
- * ⁠        / \
- * ⁠        \_/
+ *       1
+ *      / \
+ *     /   \
+ *    0 --- 2
+ *         / \
+ *         \_/
  *
  *
  *
  *
  */
-/**
- * Definition for undirected graph.
- * struct UndirectedGraphNode {
- *     int label;
- *     vector<UndirectedGraphNode *> neighbors;
- *     UndirectedGraphNode(int x) : label(x) {};
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct UndirectedGraphNode {
+    int label;
+    vector<UndirectedGraphNode*> neighbors;
+    UndirectedGraphNode(int x)
+        : label(x){};
+};
+#endif
+
 class Solution {
 public:
-    std::unordered_map<int, UndirectedGraphNode*> m;
-    void walk(UndirectedGraphNode *node) {
+    unordered_map<int, UndirectedGraphNode*> m;
+    void walk(UndirectedGraphNode* node) {
         int label = node->label;
-        if(m.find(label) != m.end()) {
+        if (m.find(label) != m.end()) {
             return;
         } else {
             m[label] = new UndirectedGraphNode(label);
         }
-        for(int i=0;i<node->neighbors.size(); i++) {
+        for (int i = 0; i < node->neighbors.size(); i++) {
             walk(node->neighbors[i]);
             m[label]->neighbors.push_back(m[node->neighbors[i]->label]);
-        }  
+        }
     }
-    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
-        if(node == NULL) return NULL;
+    UndirectedGraphNode* cloneGraph(UndirectedGraphNode* node) {
+        if (node == NULL)
+            return NULL;
         walk(node);
         return m[node->label];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

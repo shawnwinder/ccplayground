@@ -17,8 +17,8 @@ using namespace std;
  * Total Submissions: 1M
  * Testcase Example:  '121'
  *
- * Determine whether an integer is a palindrome. An integer is a palindrome
- * when it reads the same backward as forward.
+ * Determine whether an integer is a palindrome. An integer is a palindrome
+ * when it reads the same backward as forward.
  *
  * Example 1:
  *
@@ -47,7 +47,7 @@ using namespace std;
  *
  * Follow up:
  *
- * Coud you solve it without converting the integer to a string?
+ * Coud you solve it without converting the integer to a string?
  *
  */
 class Solution {

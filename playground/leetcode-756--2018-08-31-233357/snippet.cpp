@@ -39,10 +39,10 @@ using namespace std;
  * Output: true
  * Explanation:
  * We can stack the pyramid like this:
- * ⁠   A
- * ⁠  / \
- * ⁠ D   E
- * ⁠/ \ / \
+ *    A
+ *   / \
+ *  D   E
+ * / \ / \
  * X   Y   Z
  *
  * This works because ('X', 'Y', 'D'), ('Y', 'Z', 'E'), and ('D', 'E', 'A') are

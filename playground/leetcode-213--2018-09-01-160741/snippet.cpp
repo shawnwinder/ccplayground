@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ using namespace std;
  * You are a professional robber planning to rob houses along a street. Each
  * house has a certain amount of money stashed. All houses at this place are
  * arranged in a circle. That means the first house is the neighbor of the last
- * one. Meanwhile, adjacent houses have security system connected and it will
+ * one. Meanwhile, adjacent houses have security system connected and it will
  * automatically contact the police if two adjacent houses were broken into on
  * the same night.
  *
@@ -52,17 +53,16 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int n = nums.size(), t, x = 0, y = 0;
-        if (n == 1) return nums[0];
-        for (int i = 0; i < n-1; i++)
-          t = x, x = max(x, y+nums[i]), y = t;
+        if (n == 1)
+            return nums[0];
+        for (int i = 0; i < n - 1; i++)
+            t = x, x = max(x, y + nums[i]), y = t;
         int r = x;
         x = y = 0;
         for (int i = 1; i < n; i++)
-          t = x, x = max(x, y+nums[i]), y = t;
+            t = x, x = max(x, y + nums[i]), y = t;
         return max(r, x);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

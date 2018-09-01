@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ using namespace std;
  * Note:
  *
  *
- * If there exists a solution, it is guaranteed to be unique.
+ * If there exists a solution, it is guaranteed to be unique.
  * Both input arrays are non-empty and have the same length.
  * Each element in the input arrays is a non-negative integer.
  *
@@ -85,18 +86,20 @@ public:
         int cur = 0;
         int s = 0;
         int remain = 0;
-        for(int i=0; i<gas.size(); i++) {
+        for (int i = 0; i < gas.size(); i++) {
             int t = cur + gas[i] - cost[i];
-            if(t < 0) {
-                s = i+1;
+            if (t < 0) {
+                s = i + 1;
                 cur = 0;
                 remain += t;
-            } else cur = t;
+            } else
+                cur = t;
         }
-        if (cur + remain >= 0) return s; else return -1;
+        if (cur + remain >= 0)
+            return s;
+        else
+            return -1;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

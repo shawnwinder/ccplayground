@@ -49,7 +49,7 @@ using namespace std;
  *
  *
  * 1 <= hand.length <= 10000
- * 0 <= hand[i] <= 10^9
+ * 0 <= hand[i] <= 10^9
  * 1 <= W <= hand.length
  *
  */

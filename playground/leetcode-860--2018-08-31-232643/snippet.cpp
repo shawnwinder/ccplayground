@@ -17,18 +17,18 @@ using namespace std;
  * Total Submissions: 20K
  * Testcase Example:  '[5,5,5,10,20]'
  *
- * At a lemonade stand, each lemonade costs $5. 
+ * At a lemonade stand, each lemonade costs $5. 
  *
  * Customers are standing in a queue to buy from you, and order one at a time
  * (in the order specified by bills).
  *
- * Each customer will only buy one lemonade and pay with either a $5, $10, or
- * $20 bill.  You must provide the correct change to each customer, so that the
+ * Each customer will only buy one lemonade and pay with either a $5, $10, or
+ * $20 bill.  You must provide the correct change to each customer, so that the
  * net transaction is that the customer pays $5.
  *
- * Note that you don't have any change in hand at first.
+ * Note that you don't have any change in hand at first.
  *
- * Return true if and only if you can provide every customer with correct
+ * Return true if and only if you can provide every customer with correct
  * change.
  *
  *
@@ -83,7 +83,7 @@ using namespace std;
  *
  *
  * 0 <= bills.length <= 10000
- * bills[i] will be either 5, 10, or 20.
+ * bills[i] will be either 5, 10, or 20.
  *
  *
  *

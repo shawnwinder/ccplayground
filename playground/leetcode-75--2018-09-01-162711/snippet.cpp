@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ using namespace std;
  * Here, we will use the integers 0, 1, and 2 to represent the color red,
  * white, and blue respectively.
  *
- * Note: You are not suppose to use the library's sort function for this
+ * Note: You are not suppose to use the library's sort function for this
  * problem.
  *
  * Example:
@@ -40,7 +41,7 @@ using namespace std;
  * sort.
  * First, iterate the array counting number of 0's, 1's, and 2's, then
  * overwrite array with total number of 0's, then 1's and followed by 2's.
- * Could you come up with a one-pass algorithm using only constant space?
+ * Could you come up with a one-pass algorithm using only constant space?
  *
  *
  */
@@ -56,12 +57,10 @@ public:
             } else if (nums[j] == 2) {
                 swap(nums[j], nums[n--]);
             } else {
-                j ++;
+                j++;
             }
         }
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

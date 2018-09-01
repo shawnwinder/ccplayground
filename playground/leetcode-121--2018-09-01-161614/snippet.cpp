@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -48,18 +49,18 @@ using namespace std;
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        
-        if (prices.empty()) return 0;
+        if (prices.empty())
+            return 0;
         int ans = 0;
         int left = prices[0];
-        for (int i=1;i<prices.size();i++) {
-            if (prices[i] < left) left = prices[i];
-            else ans = max(ans, prices[i] - left);
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices[i] < left)
+                left = prices[i];
+            else
+                ans = max(ans, prices[i] - left);
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

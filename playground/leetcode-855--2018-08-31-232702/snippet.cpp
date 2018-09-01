@@ -21,14 +21,14 @@ using namespace std;
  * N-1.
  *
  * When a student enters the room, they must sit in the seat that maximizes the
- * distance to the closest person.  If there are multiple such seats, they sit
- * in the seat with the lowest number.  (Also, if no one is in the room, then
+ * distance to the closest person.  If there are multiple such seats, they sit
+ * in the seat with the lowest number.  (Also, if no one is in the room, then
  * the student sits at seat number 0.)
  *
- * Return a class ExamRoom(int N) that exposes two functions: ExamRoom.seat()
- * returning an int representing what seat the student sat in, and
- * ExamRoom.leave(int p) representing that the student in seat number p now
- * leaves the room.  It is guaranteed that any calls to ExamRoom.leave(p) have
+ * Return a class ExamRoom(int N) that exposes two functions: ExamRoom.seat()
+ * returning an int representing what seat the student sat in, and
+ * ExamRoom.leave(int p) representing that the student in seat number p now
+ * leaves the room.  It is guaranteed that any calls to ExamRoom.leave(p) have
  * a student sitting in seat p.
  *
  *
@@ -46,7 +46,7 @@ using namespace std;
  * seat() -> 4, the student sits at the last seat number 4.
  * seat() -> 2, the student sits at the last seat number 2.
  * leave(4) -> null
- * seat() -> 5, the student​​​​​​​ sits at the last seat number 5.
+ * seat() -> 5, the student sits at the last seat number 5.
  *
  *
  *

@@ -19,7 +19,7 @@ using namespace std;
  *
  * Reverse a linked list from position m to n. Do it in one-pass.
  *
- * Note: 1 ≤ m ≤ n ≤ length of list.
+ * Note: 1 <= m <= n <= length of list.
  *
  * Example:
  *
@@ -29,34 +29,33 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
-        if (!head) return nullptr;
-        auto *pp=&head;
-        n -= m-1;
-        while (--m) pp=&(*pp)->next;
-        auto q=*pp, l=q, e=q;
+        if (!head || m >= n)
+            return head;
+        n -= m;
+        auto pp = &head;
+        while (--m)
+            pp = &(*pp)->next;
+        auto p = *pp;
         while (n--) {
-            auto nq = q->next;
-            q->next = l;
-            l = q;
-            q = nq;
+            auto q = p->next;
+            p->next = q->next;
+            q->next = *pp;
+            *pp = q;
         }
-        e->next = q;
-        *pp = l;
         return head;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

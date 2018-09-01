@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -19,7 +22,7 @@ using namespace std;
  *
  * Given a non-empty string s and a dictionary wordDict containing a list of
  * non-empty words, add spaces in s to construct a sentence where each word is
- * a valid dictionary word. Return all such possible sentences.
+ * a valid dictionary word. Return all such possible sentences.
  *
  * Note:
  *
@@ -68,60 +71,37 @@ using namespace std;
  *
  */
 class Solution {
-public:
-  bool work(vector<vector<string>>& ans, vector<string>& partial, int start, vector<bool>& rem, string& s, unordered_set<string>& m) {
-    if (start >= s.size()) {
-      ans.push_back(partial);
-      return false; // found
-    }
-    vector<int> temp;
-    for (int i = start; i < s.size(); ++i) {
-      if (m.find(s.substr(start, i-start + 1)) != m.end()) {
-        temp.push_back(i+1);
-      }
-    }
-    bool ret = true;
-    for (int i = temp.size() -1; i >= 0; --i) {
-      if(!rem[temp[i]]) {
-        partial.push_back(s.substr(start, temp[i] - start));
-        rem[temp[i]] = work(ans, partial, temp[i], rem, s, m);
-        ret &= rem[temp[i]];
-        partial.pop_back();
-      }
-    }
-    return ret; // not found
-  }
-
-  string join(const vector<string> &elements, const string &separator) {
-    if (!elements.empty()) {
-        stringstream ss;
-        auto it = elements.cbegin();
-        while (true) {
-          ss << *it++;
-          if (it != elements.cend())
-            ss << separator;
-          else
-            return ss.str();
+    unordered_map<string, vector<string>> m;
+    unordered_set<string> dict;
+    vector<string> combine(string word, vector<string> prev) {
+        for (int i = 0; i < prev.size(); ++i) {
+            prev[i] += " " + word;
         }
+        return prev;
     }
-    return "";
-  }
-
- vector<string> wordBreak(string s, vector<string>& wordDict) {
-   unordered_set<string> m(wordDict.begin(), wordDict.end());
-   vector<bool> rem(s.size(), false);
-   vector<vector<string>> ans;
-   vector<string> partial;
-   work(ans, partial, 0, rem, s, m);
-   vector<string> ret;
-   for (auto& a : ans) {
-     ret.push_back(join(a, " "));
-   }
-   return ret;
- }
+    vector<string> wordBreak(string& s) {
+        if (m.count(s))
+            return m[s]; // take from memory
+        vector<string> result;
+        if (dict.count(s)) { // a whole string is a word
+            result.push_back(s);
+        }
+        for (int i = 1; i < s.size(); ++i) {
+            string word = s.substr(i);
+            if (dict.count(word)) {
+                string rem = s.substr(0, i);
+                vector<string> prev = combine(word, wordBreak(rem));
+                result.insert(result.end(), prev.begin(), prev.end());
+            }
+        }
+        m[s] = result; // memorize
+        return result;
+    }
+public:
+    vector<string> wordBreak(string& s, vector<string>& wordDict) {
+        dict.insert(wordDict.begin(), wordDict.end());
+        return wordBreak(s);
+    }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 579.6K
  * Testcase Example:  '[1,2,3,4]'
  *
- * Given a linked list, swap every two adjacent nodes and return its head.
+ * Given a linked list, swap every two adjacent nodes and return its head.
  *
  * Example:
  *

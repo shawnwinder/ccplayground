@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -23,47 +24,52 @@ using namespace std;
  * Example:
  *
  *
- * Input: [1,2,3,null,5,null,4]
- * Output: [1, 3, 4]
+ * Input: [1,2,3,null,5,null,4]
+ * Output: [1, 3, 4]
  * Explanation:
  *
- * ⁠  1            <---
- * ⁠/   \
+ *    1            <---
+ *  /   \
  * 2     3         <---
- * ⁠\     \
- * ⁠ 5     4       <---
+ *  \     \
+ *   5     4       <---
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        deque<TreeNode*> q;
+        vector<TreeNode*> q;
         vector<int> ret;
-        if (!root) return {};
+        if (!root)
+            return {};
         q.push_back(root);
         while (!q.empty()) {
-            deque<TreeNode*> q2;
+            vector<TreeNode*> q2;
             for (auto n : q) {
-                if (n->left) q2.push_back(n->left);
-                if (n->right) q2.push_back(n->right);
+                if (n->left)
+                    q2.push_back(n->left);
+                if (n->right)
+                    q2.push_back(n->right);
             }
             ret.push_back(q.back()->val);
-            q = q2;
+            q = std::move(q2);
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

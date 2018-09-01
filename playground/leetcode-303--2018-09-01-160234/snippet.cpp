@@ -18,7 +18,7 @@ using namespace std;
  * Testcase Example:  '["NumArray","sumRange","sumRange","sumRange"]\n[[[-2,0,3,-5,2,-1]],[0,2],[2,5],[0,5]]'
  *
  * Given an integer array nums, find the sum of the elements between indices i
- * and j (i ≤ j), inclusive.
+ * and j (i <= j), inclusive.
  *
  * Example:
  *

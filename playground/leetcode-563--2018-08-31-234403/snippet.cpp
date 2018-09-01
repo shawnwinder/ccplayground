@@ -28,9 +28,9 @@ using namespace std;
  * Example:
  *
  * Input:
- * ⁠        1
- * ⁠      /   \
- * ⁠     2     3
+ *         1
+ *       /   \
+ *      2     3
  * Output: 1
  * Explanation:
  * Tilt of node 2 : 0
@@ -48,15 +48,19 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int mysum(TreeNode* root, int& res) {

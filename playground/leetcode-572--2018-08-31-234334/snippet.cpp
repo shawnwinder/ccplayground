@@ -28,17 +28,17 @@ using namespace std;
  *
  * Given tree s:
  *
- * ⁠    3
- * ⁠   / \
- * ⁠  4   5
- * ⁠ / \
- * ⁠1   2
+ *     3
+ *    / \
+ *   4   5
+ *  / \
+ * 1   2
  *
  * Given tree t:
  *
- * ⁠  4
- * ⁠ / \
- * ⁠1   2
+ *   4
+ *  / \
+ * 1   2
  *
  * Return true, because t has the same structure and node values with a subtree
  * of s.
@@ -48,32 +48,36 @@ using namespace std;
  *
  * Given tree s:
  *
- * ⁠    3
- * ⁠   / \
- * ⁠  4   5
- * ⁠ / \
- * ⁠1   2
- * ⁠   /
- * ⁠  0
+ *     3
+ *    / \
+ *   4   5
+ *  / \
+ * 1   2
+ *    /
+ *   0
  *
  * Given tree t:
  *
- * ⁠  4
- * ⁠ / \
- * ⁠1   2
+ *   4
+ *  / \
+ * 1   2
  *
  * Return false.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     bool isEqual(TreeNode* s, TreeNode* t) {

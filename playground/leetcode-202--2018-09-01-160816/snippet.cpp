@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <cmath>
 #include <iostream>
+#include <unordered_set>
 
 using namespace std;
 
@@ -25,7 +27,7 @@ using namespace std;
  * stay), or it loops endlessly in a cycle which does not include 1. Those
  * numbers for which this process ends in 1 are happy numbers.
  *
- * Example: 
+ * Example:
  *
  *
  * Input: 19
@@ -51,7 +53,8 @@ public:
     bool isHappy(int n) {
         unordered_set<int> s;
         while (!s.count(n)) {
-            if (n == 1) return true;
+            if (n == 1)
+                return true;
             s.insert(n);
             n = cal(n);
         }
@@ -59,6 +62,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

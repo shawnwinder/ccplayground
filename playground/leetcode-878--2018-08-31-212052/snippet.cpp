@@ -18,9 +18,9 @@ using namespace std;
  * Total Submissions: 11.7K
  * Testcase Example:  '1\n2\n3'
  *
- * A positive integer is magical if it is divisible by either A or B.
+ * A positive integer is magical if it is divisible by either A or B.
  *
- * Return the N-th magical number.  Since the answer may be very large, return
+ * Return the N-th magical number.  Since the answer may be very large, return
  * it modulo 10^9 + 7.
  *
  *
@@ -58,9 +58,9 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= N <= 10^9
- * 2 <= A <= 40000
- * 2 <= B <= 40000
+ * 1 <= N <= 10^9
+ * 2 <= A <= 40000
+ * 2 <= B <= 40000
  *
  */
 class Solution {
@@ -88,8 +88,5 @@ public:
         return l % mod;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

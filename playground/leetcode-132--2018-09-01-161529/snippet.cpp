@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ using namespace std;
  * Example:
  *
  *
- * Input: "aab"
+ * Input: "aab"
  * Output: 1
  * Explanation: The palindrome partitioning ["aa","b"] could be produced using
  * 1 cut.
@@ -35,24 +36,20 @@ using namespace std;
 class Solution {
 public:
     int minCut(string s) {
-        const int N = s.size();
-        if(N<=1) return 0;
-
-        int i, j, minCUTS[N+1];
-        for(i=0; i<=N; ++i) minCUTS[i] = i-1;
-
-        for(i=1;i<N;i++)
-        {
-            for(j=0;(i-j)>=0 && (i+j)<N && s[i-j]== s[i+j]; ++j) // odd-length substrings 
-                minCUTS[i+j+1] = min(minCUTS[i+j+1], 1 + minCUTS[i-j]);
-
-            for(j=0;(i-j-1)>=0 && (i+j)<N && s[i-j-1]== s[i+j]; ++j) // even-length substrings
-                minCUTS[i+j+1] = min(minCUTS[i+j+1], 1 + minCUTS[i-j-1]);
+        int n = s.size();
+        if (n <= 1)
+            return 0;
+        vector<int> mincuts(n + 1);
+        for (int i = 0; i <= n; ++i)
+            mincuts[i] = i - 1;
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; (i - j) >= 0 && (i + j) < n && s[i - j] == s[i + j]; ++j)
+                mincuts[i + j + 1] = min(mincuts[i + j + 1], 1 + mincuts[i - j]);
+            for (int j = 0; (i - j - 1) >= 0 && (i + j) < n && s[i - j - 1] == s[i + j]; ++j)
+                mincuts[i + j + 1] = min(mincuts[i + j + 1], 1 + mincuts[i - j - 1]);
         }
-        return minCUTS[N];
+        return mincuts[n];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

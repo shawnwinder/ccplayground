@@ -21,9 +21,9 @@ using namespace std;
  *
  *
  * struct TreeLinkNode {
- * ⁠ TreeLinkNode *left;
- * ⁠ TreeLinkNode *right;
- * ⁠ TreeLinkNode *next;
+ *  TreeLinkNode *left;
+ *  TreeLinkNode *right;
+ *  TreeLinkNode *next;
  * }
  *
  *
@@ -45,60 +45,66 @@ using namespace std;
  * Given the following binary tree,
  *
  *
- * ⁠    1
- * ⁠  /  \
- * ⁠ 2    3
- * ⁠/ \    \
+ *      1
+ *    /  \
+ *   2    3
+ *  / \    \
  * 4   5    7
  *
  *
  * After calling your function, the tree should look like:
  *
  *
- * ⁠    1 -> NULL
- * ⁠  /  \
- * ⁠ 2 -> 3 -> NULL
- * ⁠/ \    \
+ *      1 -> NULL
+ *    /  \
+ *   2 -> 3 -> NULL
+ *  / \    \
  * 4-> 5 -> 7 -> NULL
  *
  *
  */
-/**
- * Definition for binary tree with next pointer.
- * struct TreeLinkNode {
- *  int val;
- *  TreeLinkNode *left, *right, *next;
- *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeLinkNode {
+    int val;
+    TreeLinkNode *left, *right, *next;
+    TreeLinkNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-    void connect(TreeLinkNode *root) {
-        
-        TreeLinkNode *s = root;
+    void connect(TreeLinkNode* root) {
+        TreeLinkNode* s = root;
         TreeLinkNode *b, *t;
-        while(1){
-        	while(s && s->left == NULL && s->right == NULL) s = s->next;
-        	if(s == NULL) break;
-        	b = t = s->left?s->left:s->right;
-        	while(s) {
-        		if(t == s->left && s->right) {
-        			t->next = s->right;
-        			t = t->next;
-        		}
-        		else if(t == s->left && !s->right || t == s->right) s = s->next;
-        		else {
-        			while(s && s->left == NULL && s->right == NULL) s = s->next;
-        			if(s == NULL) break;
-        			t->next = s->left?s->left:s->right;
-        			t = t->next;
-        		}
-        	}
-        	s = b;
+        while (1) {
+            while (s && s->left == NULL && s->right == NULL)
+                s = s->next;
+            if (s == NULL)
+                break;
+            b = t = s->left ? s->left : s->right;
+            while (s) {
+                if (t == s->left && s->right) {
+                    t->next = s->right;
+                    t = t->next;
+                } else if (t == s->left && !s->right || t == s->right)
+                    s = s->next;
+                else {
+                    while (s && s->left == NULL && s->right == NULL)
+                        s = s->next;
+                    if (s == NULL)
+                        break;
+                    t->next = s->left ? s->left : s->right;
+                    t = t->next;
+                }
+            }
+            s = b;
         }
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

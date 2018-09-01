@@ -32,55 +32,58 @@ using namespace std;
  * One possible answer is: [0,-3,9,-10,null,5], which represents the following
  * height balanced BST:
  *
- * ⁠     0
- * ⁠    / \
- * ⁠  -3   9
- * ⁠  /   /
- * ⁠-10  5
+ *       0
+ *      / \
+ *    -3   9
+ *    /   /
+ *  -10  5
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-  ListNode *l;
-  TreeNode *f(int n) {
-    if (! n) return 0;
-    auto x = new TreeNode(0);
-    x->left = f(n/2);
-    x->val = l->val;
-    l = l->next;
-    x->right = f(n-n/2-1);
-    return x;
-  }
-public:
-  TreeNode *sortedListToBST(ListNode *head) {
-    l = head;
-    int n = 0;
-    while (head) {
-      head = head->next;
-      n++;
-    }
-    return f(n);
-  }
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
 };
 
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+class Solution {
+    ListNode* l;
+    TreeNode* f(int n) {
+        if (!n)
+            return 0;
+        auto x = new TreeNode(0);
+        x->left = f(n / 2);
+        x->val = l->val;
+        l = l->next;
+        x->right = f(n - n / 2 - 1);
+        return x;
+    }
+
+public:
+    TreeNode* sortedListToBST(ListNode* head) {
+        l = head;
+        int n = 0;
+        while (head) {
+            head = head->next;
+            n++;
+        }
+        return f(n);
+    }
+};
+
+int mymain(int argc, char* argv[]) { return 0; }

@@ -31,11 +31,11 @@ using namespace std;
  * Given the following tree [3,9,20,null,null,15,7]:
  *
  *
- * ⁠   3
- * ⁠  / \
- * ⁠ 9  20
- * ⁠   /  \
- * ⁠  15   7
+ *    3
+ *   / \
+ *  9  20
+ *    /  \
+ *   15   7
  *
  * Return true.
  *
@@ -44,41 +44,43 @@ using namespace std;
  * Given the following tree [1,2,2,3,3,null,null,4,4]:
  *
  *
- * ⁠      1
- * ⁠     / \
- * ⁠    2   2
- * ⁠   / \
- * ⁠  3   3
- * ⁠ / \
- * ⁠4   4
+ *       1
+ *      / \
+ *     2   2
+ *    / \
+ *   3   3
+ *  / \
+ * 4   4
  *
  *
  * Return false.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int height(TreeNode* root) {
-        if (!root) return 0;
+        if (!root)
+            return 0;
         int l = height(root->left);
         int r = height(root->right);
-        if (l < 0 || r < 0 || abs(l-r) > 1) return -1;
+        if (l < 0 || r < 0 || abs(l - r) > 1)
+            return -1;
         return max(l, r) + 1;
     }
-    bool isBalanced(TreeNode* root) {
-        return height(root) >= 0;
-    }
+    bool isBalanced(TreeNode* root) { return height(root) >= 0; }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

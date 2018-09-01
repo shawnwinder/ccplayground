@@ -2,6 +2,7 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
 
 using namespace std;
@@ -33,18 +34,18 @@ using namespace std;
  *
  *
  * Input:
- * ⁠   2
- * ⁠  / \
- * ⁠ 1   3
+ *   2
+ *  / \
+ * 1   3
  * Output: true
  *
  *
  * Example 2:
  *
  *
- * ⁠   5
- * ⁠  / \
- * ⁠ 1   4
+ *    5
+ *   / \
+ *  1   4
  * / \
  * 3   6
  * Output: false
@@ -54,27 +55,56 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
-
-      bool isValidBST(TreeNode *root) {
-    return f(root, LONG_MIN, LONG_MAX);
-  }
-  bool f(TreeNode *x, long l, long h) {
-    return !x || l < x->val && x->val < h && f(x->left, l, x->val) && f(x->right, x->val, h);
-  }
-
+    bool isValidBST(TreeNode* root) {
+        bool flag = false;
+        int last;
+        auto p = root;
+        while (p) {
+            auto l = p->left;
+            if (l) {
+                while (l->right && l->right != p)
+                    l = l->right;
+                if (l->right == p) {
+                    l->right = nullptr;
+                } else {
+                    l->right = p;
+                    p = p->left;
+                    continue;
+                }
+            }
+            if (flag && last >= p->val) {
+                // stupid OJ cannot destruct the tree
+                root->left = nullptr;
+                root->right = nullptr;
+                return false;
+            }
+            flag = true;
+            last = p->val;
+            p = p->right;
+        }
+        return true;
+    }
 };
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(1);
+    Solution s;
+    cout << s.isValidBST(root);
     return 0;
 }

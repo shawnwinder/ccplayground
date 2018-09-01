@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <bitset>
 
 using namespace std;
 
@@ -17,20 +18,10 @@ using namespace std;
  * Total Submissions: 15.2K
  * Testcase Example:  '22'
  *
- * Given a positive integer N, find and return the longest distance between two
+ * Given a positive integer N, find and return the longest distance between two
  * consecutive 1's in the binary representation of N.
  *
  * If there aren't two consecutive 1's, return 0.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  *
  *
  *
@@ -79,32 +70,26 @@ using namespace std;
  * There aren't any consecutive pairs of 1's in the binary representation of 8,
  * so we return 0.
  *
- *
- *
- *
- *
- *
- *
  * Note:
  *
- *
  * 1 <= N <= 10^9
- *
- *
- *
- *
- *
- *
- *
  *
  */
 class Solution {
 public:
     int binaryGap(int N) {
-
+        int res = 0;
+        for (int d = -32; N; N /= 2, d++)
+            if (N % 2)
+                res = max(res, d), d = 0;
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    Solution s;
+    cout << s.binaryGap(22);
+    bitset<32> x(22);
+    std::cout << x << std::endl;
     return 0;
 }

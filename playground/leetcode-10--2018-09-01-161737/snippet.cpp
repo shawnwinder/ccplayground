@@ -31,9 +31,9 @@ using namespace std;
  * Note:
  *
  *
- * s could be empty and contains only lowercase letters a-z.
+ * s could be empty and contains only lowercase letters a-z.
  * p could be empty and contains only lowercase letters a-z, and characters
- * like . or *.
+ * like . or *.
  *
  *
  * Example 1:
@@ -53,7 +53,7 @@ using namespace std;
  * s = "aa"
  * p = "a*"
  * Output: true
- * Explanation: '*' means zero or more of the precedeng element, 'a'.
+ * Explanation: '*' means zero or more of the precedeng element, 'a'.
  * Therefore, by repeating 'a' once, it becomes "aa".
  *
  *
@@ -64,7 +64,7 @@ using namespace std;
  * s = "ab"
  * p = ".*"
  * Output: true
- * Explanation: ".*" means "zero or more (*) of any character (.)".
+ * Explanation: ".*" means "zero or more (*) of any character (.)".
  *
  *
  * Example 4:
@@ -74,7 +74,7 @@ using namespace std;
  * s = "aab"
  * p = "c*a*b"
  * Output: true
- * Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore
+ * Explanation: c can be repeated 0 times, a can be repeated 1 time. Therefore
  * it matches "aab".
  *
  *

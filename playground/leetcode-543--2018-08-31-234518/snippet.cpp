@@ -28,11 +28,11 @@ using namespace std;
  * Example:
  * Given a binary tree
  *
- * ⁠         1
- * ⁠        / \
- * ⁠       2   3
- * ⁠      / \
- * ⁠     4   5
+ *          1
+ *         / \
+ *        2   3
+ *       / \
+ *      4   5
  *
  *
  *
@@ -44,15 +44,19 @@ using namespace std;
  * between them.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {

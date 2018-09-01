@@ -27,7 +27,7 @@ using namespace std;
  *
  * Input: 2
  * Output: 1
- * Explanation: 2 = 1 + 1, 1 × 1 = 1.
+ * Explanation: 2 = 1 + 1, 1 x 1 = 1.
  *
  *
  * Example 2:
@@ -35,7 +35,7 @@ using namespace std;
  *
  * Input: 10
  * Output: 36
- * Explanation: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.
+ * Explanation: 10 = 3 + 3 + 4, 3 x 3 x 4 = 36.
  *
  * Note: You may assume that n is not less than 2 and not larger than 58.
  *

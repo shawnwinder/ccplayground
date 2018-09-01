@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 24.4K
  * Testcase Example:  '[[1,2,3],[4,5,6],[7,8,9]]'
  *
- * Given a matrix A, return the transpose of A.
+ * Given a matrix A, return the transpose of A.
  *
  * The transpose of a matrix is the matrix flipped over it's main diagonal,
  * switching the row and column indices of the matrix.
@@ -45,8 +45,8 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= A.length <= 1000
- * 1 <= A[0].length <= 1000
+ * 1 <= A.length <= 1000
+ * 1 <= A[0].length <= 1000
  *
  *
  *

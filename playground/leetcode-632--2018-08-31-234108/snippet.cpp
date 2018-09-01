@@ -39,7 +39,7 @@ using namespace std;
  *
  * The given list may contain duplicates, so ascending order means >= here.
  * 1 k
- * ⁠-105 value of elements 5.
+ * -105 value of elements 5.
  * For Java users, please note that the input type has been changed to
  * List<List<Integer>>. And after you reset the code template, you'll see this
  * point.

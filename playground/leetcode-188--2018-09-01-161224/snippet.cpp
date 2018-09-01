@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -51,25 +53,25 @@ using namespace std;
 class Solution {
 public:
     int maxProfit(int k, vector<int>& prices) {
-        if (prices.size() < 2) return 0;
-        using pp=pair<int, int>;
+        if (prices.size() < 2)
+            return 0;
+        using pp = pair<int, int>;
         vector<pp> s;
-        int l = 0;
-        int r = 1;
+        int l = 0, r = 1;
         vector<int> t;
         while (r < prices.size()) {
             int last = prices[l];
             pp c;
             while (r < prices.size() && last <= prices[r]) {
                 last = prices[r];
-                r ++;
+                r++;
             }
             if (r - 1 > l) {
-                c = {prices[l], prices[r-1]} ;
-                while (!s.empty() && c.first  <= s.back().first) {
-                  auto c2 = s.back();
-                  s.pop_back();
-                  t.push_back(c2.second - c2.first);
+                c = { prices[l], prices[r - 1] };
+                while (!s.empty() && c.first <= s.back().first) {
+                    auto c2 = s.back();
+                    s.pop_back();
+                    t.push_back(c2.second - c2.first);
                 }
                 while (!s.empty() && c.second >= s.back().second) {
                     auto c2 = s.back();
@@ -80,9 +82,9 @@ public:
                 s.push_back(c);
             }
             l = r;
-            r ++;
+            r++;
         }
-        for (auto& p:s) {
+        for (auto& p : s) {
             t.push_back(p.second - p.first);
         }
         k = min(t.size(), (size_t)k);
@@ -91,7 +93,4 @@ public:
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

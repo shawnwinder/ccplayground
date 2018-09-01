@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -20,19 +21,19 @@ using namespace std;
  * Given a binary tree and a sum, find all root-to-leaf paths where each path's
  * sum equals the given sum.
  *
- * Note: A leaf is a node with no children.
+ * Note: A leaf is a node with no children.
  *
  * Example:
  *
  * Given the below binary tree and sum = 22,
  *
  *
- * ⁠     5
- * ⁠    / \
- * ⁠   4   8
- * ⁠  /   / \
- * ⁠ 11  13  4
- * ⁠/  \    / \
+ *       5
+ *      / \
+ *     4   8
+ *    /   / \
+ *   11  13  4
+ *  /  \    / \
  * 7    2  5   1
  *
  *
@@ -40,31 +41,38 @@ using namespace std;
  *
  *
  * [
- * ⁠  [5,4,11,2],
- * ⁠  [5,8,4,5]
+ *    [5,4,11,2],
+ *    [5,8,4,5]
  * ]
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     vector<vector<int>> ans;
     vector<int> state;
     int sum;
     void dfs(TreeNode* root, int psum) {
-        if (!root) return;
+        if (!root)
+            return;
         state.push_back(root->val), psum += root->val;
-        if (!root->left && !root->right && sum == psum) ans.push_back(state);
-        else dfs(root->left, psum), dfs(root->right, psum);
+        if (!root->left && !root->right && sum == psum)
+            ans.push_back(state);
+        else
+            dfs(root->left, psum), dfs(root->right, psum);
         state.pop_back();
     }
     vector<vector<int>> pathSum(TreeNode* root, int sum) {
@@ -74,6 +82,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

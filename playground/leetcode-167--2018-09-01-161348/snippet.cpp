@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -44,14 +45,14 @@ public:
     vector<int> twoSum(vector<int>& numbers, int target) {
         int s = 0, t = numbers.size() - 1;
         while (s < t) {
-            if (numbers[s] + numbers[t] > target) t--;
-            else if (numbers[s] + numbers[t] < target) s++;
-            else return {s+1, t+1};
+            if (numbers[s] + numbers[t] > target)
+                t--;
+            else if (numbers[s] + numbers[t] < target)
+                s++;
+            else
+                return { s + 1, t + 1 };
         }
-        
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

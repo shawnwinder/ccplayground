@@ -29,7 +29,7 @@ using namespace std;
  *
  *
  * The first few elements of string S is the following:
- * S = "1221121221221121122……"
+ * S = "1221121221221121122......"
  *
  *
  *

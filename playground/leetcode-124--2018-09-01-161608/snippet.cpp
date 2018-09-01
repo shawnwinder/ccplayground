@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -29,9 +30,9 @@ using namespace std;
  *
  * Input: [1,2,3]
  *
- * ⁠      1
- * ⁠     / \
- * ⁠    2   3
+ *       1
+ *      / \
+ *     2   3
  *
  * Output: 6
  *
@@ -41,45 +42,47 @@ using namespace std;
  *
  * Input: [-10,9,20,null,null,15,7]
  *
- * -10
- * / \
- * 9  20
- * /  \
- * 15   7
+ *   -10
+ *   / \
+ *  9  20
+ * /  \
+ * 15  7
  *
  * Output: 42
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
+    int sum;
+
 public:
-    int g(int a) {
-        if(a<0) return 0;else return a;
-    }
-    int ans = -1000000000;
-    int work(TreeNode* root) {
-        if(root == NULL) return 0;
-        int lmax = work(root->left);
-        int rmax = work(root->right);
-        int s = g(lmax)+g(rmax) + root->val;
-        if(s > ans) ans = s;
-        return g(lmax>rmax?lmax:rmax) + root->val;   
-    }
     int maxPathSum(TreeNode* root) {
-        work(root);
-        return ans;
+        sum = INT_MIN;
+        help(root);
+        return sum;
+    }
+
+    int help(TreeNode* root) {
+        if (!root)
+            return 0;
+        int left = max(0, help(root->left));
+        int right = max(0, help(root->right));
+        sum = max(sum, left + right + root->val);
+        return max(left, right) + root->val;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

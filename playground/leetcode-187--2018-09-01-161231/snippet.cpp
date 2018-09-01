@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -35,20 +37,17 @@ using namespace std;
  */
 class Solution {
 public:
-  vector<string> findRepeatedDnaSequences(string a) {
-    unsigned i = 0, n = a.size(), t = 0;
-    unordered_map<unsigned, unsigned> m;
-    vector<string> r;
-    while (i < min(9u, n))
-      t = t<<3 | a[i++]&7;
-    while (i < n)
-      if (m[t = t<<3 & 0x3fffffff | a[i++]&7]++ == 1)
-        r.push_back(a.substr(i-10, 10));
-    return r;
-  }
-
+    vector<string> findRepeatedDnaSequences(string a) {
+        unsigned i = 0, n = a.size(), t = 0;
+        unordered_map<unsigned, unsigned> m;
+        vector<string> r;
+        while (i < min(9u, n))
+            t = t << 3 | (a[i++] & 7);
+        while (i < n)
+            if (m[t = (t << 3 & 0x3fffffff) | (a[i++] & 7)]++ == 1)
+                r.push_back(a.substr(i - 10, 10));
+        return r;
+    }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

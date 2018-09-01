@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -23,21 +24,21 @@ using namespace std;
  *
  * For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
  *
- * ⁠   1
- * ⁠  / \
- * ⁠ 2   2
- * ⁠/ \ / \
+ *     1
+ *    / \
+ *   2   2
+ *  / \ / \
  * 3  4 4  3
  *
  *
  *
  * But the following [1,2,2,null,3,null,3]  is not:
  *
- * ⁠   1
- * ⁠  / \
- * ⁠ 2   2
- * ⁠  \   \
- * ⁠  3    3
+ *     1
+ *    / \
+ *   2   2
+ *    \   \
+ *     3   3
  *
  *
  *
@@ -46,15 +47,19 @@ using namespace std;
  * Bonus points if you could solve it both recursively and iteratively.
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
@@ -67,7 +72,8 @@ public:
             lporder.push_back(root->val);
             auto l = root->left;
             if (l) {
-                while (l->right && l->right != root) l = l->right;
+                while (l->right && l->right != root)
+                    l = l->right;
                 if (l->right == root) { // back from left
                     l->right = nullptr;
                 } else { // go left
@@ -75,7 +81,7 @@ public:
                     root = root->left;
                     continue;
                 }
-            } 
+            }
             // no left
             liorder.push_back(root->val);
             root = root->right;
@@ -85,7 +91,8 @@ public:
             rporder.push_back(root->val);
             auto r = root->right;
             if (r) {
-                while (r->left && r->left != root) r = r->left;
+                while (r->left && r->left != root)
+                    r = r->left;
                 if (r->left == root) { // back from right
                     r->left = nullptr;
                 } else { // go right
@@ -93,7 +100,7 @@ public:
                     root = root->right;
                     continue;
                 }
-            } 
+            }
             // no right
             riorder.push_back(root->val);
             root = root->left;
@@ -102,6 +109,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

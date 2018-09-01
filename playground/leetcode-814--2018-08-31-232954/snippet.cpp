@@ -17,7 +17,7 @@ using namespace std;
  * Total Submissions: 21K
  * Testcase Example:  '[1,null,0,0,1]'
  *
- * We are given the head node root of a binary tree, where additionally every
+ * We are given the head node root of a binary tree, where additionally every
  * node's value is either a 0 or a 1.
  *
  * Return the same tree where every subtree (of the given tree) not containing
@@ -30,7 +30,7 @@ using namespace std;
  * Example 1:
  * Input: [1,null,0,0,1]
  * Output: [1,null,0,null,1]
- * ⁠
+ * 
  * Explanation:
  * Only the red nodes satisfy the property "every subtree not containing a 1".
  * The diagram on the right represents the answer.
@@ -59,20 +59,24 @@ using namespace std;
  * Note:
  *
  *
- * The binary tree will have at most 100 nodes.
+ * The binary tree will have at most 100 nodes.
  * The value of each node will only be 0 or 1.
  *
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root) {

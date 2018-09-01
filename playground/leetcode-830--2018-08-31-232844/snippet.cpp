@@ -17,13 +17,13 @@ using namespace std;
  * Total Submissions: 26.6K
  * Testcase Example:  '"abbxxxxzzy"'
  *
- * In a string S of lowercase letters, these letters form consecutive groups of
+ * In a string S of lowercase letters, these letters form consecutive groups of
  * the same character.
  *
  * For example, a string like S = "abbxxxxzyy" has the groups "a", "bb",
- * "xxxx", "z" and "yy".
+ * "xxxx", "z" and "yy".
  *
- * Call a group large if it has 3 or more characters.  We would like the
+ * Call a group large if it has 3 or more characters.  We would like the
  * starting and ending positions of every large group.
  *
  * The final answer should be in lexicographic order.
@@ -55,7 +55,7 @@ using namespace std;
  *
  *
  *
- * Note:  1 <= S.length <= 1000
+ * Note:  1 <= S.length <= 1000
  */
 class Solution {
 public:

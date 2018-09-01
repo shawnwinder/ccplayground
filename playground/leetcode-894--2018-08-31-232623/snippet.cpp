@@ -17,13 +17,13 @@ using namespace std;
  * Total Submissions: 4.5K
  * Testcase Example:  '7'
  *
- * A full binary tree is a binary tree where each node has exactly 0 or 2
+ * A full binary tree is a binary tree where each node has exactly 0 or 2
  * children.
  *
- * Return a list of all possible full binary trees with N nodes.  Each element
+ * Return a list of all possible full binary trees with N nodes.  Each element
  * of the answer is the root node of one possible tree.
  *
- * Each node of each tree in the answer must have node.val = 0.
+ * Each node of each tree in the answer must have node.val = 0.
  *
  * You may return the final list of trees in any order.
  *
@@ -47,15 +47,19 @@ using namespace std;
  * 1 <= N <= 20
  *
  */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct TreeNode {
+int val;
+ TreeNode* left;
+ TreeNode* right;
+ TreeNode(int x)
+ : val(x)
+ , left(NULL)
+ , right(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     vector<TreeNode*> allPossibleFBT(int N) {

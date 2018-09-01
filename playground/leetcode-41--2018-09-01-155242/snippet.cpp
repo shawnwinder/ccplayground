@@ -18,7 +18,7 @@ using namespace std;
  * Total Submissions: 568.4K
  * Testcase Example:  '[1,2,0]'
  *
- * Given an unsorted integer array, find the smallest missing positive
+ * Given an unsorted integer array, find the smallest missing positive
  * integer.
  *
  * Example 1:

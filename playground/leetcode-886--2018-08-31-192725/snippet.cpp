@@ -20,26 +20,17 @@ using namespace std;
  * Total Submissions: 11.3K
  * Testcase Example:  '4\n[[1,2],[1,3],[2,4]]'
  *
- * Given a set of N people (numbered 1, 2, ..., N), we would like to split
+ * Given a set of N people (numbered 1, 2, ..., N), we would like to split
  * everyone into two groups of any size.
  *
  * Each person may dislike some other people, and they should not go into the
- * same group. 
+ * same group.
  *
  * Formally, if dislikes[i] = [a, b], it means it is not allowed to put the
  * people numbered a and b into the same group.
  *
- * Return true if and only if it is possible to split everyone into two groups
+ * Return true if and only if it is possible to split everyone into two groups
  * in this way.
- *
- *
- *
- *
- *
- *
- *
- *
- *
  *
  *
  * Example 1:
@@ -143,14 +134,6 @@ public:
         return paintNodeValid(edges, nodeColor, 1, 1);
     }
 };
-
-int mymain(int argc, char* argv[]) {
-    Solution s;
-    vector<vector<int>> d = { { 1, 2 }, { 1, 3 }, { 2, 3 } };
-    cout << s.possibleBipartition(4, d);
-    return 0;
-}
-
 
 int mymain(int argc, char* argv[]) {
     Solution s;

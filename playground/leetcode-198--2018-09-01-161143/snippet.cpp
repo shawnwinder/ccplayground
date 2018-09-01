@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -52,7 +53,7 @@ public:
     int rob(vector<int>& nums) {
         int l1 = 0;
         int l2 = 0;
-        
+
         for (int n : nums) {
             int l2tmp = max(l1, l2);
             l1 = l2 + n;
@@ -62,6 +63,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

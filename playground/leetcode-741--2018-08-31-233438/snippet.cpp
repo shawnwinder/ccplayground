@@ -42,8 +42,8 @@ using namespace std;
  *
  * Input: grid =
  * [[0, 1, -1],
- * ⁠[1, 0, -1],
- * ⁠[1, 1,  1]]
+ * [1, 0, -1],
+ * [1, 1,  1]]
  * Output: 5
  * Explanation:
  * The player started at (0, 0) and went down, down, right right to reach (2,

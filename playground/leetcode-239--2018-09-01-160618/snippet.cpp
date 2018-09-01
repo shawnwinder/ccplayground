@@ -32,15 +32,15 @@ using namespace std;
  * Window position                Max
  * ---------------               -----
  * [1  3  -1] -3  5  3  6  7       3
- * ⁠1 [3  -1  -3] 5  3  6  7       3
- * ⁠1  3 [-1  -3  5] 3  6  7       5
- * ⁠1  3  -1 [-3  5  3] 6  7       5
- * ⁠1  3  -1  -3 [5  3  6] 7       6
- * ⁠1  3  -1  -3  5 [3  6  7]      7
+ * 1 [3  -1  -3] 5  3  6  7       3
+ * 1  3 [-1  -3  5] 3  6  7       5
+ * 1  3  -1 [-3  5  3] 6  7       5
+ * 1  3  -1  -3 [5  3  6] 7       6
+ * 1  3  -1  -3  5 [3  6  7]      7
  *
  *
  * Note:
- * You may assume k is always valid, 1 ≤ k ≤ input array's size for non-empty
+ * You may assume k is always valid, 1 <= k <= input array's size for non-empty
  * array.
  *
  * Follow up:

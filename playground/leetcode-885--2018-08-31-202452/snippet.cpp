@@ -21,14 +21,14 @@ using namespace std;
  * On a 2 dimensional grid with R rows and C columns, we start at (r0, c0)
  * facing east.
  *
- * Here, the north-west corner of the grid is at the first row and column, and
+ * Here, the north-west corner of the grid is at the first row and column, and
  * the south-east corner of the grid is at the last row and column.
  *
  * Now, we walk in a clockwise spiral shape to visit every position in this
- * grid. 
+ * grid.
  *
  * Whenever we would move outside the boundary of the grid, we continue our
- * walk outside the grid (but may return to the grid boundary later.) 
+ * walk outside the grid (but may return to the grid boundary later.)
  *
  * Eventually, we reach all R * C spaces of the grid.
  *
@@ -130,8 +130,5 @@ public:
         return res;
     }
 };
-
-int mymain(int argc, char* argv[]) { return 0; }
-
 
 int mymain(int argc, char* argv[]) { return 0; }

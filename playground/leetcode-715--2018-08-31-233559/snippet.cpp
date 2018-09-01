@@ -27,7 +27,7 @@ using namespace std;
  *
  * queryRange(int left, int right) Returns true if and only if every real
  * number in the interval [left, right)
- * ⁠is currently being tracked.
+ * is currently being tracked.
  *
  * removeRange(int left, int right) Stops tracking every real number currently
  * being tracked in the interval [left, right).

@@ -21,7 +21,7 @@ using namespace std;
  * a list of indexes A.
  *
  * For example, if the list of words is ["time", "me", "bell"], we can write it
- * as S = "time#bell#" and indexes = [0, 2, 5].
+ * as S = "time#bell#" and indexes = [0, 2, 5].
  *
  * Then for each index, we will recover the word by reading from the reference
  * string from that index until we reach a "#" character.
@@ -40,9 +40,9 @@ using namespace std;
  * Note:
  *
  *
- * 1 <= words.length <= 2000.
- * 1 <= words[i].length <= 7.
- * Each word has only lowercase letters.
+ * 1 <= words.length <= 2000.
+ * 1 <= words[i].length <= 7.
+ * Each word has only lowercase letters.
  *
  *
  */

@@ -17,11 +17,11 @@ using namespace std;
  * Total Submissions: 15.1K
  * Testcase Example:  '12\n[10,8,0,5,3]\n[2,4,1,1,3]'
  *
- * N cars are going to the same destination along a one lane road.  The
- * destination is target miles away.
+ * N cars are going to the same destination along a one lane road.  The
+ * destination is target miles away.
  *
- * Each car i has a constant speed speed[i] (in miles per hour), and initial
- * position position[i] miles towards the target along the road.
+ * Each car i has a constant speed speed[i] (in miles per hour), and initial
+ * position position[i] miles towards the target along the road.
  *
  * A car can never pass another car ahead of it, but it can catch up to it, and
  * drive bumper to bumper at the same speed.
@@ -29,11 +29,11 @@ using namespace std;
  * The distance between these two cars is ignored - they are assumed to have
  * the same position.
  *
- * A car fleet is some non-empty set of cars driving at the same position and
- * same speed.  Note that a single car is also a car fleet.
+ * A car fleet is some non-empty set of cars driving at the same position and
+ * same speed.  Note that a single car is also a car fleet.
  *
  * If a car catches up to a car fleet right at the destination point, it will
- * still be considered as one car fleet.
+ * still be considered as one car fleet.
  *
  *
  * How many car fleets will arrive at the destination?
@@ -59,8 +59,8 @@ using namespace std;
  *
  *
  * 0 <= N <= 10 ^ 4
- * 0 < target <= 10 ^ 6
- * 0 < speed[i] <= 10 ^ 6
+ * 0 < target <= 10 ^ 6
+ * 0 < speed[i] <= 10 ^ 6
  * 0 <= position[i] < target
  * All initial positions are different.
  *
