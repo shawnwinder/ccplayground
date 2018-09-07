@@ -60,29 +60,27 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
 public:
     int solve(TreeNode* root, bool can_rob) {
-        if (root == nullptr) return 0;
+        if (root == nullptr)
+            return 0;
         int ret = solve(root->left, true) + solve(root->right, true);
-        if (can_rob) ret = max(ret, root->val + solve(root->left, false) + solve(root->right, false));
+        if (can_rob)
+            ret = max(ret, root->val + solve(root->left, false) + solve(root->right, false));
         return ret;
     }
-    int rob(TreeNode* root) {
-        return solve(root, true);
-    }
+    int rob(TreeNode* root) { return solve(root, true); }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

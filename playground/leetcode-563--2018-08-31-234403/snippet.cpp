@@ -51,35 +51,33 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
-public:
-    int mysum(TreeNode* root, int& res) {
-        if (root == nullptr) return 0;
-        int l = mysum(root->left, res);
-        int r = mysum(root->right, res);
+    int res = 0;
+
+    int dfs(TreeNode* root) {
+        if (root == nullptr)
+            return 0;
+        int l = dfs(root->left);
+        int r = dfs(root->right);
         res += abs(l - r);
         return l + r + root->val;
     }
+
+public:
     int findTilt(TreeNode* root) {
-        if (root == nullptr) return 0;
-        int res = 0;
-        mysum(root, res);
+        dfs(root);
         return res;
     }
-private:
-    int sum = 0;
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

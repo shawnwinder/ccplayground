@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Medium (49.84%)
  * Total Accepted:    21.5K
  * Total Submissions: 43K
- * Testcase Example:  '[["E","E","E","E","E"],["E","E","M","E","E"],["E","E","E","E","E"],["E","E","E","E","E"]]\n[3,0]'
+ * Testcase Example:
+ * '[["E","E","E","E","E"],["E","E","M","E","E"],["E","E","E","E","E"],["E","E","E","E","E"]]\n[3,0]'
  *
  * Let's play the minesweeper game (Wikipedia, online game)!
  *
@@ -104,11 +106,14 @@ using namespace std;
  *
  */
 class Solution {
+    vector<vector<int>> dirs
+        = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 } };
+
 public:
-    vector<vector<int>> dirs = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1,1}};
     vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) {
         int x = click[0], y = click[1];
-        if (x < 0 || x >= board.size() || y < 0 || y > board[0].size()) return board;
+        if (x < 0 || x >= board.size() || y < 0 || y > board[0].size())
+            return board;
         if (board[x][y] == 'M') {
             board[x][y] = 'X';
             return board;
@@ -116,18 +121,18 @@ public:
             return board;
         } else {
             int cnt = 0;
-            for (auto& dir:dirs) {
+            for (auto& dir : dirs) {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
-                if (nx < 0 || nx >= board.size() || ny < 0 || ny > board[0].size()) continue;
+                if (nx < 0 || nx >= board.size() || ny < 0 || ny > board[0].size())
+                    continue;
                 cnt += board[nx][ny] == 'M';
             }
-            
             if (cnt == 0) {
                 board[x][y] = 'B';
-                for(auto& dir:dirs) {
-                    vector<int> d = {x + dir[0], y + dir[1]};
-                    updateBoard(board, d) ;
+                for (auto& dir : dirs) {
+                    vector<int> d = { x + dir[0], y + dir[1] };
+                    updateBoard(board, d);
                 }
             } else {
                 board[x][y] = cnt + '0';
@@ -137,6 +142,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

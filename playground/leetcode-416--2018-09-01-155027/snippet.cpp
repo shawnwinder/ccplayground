@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <bitset>
 
 using namespace std;
 
@@ -50,7 +52,7 @@ using namespace std;
  *
  */
 class Solution {
- public:
+public:
     bool canPartition(vector<int>& nums) {
         const int MAX_NUM = 100;
         const int MAX_ARRAY_SIZE = 200;
@@ -62,8 +64,6 @@ class Solution {
         }
         return !(sum % 2) && bits[sum / 2];
     }
- };
+};
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -56,20 +57,20 @@ public:
         vector<int> z(n);
         int left = 0;
         int mostRight = 0;
-        for (int i=1; i<n; i++) {
-            if (i<=mostRight) {
-                z[i] = min(mostRight-i+1, z[i-left]);
-            } 
-            while (i+z[i]<n && s[i+z[i]] == s[z[i]]) {
+        for (int i = 1; i < n; i++) {
+            if (i <= mostRight) {
+                z[i] = min(mostRight - i + 1, z[i - left]);
+            }
+            while (i + z[i] < n && s[i + z[i]] == s[z[i]]) {
                 z[i]++;
             }
-            if (i+z[i]-1>mostRight) {
-                mostRight = i+z[i]-1;
+            if (i + z[i] - 1 > mostRight) {
+                mostRight = i + z[i] - 1;
                 left = i;
             }
         }
-        for (int i = 1; i <= n/2; i++) {
-            if (z[n-i]+z[i]==n) {
+        for (int i = 1; i <= n / 2; i++) {
+            if (z[n - i] + z[i] == n) {
                 return true;
             }
         }
@@ -77,6 +78,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

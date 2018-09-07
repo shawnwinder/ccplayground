@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -76,18 +77,18 @@ using namespace std;
 class Solution {
 public:
     int findMinMoves(vector<int>& machines) {
-        int total = 0; 
-        for (int i: machines) total+=i;
-        if (total%machines.size()!=0) return -1;
-        int avg = total/machines.size(), cnt = 0, ret = 0;
-        for (int load: machines){
-            cnt += load-avg;
-            ret = max(max(ret, abs(cnt)), load-avg);
+        int total = 0;
+        for (int i : machines)
+            total += i;
+        if (total % machines.size() != 0)
+            return -1;
+        int avg = total / machines.size(), cnt = 0, ret = 0;
+        for (int load : machines) {
+            cnt += load - avg;
+            ret = max(max(ret, abs(cnt)), load - avg);
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

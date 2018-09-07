@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -42,42 +44,20 @@ using namespace std;
  */
 class Solution {
 public:
-    int lowbit(int x) {
-        return x & (-x);
-    }
-    void modify(vector<int>& a, int x,int add) {
-        while(x<a.size()) {
-            a[x]+=add;
-            x+=lowbit(x);
-        }
-    }
-    int get_sum(vector<int>& a, int x) {
-        int ret=0;
-        while(x!=0) {
-            ret+=a[x];
-            x-=lowbit(x);
-        }
-        return ret;
-    }
-
-    int maxEnvelopes(vector<pair<int, int>>& envelopes) {
-        auto a = envelopes;
-        sort(a.begin(), a.end(), [](const pair<int, int>& x, const pair<int, int>& y) {
-          return x.first != y.first ? x.first < y.first : x.second > y.second;
+    int maxEnvelopes(vector<pair<int, int>>& es) {
+        sort(es.begin(), es.end(), [](pair<int, int> a, pair<int, int> b) {
+            return a.first < b.first || (a.first == b.first && a.second > b.second);
         });
-        vector<int> b;
-        for (auto& x: a) {
-          auto t = lower_bound(b.begin(), b.end(), x.second);
-          if (b.end() == t)
-            b.push_back(x.second);
-          else
-            *t = x.second;
+        vector<int> dp;
+        for (auto e : es) {
+            auto iter = lower_bound(dp.begin(), dp.end(), e.second);
+            if (iter == dp.end())
+                dp.push_back(e.second);
+            else if (e.second < *iter)
+                *iter = e.second;
         }
-        return b.size();
-
+        return dp.size();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

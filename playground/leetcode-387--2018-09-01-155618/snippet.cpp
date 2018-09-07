@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -39,16 +40,15 @@ class Solution {
 public:
     int firstUniqChar(string s) {
         vector<int> x(256, 0);
-        for(auto c : s) {
-            x[c] ++;
+        for (auto c : s) {
+            x[c]++;
         }
-        for(int i=0;i<s.size();i++) {
-            if(x[s[i]] == 1) return i;
+        for (int i = 0; i < s.size(); i++) {
+            if (x[s[i]] == 1)
+                return i;
         }
         return -1;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

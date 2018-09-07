@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <numeric>
+#include <vector>
 
 using namespace std;
 
@@ -21,7 +23,7 @@ using namespace std;
  * You are given a list of non-negative integers, a1, a2, ..., an, and a
  * target, S. Now you have 2 symbols + and -. For each integer, you should
  * choose one from + and - as its new symbol.
- * 
+ *
  *
  * Find out how many ways to assign symbols to make sum of integers equal to
  * target S.
@@ -53,24 +55,18 @@ using namespace std;
  */
 class Solution {
 public:
-    int findTargetSumWays(vector<int>& nums, int S) {
-        vector<int> dp(2002, 0);
-        if (S > 1000 || S < -1000) return 0;
-        dp[1000] = 1;
-        for (int i = 0; i < nums.size(); i++) {
-            vector<int> dp2(2002, 0);
-            for (int j = 0; j<2002 - nums[i]; j ++) {
-                dp2[nums[i] + j] = dp[j];
-            }
-            for (int j = 2001; j >= nums[i]; j--) {
-                dp2[j - nums[i]] += dp[j];
-            }
-            swap(dp, dp2);
-        }
-        return dp[S + 1000];
+    int findTargetSumWays(vector<int>& nums, int s) {
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        if (sum < s || (s + sum) & 1)
+            return 0;
+        s = (s + sum) / 2;
+        vector<int> dp(s + 1);
+        dp[0] = 1;
+        for (int n : nums)
+            for (int i = s; i >= n; i--)
+                dp[i] += dp[i - n];
+        return dp[s];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

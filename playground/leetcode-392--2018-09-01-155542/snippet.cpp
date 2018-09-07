@@ -58,18 +58,12 @@ using namespace std;
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-        int a = 0;
-        int b = 0;
-        while (b < t.size() && a < s.size()) {
-            if (s[a] == t[b]) {
-                a ++;
-                b ++;
-            } else b ++;
-        }
-        return a == s.size();
+        size_t i = 0;
+        for (char c : t)
+            if (i < s.size() && s[i] == c)
+                i++;
+        return i == s.size();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

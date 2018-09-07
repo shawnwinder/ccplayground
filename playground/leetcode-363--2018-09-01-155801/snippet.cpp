@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <set>
+#include <vector>
 
 using namespace std;
 
@@ -41,12 +44,13 @@ class Solution {
 public:
     int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
         int row = matrix.size();
-        if (row == 0) return 0;
+        if (row == 0)
+            return 0;
         int col = matrix[0].size();
         if (row > col) {
-            vector<vector<int>> a (col, vector<int>(row));
-            for (int i=0;i<row;i++) {
-                for (int j=0;j<col;j++) {
+            vector<vector<int>> a(col, vector<int>(row));
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
                     a[j][i] = matrix[i][j];
                 }
             }
@@ -54,16 +58,17 @@ public:
             swap(row, col);
         }
         int ans = INT_MIN;
-        for (int i=0; i<row; i++) {
+        for (int i = 0; i < row; i++) {
             vector<int> vs(col, 0);
-            for (int j=i; j<row; j++) {
+            for (int j = i; j < row; j++) {
                 set<int> cum;
                 cum.insert(0);
                 int agg = 0;
-                for (int l=0;l<col;l++) {
+                for (int l = 0; l < col; l++) {
                     agg += vs[l] += matrix[j][l];
                     auto f = cum.lower_bound(agg - k);
-                    if (f != cum.end()) ans = max(ans, agg - *f);
+                    if (f != cum.end())
+                        ans = max(ans, agg - *f);
                     cum.insert(agg);
                 }
             }
@@ -72,7 +77,4 @@ public:
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

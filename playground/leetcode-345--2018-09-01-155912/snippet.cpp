@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
 
 using namespace std;
 
@@ -45,20 +46,20 @@ class Solution {
 public:
     string reverseVowels(string s) {
         int l = 0;
-        int r = s.size() -1;
-        unordered_set<char> m = {'a', 'e', 'i', 'o', 'u'};
+        int r = s.size() - 1;
+        unordered_set<char> m = { 'a', 'e', 'i', 'o', 'u' };
         while (l < r) {
-            while (l<r && !m.count(tolower(s[l]))) l++;
-            while (l<r && !m.count(tolower(s[r]))) r--;
-            if (l<r) swap(s[l], s[r]);
+            while (l < r && !m.count(tolower(s[l])))
+                l++;
+            while (l < r && !m.count(tolower(s[r])))
+                r--;
+            if (l < r)
+                swap(s[l], s[r]);
             l++;
             r--;
         }
         return s;
-        
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -47,17 +48,17 @@ using namespace std;
  *
  * Input:
  * [
- * [0,1,0],
- * [0,0,1],
- * [1,1,1],
- * [0,0,0]
+ *  [0,1,0],
+ *  [0,0,1],
+ *  [1,1,1],
+ *  [0,0,0]
  * ]
  * Output:
  * [
- * [0,0,0],
- * [1,0,1],
- * [0,1,1],
- * [0,1,0]
+ *  [0,0,0],
+ *  [1,0,1],
+ *  [0,1,1],
+ *  [0,1,0]
  * ]
  *
  *
@@ -76,42 +77,21 @@ using namespace std;
 class Solution {
 public:
     void gameOfLife(vector<vector<int>>& board) {
-        int d[][2] = {{1,-1},{1,0},{1,1},{0,-1},{0,1},{-1,-1},{-1,0},{-1,1}};
-        for(int i = 0; i < board.size(); i++){
-            for(int j = 0; j < board[0].size(); j++){
-                int live = 0;
-                for(int k = 0; k < 8; k++){
-                    int x = d[k][0] + i;
-                    int y = d[k][1] + j;
-                    if(x < 0 || x >= board.size() || y < 0 || y >= board[0].size()) {
-                        continue;
-                    }
-                    if(board[x][y] & 1) {
-                        live++;
-                    }
-                }
-                if(board[i][j] == 0) {
-                    if(live == 3){
-                        board[i][j] = 2; // 2 : (10)
-                    }
-                }
-                else {
-                    if(live < 2 || live > 3){
-                        board[i][j] = 1; // 1 : (01)
-                    }else{
-                        board[i][j] = 3; // 3 : (11)   
-                    }
-                }
+        int m = board.size(), n = m ? board[0].size() : 0;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                int count = 0;
+                for (int r = max(i - 1, 0); r < min(i + 2, m); ++r)
+                    for (int c = max(j - 1, 0); c < min(j + 2, n); ++c)
+                        count += board[r][c] & 1;
+                if (count == 3 || count - board[i][j] == 3)
+                    board[i][j] |= 2;
             }
         }
-        for(int i = 0; i < board.size(); i++){
-            for(int j=0; j < board[0].size(); j++){
-                board[i][j] >>=1;
-            }
-        }
+        for (int i = 0; i < m; ++i)
+            for (int j = 0; j < n; ++j)
+                board[i][j] >>= 1;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

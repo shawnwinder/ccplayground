@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -55,36 +57,35 @@ using namespace std;
  *
  *
  */
- class Solution {
- public:
-   vector<int> findAnagrams(string s, string p) {
-     int i = 0;
-     int j = 0;
-     int n = s.size();
-     vector<int> ret;
-     unordered_map<char, int> m;
-     unordered_map<char, int> valid;
-     for (char c : p) valid[c] ++;
-     while (j < n) {
-       if (valid[s[j]] == 0) {
-         j ++;
-         i = j;
-         m.clear();
-       } else {
-         // validation
-         while (m[s[j]] == valid[s[j]]) {
-           m[s[i++]] --;
-         }
-                    m[s[j++]] ++;
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int i = 0;
+        int j = 0;
+        int n = s.size();
+        vector<int> ret;
+        unordered_map<char, int> m;
+        unordered_map<char, int> valid;
+        for (char c : p)
+            valid[c]++;
+        while (j < n) {
+            if (valid[s[j]] == 0) {
+                j++;
+                i = j;
+                m.clear();
+            } else {
+                // validation
+                while (m[s[j]] == valid[s[j]]) {
+                    m[s[i++]]--;
+                }
+                m[s[j++]]++;
 
-         if ( j - i == p.size()) ret.push_back(i);
-       }
-     }
-     return ret;
-   }
- };
+                if (j - i == p.size())
+                    ret.push_back(i);
+            }
+        }
+        return ret;
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

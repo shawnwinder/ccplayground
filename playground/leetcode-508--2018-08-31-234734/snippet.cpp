@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -28,8 +30,8 @@ using namespace std;
  * Examples 1
  * Input:
  *
- *  5
- * /  \
+ *   5
+ *  /  \
  * 2   -3
  *
  * return [2, -3, 4], since all the values happen only once, return all of them
@@ -39,8 +41,8 @@ using namespace std;
  * Examples 2
  * Input:
  *
- *  5
- * /  \
+ *   5
+ *  /  \
  * 2   -5
  *
  * return [2], since 2 happens twice, however -5 only occur once.
@@ -54,29 +56,33 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
-public:
-    int sum(TreeNode* root, unordered_map<int, int>& m) {
-        if (root == NULL) return 0;
-        root->val += sum(root->left, m);
-        root->val += sum(root->right, m);
-        m[root->val] ++;
+    unordered_map<int, int> m;
+
+    int sum(TreeNode* root) {
+        if (root == NULL)
+            return 0;
+        root->val += sum(root->left);
+        root->val += sum(root->right);
+        m[root->val]++;
         return root->val;
     }
+
+public:
     vector<int> findFrequentTreeSum(TreeNode* root) {
-        if (root == NULL) return {};
-        unordered_map<int, int> m;
-        sum(root, m);
+        if (root == NULL)
+            return {};
+        sum(root);
         int ans = 0;
         vector<int> ret;
         for (auto& p : m) {
@@ -84,7 +90,7 @@ public:
             int v = p.second;
             if (v > ans) {
                 ans = v;
-                ret = {k};
+                ret = { k };
             } else if (v == ans) {
                 ret.push_back(k);
             }
@@ -93,6 +99,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

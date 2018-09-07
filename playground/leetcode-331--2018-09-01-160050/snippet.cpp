@@ -66,33 +66,21 @@ using namespace std;
  */
 class Solution {
 public:
-  bool isValidSerialization(string preorder) {
-    int sharp = 0;
-    int num = 0;
-    bool isnum = false;
-    for (auto it = preorder.begin(); it != preorder.end(); ++it) {
-      if (*it == ',') {
-        isnum = false;
-        continue;
-      }
-      if (*it != '#' && isnum) continue;
-      if (num + 1 == sharp) return false;
-      if (*it != '#') {
-        num ++;
-        isnum = true;
-      } else {
-        sharp ++;
-        isnum = false;
-      }
-      if (num + 1 < sharp) return false;
+    bool isValidSerialization(string preorder) {
+        int leaves = 0;
+        for (auto i = 0;; i++) {
+            if (preorder[i] == '#')
+                leaves--;
+            else
+                leaves++;
+            i = preorder.find(',', i);
+            if (i == string::npos)
+                break;
+            if (leaves < 0)
+                return false;
+        }
+        return leaves == -1;
     }
-    if (num + 1 != sharp) return false;
-    return true;
-  }
 };
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

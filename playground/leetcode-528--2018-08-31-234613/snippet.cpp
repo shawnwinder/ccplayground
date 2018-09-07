@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -58,12 +60,17 @@ using namespace std;
  */
 class Solution {
 public:
+    vector<int> s;
     Solution(vector<int> w) {
-
+        for (int i : w)
+            s.push_back(s.empty() ? i : (i + s.back()));
     }
 
     int pickIndex() {
-
+        int m = s.back();
+        int r = rand() % m;
+        auto it = upper_bound(s.begin(), s.end(), r);
+        return it - s.begin();
     }
 };
 
@@ -73,6 +80,4 @@ public:
  * int param_1 = obj.pickIndex();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

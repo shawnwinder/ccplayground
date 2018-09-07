@@ -2,6 +2,7 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <cmath>
 #include <iostream>
 
 using namespace std;
@@ -30,11 +31,11 @@ using namespace std;
  *
  *
  * Input:
- *    1
- *   / \
- *  2   3
- * / \  /
- * 4  5 6
+ *     1
+ *    / \
+ *   2   3
+ *  / \  /
+ * 4   5 6
  *
  * Output: 6
  *
@@ -42,29 +43,29 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
 public:
-  int countNodes(TreeNode* root) {
-    if (! root) return 0;
-    int dl = 0, dr = 0;
-    TreeNode *l = root, *r = root;
-    while (l) l = l->left, dl++;
-    while (r) r = r->right, dr++;
-    return dl == dr ? (1 << dl) - 1 : countNodes(root->left) + countNodes(root->right) + 1;
-  }
+    int countNodes(TreeNode* root) {
+        if (!root)
+            return 0;
+        int dl = 0, dr = 0;
+        TreeNode *l = root, *r = root;
+        while (l)
+            l = l->left, dl++;
+        while (r)
+            r = r->right, dr++;
+        return dl == dr ? pow(2, dl) - 1 : countNodes(root->left) + countNodes(root->right) + 1;
+    }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

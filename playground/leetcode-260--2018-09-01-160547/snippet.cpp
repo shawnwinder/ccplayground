@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -39,56 +41,82 @@ using namespace std;
  */
 class Solution {
 public:
-    int get(vector<int>& nums, int i, int j) {
-        int ret = 0;
-        for (int k = i; k<=j; k++) {
-            ret ^= nums[k];
-        }
-        return ret;
-    }
-    
+    // int get(vector<int>& nums, int i, int j) {
+    //     int ret = 0;
+    //     for (int k = i; k <= j; k++) {
+    //         ret ^= nums[k];
+    //     }
+    //     return ret;
+    // }
+
+    // vector<int> singleNumber(vector<int>& nums) {
+    //     int zeros = 0;
+    //     for (auto i = nums.begin(); i != nums.end();) {
+    //         if (*i == 0) {
+    //             zeros++;
+    //             nums.erase(i);
+    //         } else {
+    //             i++;
+    //         }
+    //     }
+    //     if (zeros == 1) {
+    //         int ans = 0;
+    //         for (int i : nums) {
+    //             ans ^= i;
+    //         }
+    //         return { ans, 0 };
+    //     } else {
+    //         int l = 0;
+    //         int r = nums.size() - 1;
+    //         while (true) {
+    //             if (l >= r)
+    //                 break;
+    //             int pivot = nums[l];
+    //             int i = l;
+    //             int j = r;
+    //             while (i < j) {
+    //                 while (j > i && nums[j] > pivot)
+    //                     j--;
+    //                 if (i < j)
+    //                     nums[i] = nums[j];
+    //                 while (i < j && nums[i] <= pivot)
+    //                     i++;
+    //                 if (i < j)
+    //                     nums[j] = nums[i];
+    //             }
+    //             nums[i] = pivot;
+    //             int x = get(nums, l, i);
+    //             int y = get(nums, i + 1, r);
+    //             if (x != 0 && y != 0)
+    //                 return { x, y };
+    //             if (x != 0)
+    //                 r = i;
+    //             if (y != 0)
+    //                 l = i + 1;
+    //         }
+    //     }
+    //     return {-1, -1};
+    // }
     vector<int> singleNumber(vector<int>& nums) {
-        int zeros = 0;
-        for (auto i=nums.begin(); i!=nums.end();) {
-            if (*i == 0) {
-                zeros ++;
-                nums.erase(i);
-            } else {
-                i++;
+        // Pass 1 :
+        // Get the XOR of the two numbers we need to find
+        int diff = accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
+        // Get its last set bit
+        diff &= -diff;
+
+        // Pass 2 :
+        vector<int> rets = { 0, 0 }; // this vector stores the two numbers we will return
+        for (int num : nums) {
+            if ((num & diff) == 0) // the bit is not set
+            {
+                rets[0] ^= num;
+            } else // the bit is set
+            {
+                rets[1] ^= num;
             }
         }
-        if (zeros == 1) {
-            int ans = 0;
-            for (int i : nums) {
-                ans ^= i;
-            }
-            return {ans, 0};
-        } else {
-            int l = 0;
-            int r = nums.size() - 1;
-            while (true) {
-                
-                if (l >= r) break;
-                int pivot = nums[l];
-                int i = l;
-                int j = r;
-                while (i < j) {
-                    while (j > i && nums[j] > pivot) j--;
-                    if (i < j) nums[i] = nums[j];
-                    while (i < j && nums[i] <= pivot) i++;
-                    if (i < j) nums[j] = nums[i];
-                }
-                nums[i] = pivot;
-                int x = get(nums, l, i);
-                int y = get(nums, i+1, r);
-                if (x != 0 && y != 0) return {x, y};
-                if (x != 0) r = i;
-                if (y != 0) l = i+1;
-            }
-        }
+        return rets;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

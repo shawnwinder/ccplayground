@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -47,16 +48,17 @@ using namespace std;
 class Solution {
 public:
     int maxCoins(vector<int>& nums) {
-        vector<int> n(nums.size()+2);
+        vector<int> n(nums.size() + 2);
         n[0] = 1;
-        for (int i=1;i<=nums.size();i++) n[i] = nums[i-1];
+        for (int i = 1; i <= nums.size(); i++)
+            n[i] = nums[i - 1];
         n.back() = 1;
         vector<vector<int>> dp(n.size(), vector<int>(n.size(), 0));
-        for (int k=2; k<n.size(); k++) {
-            for (int i=0; i<n.size() - k; i++) {
-                int j = i+k;
-                for (int l=i+1; l<j; l++) {
-                    dp[i][j] = max(dp[i][j], dp[i][l] + n[i]*n[l]*n[j] + dp[l][j]);
+        for (int k = 2; k < n.size(); k++) {
+            for (int i = 0; i < n.size() - k; i++) {
+                int j = i + k;
+                for (int l = i + 1; l < j; l++) {
+                    dp[i][j] = max(dp[i][j], dp[i][l] + n[i] * n[l] * n[j] + dp[l][j]);
                 }
             }
         }
@@ -64,6 +66,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

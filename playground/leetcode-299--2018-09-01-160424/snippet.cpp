@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -26,7 +28,7 @@ using namespace std;
  * successive guesses and hints to eventually derive the secret number.
  *
  * Write a function to return a hint according to the secret number and
- * friend's guess, use A to indicate the bulls and B to indicate the cows. 
+ * friend's guess, use A to indicate the bulls and B to indicate the cows.
  *
  * Please note that both secret number and friend's guess may contain duplicate
  * digits.
@@ -57,25 +59,23 @@ class Solution {
 public:
     string getHint(string secret, string guess) {
         unordered_map<char, int> m;
-        int a , b;
+        int a, b;
         a = b = 0;
-        for (int i = 0;i<secret.size();i++) {
-            if (secret[i] == guess[i]) a++;
-            m[secret[i]] ++;
+        for (int i = 0; i < secret.size(); i++) {
+            if (secret[i] == guess[i])
+                a++;
+            m[secret[i]]++;
         }
-        
         for (char c : guess) {
             if (m[c] > 0) {
-                b ++;
-                m[c] --;
+                b++;
+                m[c]--;
             }
         }
         stringstream ret;
-        ret << a << 'A' << b-a << 'B';
+        ret << a << 'A' << b - a << 'B';
         return ret.str();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
 
 using namespace std;
 
@@ -73,15 +76,16 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct Interval {
+    int start;
+    int end;
+    Interval() : start(0), end(0) {}
+    Interval(int s, int e) : start(s), end(e) {}
+};
+#endif
+
 class Solution {
 public:
     vector<int> findRightInterval(vector<Interval>& intervals) {
@@ -89,19 +93,19 @@ public:
         vector<pp> d;
         int idx = 0;
         for (auto& i : intervals) {
-            d.push_back(pp(i.start, idx ++));
+            d.push_back(pp(i.start, idx++));
         }
         sort(d.begin(), d.end());
         vector<int> ret;
-        for (auto&i : intervals) {
+        for (auto& i : intervals) {
             auto x = lower_bound(d.begin(), d.end(), pp(i.end, INT_MIN));
-            if (x == d.end()) ret.push_back(-1);
-            else ret.push_back(x->second);
+            if (x == d.end())
+                ret.push_back(-1);
+            else
+                ret.push_back(x->second);
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

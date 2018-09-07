@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -59,25 +60,24 @@ using namespace std;
 class Solution {
 public:
     int findSubstringInWraproundString(string p) {
-        if (p.empty()) return 0;
+        if (p.empty())
+            return 0;
         vector<int> m(256, 0);
         int l = 0;
-        for (int i=0;i<p.size();i++) {
-            if (i > 0 && p[i] - p[i-1] == 1 || p[i] == 'a' && p[i-1] == 'z') {
-                l ++;
+        for (int i = 0; i < p.size(); i++) {
+            if ((i > 0 && p[i] - p[i - 1] == 1) || (p[i] == 'a' && p[i - 1] == 'z')) {
+                l++;
             } else {
                 l = 1;
             }
             m[p[i]] = max(m[p[i]], l);
         }
         int ans = 0;
-        for (int i = 'a'; i<='z' ; i ++) {
+        for (int i = 'a'; i <= 'z'; i++) {
             ans += m[i];
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

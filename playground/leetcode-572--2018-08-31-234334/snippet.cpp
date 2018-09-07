@@ -68,32 +68,28 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
 public:
     bool isEqual(TreeNode* s, TreeNode* t) {
-        if (s != nullptr && t != nullptr) 
+        if (s != nullptr && t != nullptr)
             return s->val == t->val && isEqual(s->left, t->left) && isEqual(s->right, t->right);
-        if (s == nullptr && t == nullptr) return true;
-        return false;
+        return !t && !s;
     }
     bool isSubtree(TreeNode* s, TreeNode* t) {
-        if (t == nullptr) return true;
-        if (s != nullptr && t != nullptr) 
+        if (t != nullptr && s != nullptr)
             return isEqual(s, t) || isSubtree(s->left, t) || isSubtree(s->right, t);
-        if (s == nullptr) return false;
+        return !t || s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

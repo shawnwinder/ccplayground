@@ -56,12 +56,21 @@ using namespace std;
  *
  */
 class Solution {
-public:
-    bool canIWin(int maxChoosableInteger, int desiredTotal) {
+    int m[1 << 20] = {}; // m[key]: memorized result when pool state = key
+    bool dfs(int M, int T, int k) {
+        if (T <= 0 || m[k])
+            return T > 0 && m[k] > 0; // memorization or total reached by opponent
+        for (int i = 0; i < M; ++i)
+            if (!(k & 1 << i) && !dfs(M, T - i - 1, k | 1 << i))
+                return m[k] = 1; // current player wins
+        return !(m[k] = -1); // current player can't win
+    }
 
+public:
+    bool canIWin(int M, int T) {
+        int S = M * (M + 1) / 2; // sum of entire pool
+        return T < 2 ? true : S < T ? false : S == T ? M % 2 : dfs(M, T, 0);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

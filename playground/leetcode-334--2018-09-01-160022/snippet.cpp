@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -48,22 +50,21 @@ using namespace std;
  *
  *
  */
- class Solution {
- public:
-   bool increasingTriplet(vector<int>& nums) {
-     int min1 = INT_MAX;
-     int min2 = INT_MAX;
-     for (int i = 0; i < nums.size(); i ++) {
-       if (nums[i] > min2) return true;
-       if (nums[i] > min1 && nums[i] < min2) min2 = nums[i];
-       if (nums[i] < min1) min1 = nums[i];
-     }
-     return false;
-   }
- };
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int c1 = INT_MAX, c2 = INT_MAX;
+        for (int x : nums) {
+            if (x <= c1) {
+                c1 = x;
+            } else if (x <= c2) {
+                c2 = x;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+};
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

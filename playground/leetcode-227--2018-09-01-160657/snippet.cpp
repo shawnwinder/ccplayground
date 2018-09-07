@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -54,10 +55,24 @@ using namespace std;
 class Solution {
 public:
     int calculate(string s) {
-
+        istringstream in('+' + s + '+');
+        long long total = 0, term = 0, n;
+        char op;
+        while (in >> op) {
+            if (op == '+' || op == '-') {
+                total += term;
+                in >> term;
+                term *= 44 - op; // +=+1, -=-1
+            } else {
+                in >> n;
+                if (op == '*')
+                    term *= n;
+                else
+                    term /= n;
+            }
+        }
+        return total;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -50,8 +50,7 @@ using namespace std;
  * Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
  * Output: 2
  * Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant
- * of itself
- *             according to the LCA definition.
+ * of itself according to the LCA definition.
  *
  *
  * Note:
@@ -65,25 +64,25 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(root == p || root == q || root == NULL) return root;
-        TreeNode *left = lowestCommonAncestor(root->left, p, q), *right = lowestCommonAncestor(root->right, p, q);
+        if (root == p || root == q || root == NULL)
+            return root;
+        TreeNode *left = lowestCommonAncestor(root->left, p, q),
+                 *right = lowestCommonAncestor(root->right, p, q);
         return left && right ? root : left ? left : right;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

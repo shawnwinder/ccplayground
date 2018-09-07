@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -56,30 +57,20 @@ using namespace std;
  * Credits:Special thanks to @agave and @StefanPochmann for adding this problem
  * and creating all test cases.
  */
- class Solution {
- public:
-   int wiggleMaxLength(vector<int>& nums) {
-     if (nums.size() < 2) return nums.size();
-     int ans = 1;
-     vector<int> cs = { -1, 1};
-     for (int c : cs) {
-       int n = 1;
-       int l = nums[0];
-       for (int i=1;i<nums.size();i++) {
-         if (c * nums[i] > c * l) {
-           c = c * -1;
-           n ++;
-         }
-         l = nums[i];
-       }
-       ans = max(ans, n);
-     }
-     return ans;
-   }
- };
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        if (nums.empty())
+            return 0;
+        int r = 1, x = nums[0], s = 0;
+        for (int i = 0; i + 1 < nums.size(); i++) {
+            if (nums[i] < nums[i + 1] && s <= 0)
+                r++, s = 1;
+            if (nums[i] > nums[i + 1] && s >= 0)
+                r++, s = -1;
+        }
+        return r;
+    }
+};
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

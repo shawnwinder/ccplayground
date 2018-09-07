@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <set>
+#include <vector>
 
 using namespace std;
 
@@ -67,24 +70,22 @@ using namespace std;
  */
 class Solution {
 public:
-  int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
-    vector<pair<int, int>> a;
-    REP(i, Profits.size())
-      a.emplace_back(Capital[i], Profits[i]);
-    sort(a.begin(), a.end());
-    multiset<int> b;
-    for (int i = 0; k--; ) {
-      for (; i < a.size() && a[i].first <= W; i++)
-        b.insert(a[i].second);
-      if (b.empty()) break;
-      W += *b.rbegin();
-      b.erase(prev(b.end()));
+    int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
+        vector<pair<int, int>> a;
+        for (auto i = 0u; i < Profits.size(); ++i)
+            a.emplace_back(Capital[i], Profits[i]);
+        sort(a.begin(), a.end());
+        multiset<int> b;
+        for (int i = 0; k--;) {
+            for (; i < a.size() && a[i].first <= W; i++)
+                b.insert(a[i].second);
+            if (b.empty())
+                break;
+            W += *b.rbegin();
+            b.erase(prev(b.end()));
+        }
+        return W;
     }
-    return W;
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

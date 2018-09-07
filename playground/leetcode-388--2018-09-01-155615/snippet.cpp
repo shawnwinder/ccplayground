@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -72,56 +73,22 @@ using namespace std;
 class Solution {
 public:
     int lengthLongestPath(string input) {
-        int ret = 0;
-        int cur = 0;
-        int level = 0;
-        vector<int> parent (1024, 0);
-        bool dot = false;
-        bool escape = false;
-        input += "\n";
-        int space = 0;
-        int state = 0;
-        int w = 0;
-        for (auto c : input) {
-            if (c == '\n') {
-                    if (dot) {
-                        int sum = 0;
-                        for (int i=0;i<level;i++) {
-                            sum += parent[i];
-                        }
-                        sum += cur - w;
-                        if (sum > ret) ret = sum;
-                    } else {
-                        parent[level] = cur + 1 - w;
-                    }
-                    level = 0;
-                                    dot = false;
-                                    space = 0;
-                                    cur = 0;
-                                    state = 0;
-                                    w = 0;
-            } else if (c == '\t') {
-                    level ++;
-                    dot = false;
-                                    cur = 0;
-                                    space = 0;
-                                    state = 0;
-                                    w = 0;
-            w = 0;
-            } else {
-                if (c == '.') {
-                    dot = true;
-                }
-                
-
-                    cur ++;
-
-            }
+        vector<int> st;
+        int r = 0;
+        for (int j, i = 0; i < input.size(); i = j + 1) {
+            bool dot = false;
+            for (j = i; j < input.size() && input[j] != '\n'; j++)
+                dot |= input[j] == '.';
+            int t = 0;
+            for (; input[i] == '\t'; i++)
+                t++;
+            st.resize(t);
+            st.push_back((st.empty() ? 0 : st.back() + 1) + j - i);
+            if (dot)
+                r = max(r, st.back());
         }
-        return ret;
+        return r;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

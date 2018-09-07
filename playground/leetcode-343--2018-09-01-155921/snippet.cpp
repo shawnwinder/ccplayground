@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -45,22 +46,16 @@ using namespace std;
 class Solution {
 public:
     int integerBreak(int n) {
-        vector<int> dp(60);
-        for(int i=0; i<=n; i++) {
-            dp[i] = i;
-        }
-        for(int i=4; i<=n; i++) {
-            for(int j=1; j<=i/2; j++) {
-                dp[i] = max(dp[i], dp[j]*dp[i-j]);
-            }
-        }
-        dp[1] = 0;
-        dp[2] = 1;
-        dp[3] = 2;
-        return dp[n];
+        if (n == 2)
+            return 1;
+        if (n == 3)
+            return 2;
+        if (n % 3 == 0)
+            return pow(3, n / 3);
+        if (n % 3 == 1)
+            return pow(3, (n - 4) / 3) * 4;
+        return pow(3, n / 3) * 2;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

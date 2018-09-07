@@ -36,19 +36,13 @@ using namespace std;
 class Solution {
 public:
     int countNumbersWithUniqueDigits(int n) {
-        n = min ( 10, n);
-        int ans = 1;
-        for(int i=n-1;i>=0;i--) {
-            int x = 9;
-            for(int j=1;j<=i;j++) {
-                x = x*(10-j);
-            }
-            ans += x;
+        int r = 1, p = 9;
+        for (auto i = 0u; i < min(n, 10); ++i) {
+            r += p;
+            p *= 9 - i;
         }
-        return ans;
+        return r;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

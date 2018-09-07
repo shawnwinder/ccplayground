@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -62,13 +63,12 @@ public:
             for (; pi < s.size() && pj < d[i].size(); pi++) {
                 pj += s[pi] == d[i][pj];
             }
-            if (pj == d[i].size() && (ans.size() < d[i].size() || (ans.size() == d[i].size() && ans > d[i])))
+            if (pj == d[i].size()
+                && (ans.size() < d[i].size() || (ans.size() == d[i].size() && ans > d[i])))
                 ans = d[i];
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

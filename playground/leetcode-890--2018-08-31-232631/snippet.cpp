@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -28,7 +30,7 @@ using namespace std;
  * letters: every letter maps to another letter, and no two letters map to the
  * same letter.)
  *
- * Return a list of the words in words that match the given pattern. 
+ * Return a list of the words in words that match the given pattern.
  *
  * You may return the answer in any order.
  *
@@ -60,28 +62,28 @@ class Solution {
 public:
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
         vector<string> res;
-        for (string w : words) if (F(w) == F(pattern)) res.push_back(w);
+        for (string w : words)
+            if (find(w) == find(pattern))
+                res.push_back(w);
         return res;
     }
 
-    string F(string w) {
+    string find(string w) {
         unordered_map<char, int> m;
-        for (char c : w) if (!m.count(c)) m[c] = m.size();
-        for (int i = 0; i < w.length(); ++i) w[i] = 'a' + m[w[i]];
+        for (char c : w)
+            if (!m.count(c))
+                m[c] = m.size();
+        for (int i = 0; i < w.length(); ++i)
+            w[i] = 'a' + m[w[i]];
         return w;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    Solution s ;
-    vector<string> ws = {"abc","deq","mee","aqq","dkd","ccc"};
-    for (auto & elem : s.findAndReplacePattern(ws, "abb")) {
-        std::cout << elem << " "  << std::endl;
+int mymain(int argc, char* argv[]) {
+    Solution s;
+    vector<string> ws = { "abc", "deq", "mee", "aqq", "dkd", "ccc" };
+    for (auto& elem : s.findAndReplacePattern(ws, "abb")) {
+        std::cout << elem << " " << std::endl;
     }
-    return 0;
-}
-
-
-int mymain(int argc, char *argv[]) {
     return 0;
 }

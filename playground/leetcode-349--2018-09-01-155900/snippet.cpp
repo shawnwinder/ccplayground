@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -47,18 +49,15 @@ using namespace std;
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        
-        unordered_set<int> s1;
-        unordered_set<int> s2;
-        for(int n:nums1) s1.insert(n);
-        for(int n:nums2) {
-            if (s1.count(n)) s2.insert(n);
-        }
-        vector<int> ret(s2.begin(), s2.end());
-        return ret;
+        unordered_set<int> m(nums1.begin(), nums1.end());
+        vector<int> res;
+        for (auto a : nums2)
+            if (m.count(a)) {
+                res.push_back(a);
+                m.erase(a);
+            }
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

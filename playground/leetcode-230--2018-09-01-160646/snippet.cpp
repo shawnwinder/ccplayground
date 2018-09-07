@@ -31,7 +31,7 @@ using namespace std;
  *  / \
  * 1   4
  *  \
- * 2
+ *   2
  * Output: 1
  *
  * Example 2:
@@ -57,35 +57,44 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
-class Solution(object):
-    def kthSmallest(self, root, k):
-        """
-        :type root: TreeNode
-        :type k: int
-        :rtype: int
-        """
-        count = []
-        self.helper(root, count)
-        return count[k-1]
-        
-    def helper(self, node, count):
-        if not node:
-            return
-        
-        self.helper(node.left, count)
-        count.append(node.val)
-        self.helper(node.right, count)
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        auto p = root;
+        while (p) {
+            auto l = p->left;
+            if (l) {
+                while (l->right && l->right != p)
+                    l = l->right;
+                if (l->right == p) {
+                    l->right = nullptr;
+                } else {
+                    l->right = p;
+                    p = p->left;
+                    continue;
+                }
+            }
+            if (--k == 0)
+            {
+                // stupid OJ cannot destruct the tree
+                root->left = nullptr;
+                root->right = nullptr;
+                return p->val;
+            }
+            p = p->right;
+        }
+        return -1;
+    }
+};
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

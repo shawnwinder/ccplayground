@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -61,17 +63,40 @@ using namespace std;
  *
  */
 class Solution {
-public:
-    Solution(int n_rows, int n_cols) {
+    int row = 0;
+    int col = 0;
+    int cnt = 0;
+    unordered_map<int, int> id2pos;
 
+public:
+    Solution(int n_rows, int n_cols)
+        : row(n_rows)
+        , col(n_cols) {
+        cnt = row * col;
+        srand(time(nullptr));
     }
 
     vector<int> flip() {
-
+        int id = rand() % cnt;
+        vector<int> res;
+        if (id2pos.find(id) != id2pos.end()) {
+            int pos = id2pos[id];
+            res = { pos / col, pos % col };
+        } else {
+            res = { id / col, id % col };
+        }
+        if (id2pos.find(cnt - 1) != id2pos.end()) {
+            id2pos[id] = id2pos[cnt - 1];
+        } else {
+            id2pos[id] = cnt - 1;
+        }
+        --cnt;
+        return res;
     }
 
     void reset() {
-
+        id2pos.clear();
+        cnt = row * col;
     }
 };
 
@@ -82,6 +107,4 @@ public:
  * obj.reset();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

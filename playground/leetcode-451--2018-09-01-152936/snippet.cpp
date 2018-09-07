@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -66,24 +68,23 @@ using namespace std;
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char,int> freq;
-        vector<string> bucket(s.size()+1, "");
+        unordered_map<char, int> freq;
+        vector<string> bucket(s.size() + 1, "");
         string res;
-        
-        for(char c:s) freq[c]++;
-        for(auto& it:freq) {
+
+        for (char c : s)
+            freq[c]++;
+        for (auto& it : freq) {
             int n = it.second;
             char c = it.first;
             bucket[n].append(n, c);
         }
-        for(int i=s.size(); i>0; i--) {
-            if(!bucket[i].empty())
+        for (int i = s.size(); i > 0; i--) {
+            if (!bucket[i].empty())
                 res.append(bucket[i]);
         }
         return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -52,12 +54,14 @@ using namespace std;
 class Solution {
 public:
     int maxRotateFunction(vector<int>& A) {
-        if (A.empty()) return 0;
+        if (A.empty())
+            return 0;
         int sum = accumulate(A.begin(), A.end(), 0);
         int l = 0;
-        for (int i=0;i<A.size();i++) l += i*A[i];
+        for (int i = 0; i < A.size(); i++)
+            l += i * A[i];
         int ans = l;
-        for (int i=0;i<A.size()-1;i++) {
+        for (int i = 0; i < A.size() - 1; i++) {
             l = l - sum + A[i] * (int)A.size();
             ans = max(ans, l);
         }
@@ -65,6 +69,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

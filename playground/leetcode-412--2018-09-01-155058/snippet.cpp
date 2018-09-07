@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -52,24 +54,19 @@ using namespace std;
 class Solution {
 public:
     vector<string> fizzBuzz(int n) {
-        vector<string> ans;
-        for (int i=1; i <= n; i++) {
-            stringstream ss;
-            if (i % 3 == 0) {
-                ss << "Fizz";
-            }
-            if (i % 5 == 0) {
-                ss << "Buzz";
-            }
-            if (ss.rdbuf()->in_avail() == 0 ) {
-                ss << i;
-            }
-            ans.push_back(ss.str());
-        }
-        return ans;
+        int fizz = 3, buzz = 5, fizzbuzz = 15;
+        vector<string> r;
+        for (int i = 1; i <= n; i++)
+            if (i == fizzbuzz)
+                r.push_back("FizzBuzz"), fizz += 3, buzz += 5, fizzbuzz += 15;
+            else if (i == fizz)
+                r.push_back("Fizz"), fizz += 3;
+            else if (i == buzz)
+                r.push_back("Buzz"), buzz += 5;
+            else
+                r.push_back(to_string(i));
+        return r;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

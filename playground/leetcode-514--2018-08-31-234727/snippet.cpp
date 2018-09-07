@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <climits>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -79,23 +82,20 @@ using namespace std;
  */
 class Solution {
 public:
-  int findRotateSteps(string ring, string key) {
-    int n = ring.size();
-    vector<int> s(n, INT_MAX - n), ss(n);
-    s[0] = 0;
-    for (char c: key) {
-      fill(ss.begin(), ss.end(), INT_MAX - n);
-      for (int i=0;i<n;i++)
-        if (ring[i] == c)
-          for (int j=0;j<n;j++)
-            ss[i] = min(ss[i], s[j]+min(abs(i-j), n-abs(i-j)));
-      s.swap(ss);
+    int findRotateSteps(string ring, string key) {
+        int n = ring.size();
+        vector<int> s(n, INT_MAX - n), ss(n);
+        s[0] = 0;
+        for (char c : key) {
+            fill(ss.begin(), ss.end(), INT_MAX - n);
+            for (int i = 0; i < n; i++)
+                if (ring[i] == c)
+                    for (int j = 0; j < n; j++)
+                        ss[i] = min(ss[i], s[j] + min(abs(i - j), n - abs(i - j)));
+            s.swap(ss);
+        }
+        return key.size() + *min_element(s.begin(), s.end());
     }
-    return key.size()+*min_element(s.begin(), s.end());
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

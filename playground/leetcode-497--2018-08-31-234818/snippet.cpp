@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <random>
+#include <vector>
 
 using namespace std;
 
@@ -24,9 +27,9 @@ using namespace std;
  * Note:
  *
  *
- * An integer point is a point that has integer coordinates. 
+ * An integer point is a point that has integer coordinates.
  * A point on the perimeter of a rectangle is included in the space covered by
- * the rectangles. 
+ * the rectangles.
  * ith rectangle = rects[i] = [x1,y1,x2,y2], where [x1, y1] are the integer
  * coordinates of the bottom-left corner, and [x2, y2] are the integer
  * coordinates of the top-right corner.
@@ -74,13 +77,32 @@ using namespace std;
  *
  */
 class Solution {
-public:
-    Solution(vector<vector<int>> rects) {
+    vector<int> v;
+    vector<vector<int>> rects;
+    random_device r;
+    default_random_engine e1;
+    uniform_int_distribution<int> uniform_dist;
 
+    int area(vector<int>& r) { return (r[2] - r[0] + 1) * (r[3] - r[1] + 1); }
+
+public:
+    Solution(vector<vector<int>> rects_)
+        : rects(std::move(rects_))
+        , e1(r()) {
+        v.push_back(0);
+        for (auto& r : rects) {
+            v.push_back(area(r) + (v.empty() ? 0 : v.back()));
+        }
+        uniform_dist = uniform_int_distribution<int>(0, v.back() - 1);
     }
 
     vector<int> pick() {
-
+        int rnd = uniform_dist(e1);
+        auto it = prev(upper_bound(v.begin(), v.end(), rnd));
+        auto a = rnd - *it;
+        int idx = it - v.begin();
+        auto& r = rects[idx];
+        return { a / (r[3] - r[1] + 1) + r[0], a % (r[3] - r[1] + 1) + r[1] };
     }
 };
 
@@ -90,6 +112,10 @@ public:
  * vector<int> param_1 = obj.pick();
  */
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    Solution obj({ { 1, 1, 5, 5 } });
+    obj.pick();
+    obj.pick();
+    obj.pick();
     return 0;
 }

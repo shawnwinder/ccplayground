@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <queue>
+#include <climits>
 
 using namespace std;
 
@@ -55,41 +58,39 @@ using namespace std;
 class Solution {
 public:
     int trapRainWater(vector<vector<int>>& heightMap) {
-        if (heightMap.size()==0) return 0;
+        if (heightMap.size() == 0)
+            return 0;
         using pp = pair<int, int>;
         priority_queue<pp, vector<pp>, greater<pp>> q;
         int row = heightMap.size(), col = heightMap[0].size();
         vector<vector<bool>> visited(row, vector<bool>(col, false));
         int ans = 0, bar = INT_MIN;
-        for(int i = 0; i < row; i++)
-        {
-            for(int j = 0; j < col; j++)
-            {
-                if(!(i==0 || i==row-1 || j==0 || j==col-1)) continue;
-                q.push(make_pair(heightMap[i][j], i*col+j));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (!(i == 0 || i == row - 1 || j == 0 || j == col - 1))
+                    continue;
+                q.push(make_pair(heightMap[i][j], i * col + j));
                 visited[i][j] = true;
             }
         }
-        vector<vector<int>> dir{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-        while(!q.empty())
-        {
-            auto val = q.top(); q.pop();
-            int height = val.first, x = val.second/col, y = val.second%col;
+        vector<vector<int>> dir{ { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+        while (!q.empty()) {
+            auto val = q.top();
+            q.pop();
+            int height = val.first, x = val.second / col, y = val.second % col;
             bar = max(bar, height); // raise the bar
-            for(auto d: dir)
-            {
+            for (auto d : dir) {
                 int x2 = x + d[0], y2 = y + d[1];
-                if(x2>=row || x2<0 || y2<0 || y2>=col || visited[x2][y2]) continue;
+                if (x2 >= row || x2 < 0 || y2 < 0 || y2 >= col || visited[x2][y2])
+                    continue;
                 visited[x2][y2] = true;
-                if(heightMap[x2][y2] < bar) ans += bar - heightMap[x2][y2];
-                q.push(make_pair(heightMap[x2][y2], x2*col+y2));
+                if (heightMap[x2][y2] < bar)
+                    ans += bar - heightMap[x2][y2];
+                q.push(make_pair(heightMap[x2][y2], x2 * col + y2));
             }
         }
         return ans;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

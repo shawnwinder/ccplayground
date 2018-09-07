@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -57,12 +59,10 @@ public:
     vector<int> constructRectangle(int area) {
         int l = ceil(sqrt(area));
         while (area % l != 0) {
-            l ++;
+            l++;
         }
-        return {l, area / l};
+        return { l, area / l };
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

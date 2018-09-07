@@ -2,6 +2,7 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -35,19 +36,17 @@ using namespace std;
 class Solution {
 public:
     string reverseWords(string s) {
-        stringstream i(s);
-        stringstream o;
-        string tmp;
-        while(getline(i, tmp, ' ')) {
-            reverse(tmp.begin(), tmp.end());
-            o << tmp << " ";
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] != ' ') { // when i is a non-space
+                int j = i;
+                for (; j < s.length() && s[j] != ' '; j++)
+                    ;
+                reverse(s.begin() + i, s.begin() + j);
+                i = j - 1;
+            }
         }
-        string ret = o.str();
-        ret.pop_back();
-        return ret;
+        return s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

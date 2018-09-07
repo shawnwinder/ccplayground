@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -54,22 +56,17 @@ using namespace std;
 class Solution {
 public:
     bool wordPattern(string pattern, string str) {
-        stringstream ss(str);
-        unordered_map<char, int> mc;
-        unordered_map<string, int> ms;
-        int id = 1;
-        for (char c : pattern) {
-            string s;
-            ss >> s;
-            if (s == "") return false;
-            if (mc.find(c) == mc.end() && ms.find(s) == ms.end()) {
-                mc[c] = ms[s] = id ++;
-            } else if (mc[c] != ms[s]) return false;
+        unordered_map<char, int> p2i;
+        unordered_map<string, int> w2i;
+        stringstream in(str);
+        int i = 0, n = pattern.size();
+        for (string word; in >> word; ++i) {
+            if (i == n || p2i[pattern[i]] != w2i[word])
+                return false;
+            p2i[pattern[i]] = w2i[word] = i + 1;
         }
-        return ss.eof();
+        return i == n;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

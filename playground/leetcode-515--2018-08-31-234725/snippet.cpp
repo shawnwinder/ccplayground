@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -37,39 +39,41 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
-        vector<TreeNode*> q, q2;
+        vector<TreeNode*> q;
         vector<int> ret;
-        if (root == NULL) return {};
+        if (root == NULL)
+            return {};
         q.push_back(root);
-        while(!q.empty()) {
+        while (!q.empty()) {
+            vector<TreeNode*> q2;
             int ans = INT_MIN;
             for (auto n : q) {
-                if (n == NULL) continue;
-                if (n->val > ans) ans = n->val;
+                if (n == NULL)
+                    continue;
+                if (n->val > ans)
+                    ans = n->val;
                 q2.push_back(n->left);
                 q2.push_back(n->right);
             }
-            if (!q2.empty()) ret.push_back(ans);
-            q.clear();
-            swap(q, q2);
+            if (!q2.empty())
+                ret.push_back(ans);
+            q = std::move(q2);
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

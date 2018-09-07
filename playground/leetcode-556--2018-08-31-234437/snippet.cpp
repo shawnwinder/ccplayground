@@ -2,6 +2,8 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
+#include <climits>
 #include <iostream>
 
 using namespace std;
@@ -44,10 +46,11 @@ using namespace std;
 class Solution {
 public:
     int nextGreaterElement(int n) {
-
+        auto digits = to_string(n);
+        next_permutation(begin(digits), end(digits));
+        auto res = stoll(digits);
+        return (res > INT_MAX || res <= n) ? -1 : res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

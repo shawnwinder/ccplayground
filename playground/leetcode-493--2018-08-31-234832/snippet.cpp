@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -43,55 +45,22 @@ using namespace std;
  *
  */
 class Solution {
+    int sort_and_count(vector<int>::iterator begin, vector<int>::iterator end) {
+        if (end - begin <= 1)
+            return 0;
+        auto mid = begin + (end - begin) / 2;
+        int count = sort_and_count(begin, mid) + sort_and_count(mid, end);
+        for (auto i = begin, j = mid; i != mid; ++i) {
+            while (j != end and *i > 2L * *j)
+                ++j;
+            count += j - mid;
+        }
+        inplace_merge(begin, mid, end);
+        return count;
+    }
+
 public:
-  int reversePairs(vector<int> nums) {
-    n = nums.size();
-    t.resize(n*2);
-
-    vector<long> sn(nums.begin(), nums.end());
-    sort(sn.begin(), sn.end());
-    sn.erase(unique(sn.begin(), sn.end()), sn.end());
-    int i=0;
-    for (auto& x : sn) {
-      m[x] = i++;
-    }
-
-    for (int l = 0, r = 0; r < sn.size(); r ++) {
-      while (sn[r] > 2 * sn[l] && l < sn.size()) l++;
-      if (l == sn.size()) as[sn[r]] = i;
-      else as[sn[r]] = m[sn[l]];
-    }
-    _(as);
-    _(m);
-
-    int res = 0;
-    for (auto i = nums.rbegin(); i != nums.rend(); ++i) {
-      res += query(0, as[*i]);
-      update(m[*i], 1);
-    }
-    return res;
-  }
-
-  void update(int i, int val) {
-    for (t[i += n] += val; i > 1; i >>= 1) t[i >> 1] = t[i] + t[i^1];
-  }
-
-  int query(int i, int j) {
-    int res = 0;
-    for (i += n, j += n; i<j; i >>= 1, j >>=1) {
-      if (i & 1) res += t[i++];
-      if (j & 1) res += t[--j];
-    }
-    return res;
-  }
-private:
-  vector<int> t;
-  int n;
-  unordered_map<int, int> m;
-  unordered_map<int, int> as;
+    int reversePairs(vector<int>& nums) { return sort_and_count(nums.begin(), nums.end()); }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

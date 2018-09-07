@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -40,7 +41,7 @@ public:
             if (cur * 10 <= n) {
                 cur *= 10;
             } else {
-                if (cur >= n) 
+                if (cur >= n)
                     cur /= 10;
                 cur += 1;
                 while (cur % 10 == 0)
@@ -51,6 +52,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

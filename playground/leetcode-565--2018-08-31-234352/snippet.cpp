@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -50,21 +51,21 @@ public:
     int arrayNesting(vector<int>& nums) {
         int ret = 0;
         vector<bool> v(nums.size(), false);
-        for (int i=0;i<nums.size();i++) {
-            if (v[i]) continue;
+        for (int i = 0; i < nums.size(); i++) {
+            if (v[i])
+                continue;
             int ans = 0;
             int j = i;
             while (!v[j]) {
                 v[j] = true;
-                ans ++;
+                ans++;
                 j = nums[j];
             }
-            if (ans > ret) ret = ans;
+            if (ans > ret)
+                ret = ans;
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

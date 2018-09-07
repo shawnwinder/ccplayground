@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <set>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -52,28 +55,20 @@ using namespace std;
 class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
-        if (nums.size() < 2) return false;
-        if (t < 0 || k < 1) return false;
-        unordered_map<long, long> m;
-        int l = 0;
-        long lt = t;
-        for (int i=0;i<nums.size();i++) {
- 
-            long b = ((long)nums[i] + INT_MIN) / (lt + 1);
-            if (m.find(b) != m.end() || 
-                (m.find(b-1) != m.end() && nums[i] - m[b-1] <= lt) || 
-                (m.find(b+1) != m.end() && m[b+1] -nums[i] <= lt)) return true;
-                        m[b] = nums[i];
-
-           if (i-l >= k) { 
-                m.erase(((long)nums[l] + INT_MIN) / (lt + 1));
-                l ++;
-            }
+        set<long> window;
+        for (int i = 0; i < nums.size(); i++) {
+            // keep the set contains nums i j at most k
+            if (i > k)
+                window.erase(nums[i - k - 1]);
+            // |x - nums[i]| <= t  ==> -t <= x - nums[i] <= t;
+            auto pos = window.lower_bound(nums[i] - (long) t);
+            // x - nums[i] <= t ==> |x - nums[i]| <= t
+            if (pos != window.end() && *pos - nums[i] <= t)
+                return true;
+            window.insert(nums[i]);
         }
         return false;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

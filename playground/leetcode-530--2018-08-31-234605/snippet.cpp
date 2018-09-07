@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -48,23 +49,30 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
+    int min_dif = INT_MAX, val = -1;
+
 public:
     int getMinimumDifference(TreeNode* root) {
-
+        if (root->left != NULL)
+            getMinimumDifference(root->left);
+        if (val >= 0)
+            min_dif = min(min_dif, root->val - val);
+        val = root->val;
+        if (root->right != NULL)
+            getMinimumDifference(root->right);
+        return min_dif;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

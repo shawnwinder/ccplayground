@@ -54,16 +54,17 @@ public:
         int l = 1;
         int r = n;
         while (l < r) {
-            int mid = l + (r-l) / 2;
+            int mid = l + (r - l) / 2;
             int ret = guess(mid);
-            if (ret == 0) return mid;
-            else if (ret == 1) l = mid + 1;
-            else r = mid;
+            if (ret == 0)
+                return mid;
+            else if (ret == 1)
+                l = mid + 1;
+            else
+                r = mid;
         }
         return l;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

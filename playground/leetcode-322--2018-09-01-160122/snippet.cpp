@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <climits>
 
 using namespace std;
 
@@ -43,18 +45,17 @@ using namespace std;
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount + 1, INT_MAX/2);
+        vector<int> dp(amount + 1, INT_MAX / 2);
         dp[0] = 0;
         for (int c : coins) {
             for (int a = c; a <= amount; a++) {
-                dp[a] = min(dp[a], dp[a-c] + 1);
+                dp[a] = min(dp[a], dp[a - c] + 1);
             }
         }
-        if (dp[amount] == INT_MAX/2) return -1;
+        if (dp[amount] == INT_MAX / 2)
+            return -1;
         return dp[amount];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

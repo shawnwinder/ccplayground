@@ -59,8 +59,3 @@ public:
 int mymain(int argc, char *argv[]) {
     return 0;
 }
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}

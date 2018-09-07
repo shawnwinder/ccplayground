@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <list>
+#include <unordered_map>
 
 using namespace std;
 
@@ -15,7 +17,8 @@ using namespace std;
  * Hard (25.82%)
  * Total Accepted:    25.2K
  * Total Submissions: 97.5K
- * Testcase Example:  '["LFUCache","put","put","get","put","get","get","put","get","get","get"]\n[[2],[1,1],[2,2],[1],[3,3],[2],[3],[4,4],[1],[3],[4]]'
+ * Testcase Example:
+ * '["LFUCache","put","put","get","put","get","get","put","get","get","get"]\n[[2],[1,1],[2,2],[1],[3,3],[2],[3],[4,4],[1],[3],[4]]'
  *
  * Design and implement a data structure for Least Frequently Used (LFU) cache.
  * It should support the following operations: get and put.
@@ -36,7 +39,7 @@ using namespace std;
  *
  * Example:
  *
- * LFUCache cache = new LFUCache( 2 /* capacity */ );
+ * LFUCache cache = new LFUCache(2);
  *
  * cache.put(1, 1);
  * cache.put(2, 2);
@@ -52,17 +55,49 @@ using namespace std;
  *
  */
 class LFUCache {
+    int cap;
+    int size;
+    int minFreq;
+    unordered_map<int, pair<int, int>> m; // key to {value,freq};
+    unordered_map<int, list<int>::iterator> mIter; // key to list iterator;
+    unordered_map<int, list<int>> fm; // freq to key list;
 public:
     LFUCache(int capacity) {
-
+        cap = capacity;
+        size = 0;
     }
 
     int get(int key) {
-
+        if (m.count(key) == 0)
+            return -1;
+        fm[m[key].second].erase(mIter[key]);
+        m[key].second++;
+        fm[m[key].second].push_back(key);
+        mIter[key] = prev(fm[m[key].second].end());
+        if (fm[minFreq].size() == 0)
+            minFreq++;
+        return m[key].first;
     }
 
     void put(int key, int value) {
-
+        if (cap <= 0)
+            return;
+        int storedValue = get(key);
+        if (storedValue != -1) {
+            m[key].first = value;
+            return;
+        }
+        if (size >= cap) {
+            m.erase(fm[minFreq].front());
+            mIter.erase(fm[minFreq].front());
+            fm[minFreq].pop_front();
+            size--;
+        }
+        m[key] = { value, 1 };
+        fm[1].push_back(key);
+        mIter[key] = prev(fm[1].end());
+        minFreq = 1;
+        size++;
     }
 };
 
@@ -73,6 +108,4 @@ public:
  * obj.put(key,value);
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

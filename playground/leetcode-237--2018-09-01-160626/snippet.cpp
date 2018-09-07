@@ -56,28 +56,24 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        ListNode* p = node, *old;
-        while(p->next) {
-            p->val = p->next->val;
-            old = p;
-            p = p->next;
-        }
-        old->next = NULL;
-        delete p;
+        auto next = node->next;
+        *node = *next;
+        delete next;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

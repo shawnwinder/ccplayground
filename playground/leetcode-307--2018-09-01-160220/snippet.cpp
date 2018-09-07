@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -43,18 +44,60 @@ using namespace std;
  *
  */
 class NumArray {
+    int n;
+    struct Node {
+        int sum;
+        int l;
+        int r;
+        bool valid{ false };
+    };
+    vector<Node> nodes;
+
+    void updateImpl(int x, int i, int val) {
+        if (x >= n) return;
+        if (nodes[x].valid) {
+            if (nodes[x].l > i || nodes[x].r < i)
+                return;
+            nodes[x].sum += val;
+        }
+        updateImpl(x * 2, i, val);
+        updateImpl(x * 2 + 1, i, val);
+    }
+
+    int sumRangeImpl(int x, int i, int j) {
+        if (x >= n) return 0;
+        if (nodes[x].valid) {
+            if (nodes[x].l > j || nodes[x].r < i)
+                return 0;
+            if (nodes[x].l >= i && nodes[x].r <= j)
+                return nodes[x].sum;
+        }
+        return sumRangeImpl(x * 2, i, j) + sumRangeImpl(x * 2 + 1, i, j);
+    }
+
 public:
     NumArray(vector<int> nums) {
-
+        n = nums.size() * 2;
+        nodes.resize(n);
+        for (auto i = n / 2; i < n; ++i) {
+            nodes[i].sum = nums[i - n / 2];
+            nodes[i].l = nodes[i].r = i - n / 2;
+            nodes[i].valid = true;
+        }
+        for (auto i = n / 2; --i > 0;) {
+            if (!nodes[i * 2].valid || !nodes[i * 2 + 1].valid
+                || nodes[i * 2].r >= nodes[i * 2 + 1].l)
+                continue;
+            nodes[i].valid = true;
+            nodes[i].l = nodes[i * 2].l;
+            nodes[i].r = nodes[i * 2 + 1].r;
+            nodes[i].sum = nodes[i * 2].sum + nodes[i * 2 + 1].sum;
+        }
     }
 
-    void update(int i, int val) {
+    void update(int i, int val) { updateImpl(1, i, val - nodes[i + n / 2].sum); }
 
-    }
-
-    int sumRange(int i, int j) {
-
-    }
+    int sumRange(int i, int j) { return sumRangeImpl(1, i, j); }
 };
 
 /**
@@ -64,6 +107,10 @@ public:
  * int param_2 = obj.sumRange(i,j);
  */
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    vector<int> nums = {1,2,3};
+    NumArray obj(nums);
+    obj.update(2, 1);
+    cout << obj.sumRange(0, 2);
     return 0;
 }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -75,41 +76,22 @@ using namespace std;
 class Solution {
 public:
     bool validUtf8(vector<int>& data) {
-
-        int a = 1 << 7;
-        int b = 3 << 6;
-        int c = 7 << 5;
-        int d = 15 << 4;
-        int e = 31 << 3;
-
-
-        for (int i=0;i<data.size();i++) {
-            if ((data[i] & a) == 0) continue;
-            else if ((data[i] & c) == 192) {
-                i++;
-                if (i == data.size()) return false;
-                if ((data[i] & b) != 128) return false;
-            } else if ((data[i] & d) == 224) {
-                for (int j=0;j<2;j++) {
-                    i++;
-                    if (i == data.size()) return false;
-                    if ((data[i] & b) != 128) return false;
-                }
-            } else if ((data[i] & e) == 240) {
-                for (int j=0;j<3;j++) {
-                    i++;
-                    if (i == data.size()) return false;
-                    if ((data[i] & b) != 128) return false;
-                }
-            } else {
+        int c = 0;
+        for (int x : data)
+            if (c) {
+                if ((x >> 6) != 0b10)
+                    return false;
+                c--;
+            } else if ((x >> 5) == 0b110)
+                c = 1;
+            else if ((x >> 4) == 0b1110)
+                c = 2;
+            else if ((x >> 3) == 0b11110)
+                c = 3;
+            else if (x >> 7)
                 return false;
-            }
-        }
-        return true;
+        return !c;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ using namespace std;
  *
  * You have a total of n coins that you want to form in a staircase shape,
  * where every k-th row must have exactly k coins.
- * 
+ *
  * Given n, find the total number of full staircase rows that can be formed.
  *
  * n is a non-negative integer and fits within the range of a 32-bit signed
@@ -60,6 +61,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

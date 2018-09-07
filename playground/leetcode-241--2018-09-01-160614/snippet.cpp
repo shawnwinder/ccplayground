@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -46,46 +48,49 @@ using namespace std;
  */
 class Solution {
 public:
-
     vector<int> diffWaysToCompute(string input) {
         stringstream ss;
-        ss<<input;
+        ss << input;
         vector<int> vals;
         vector<char> ops;
         int v;
         char op;
-        ss>>v;
+        ss >> v;
         vals.push_back(v);
-        while(ss>>op) {
+        while (ss >> op) {
             ops.push_back(op);
-            ss>>v;
+            ss >> v;
             vals.push_back(v);
         }
         int n = vals.size();
         auto dp = vector<vector<vector<int>>>(n, vector<vector<int>>(n));
-        for(int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             dp[i][i].push_back(vals[i]);
         }
-        for(int k=1; k<n; k++) {
-            for(int i=0, j=i+k; j<n; i++, j++) {
-                for (int l = i; l<j; l++) {
-                    for(auto a: dp[i][l])
-                    for(auto b: dp[l+1][j]) {
-                        int val;
-                        switch(ops[l]) {
-                            case '+': val = a+b;break;
-                            case '-': val = a-b;break;
-                            case '*': val = a*b;break;
+        for (int k = 1; k < n; k++) {
+            for (int i = 0, j = i + k; j < n; i++, j++) {
+                for (int l = i; l < j; l++) {
+                    for (auto a : dp[i][l])
+                        for (auto b : dp[l + 1][j]) {
+                            int val;
+                            switch (ops[l]) {
+                            case '+':
+                                val = a + b;
+                                break;
+                            case '-':
+                                val = a - b;
+                                break;
+                            case '*':
+                                val = a * b;
+                                break;
+                            }
+                            dp[i][j].push_back(val);
                         }
-                        dp[i][j].push_back(val);
-                    }
                 }
             }
         }
-        return dp[0][n-1];
+        return dp[0][n - 1];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -55,10 +56,14 @@ using namespace std;
 class Solution {
 public:
     string complexNumberMultiply(string a, string b) {
-
+        int ra, ia, rb, ib;
+        char buff;
+        stringstream aa(a), bb(b), ans;
+        aa >> ra >> buff >> ia >> buff;
+        bb >> rb >> buff >> ib >> buff;
+        ans << ra * rb - ia * ib << "+" << ra * ib + rb * ia << "i";
+        return ans.str();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

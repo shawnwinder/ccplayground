@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -38,14 +39,15 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         int offset = 0;
-        for(int i = 0; i< nums.size(); i++) {
-            if (nums[i] == 0) offset ++;
-            else nums[i - offset] = nums[i];
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0)
+                offset++;
+            else
+                nums[i - offset] = nums[i];
         }
-        for(int i = nums.size() - offset; i < nums.size(); i++) nums[i] = 0;
+        for (int i = nums.size() - offset; i < nums.size(); i++)
+            nums[i] = 0;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

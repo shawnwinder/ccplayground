@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -42,8 +43,9 @@ public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
         int c = 0;
         int ans = 0;
-        for (int n:nums) {
-            if (n == 0) c = 0;
+        for (int n : nums) {
+            if (n == 0)
+                c = 0;
             else {
                 c++;
                 if (c > ans) {
@@ -55,6 +57,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

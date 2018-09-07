@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -63,15 +64,15 @@ using namespace std;
 class Solution {
 public:
     int maxCount(int m, int n, vector<vector<int>>& ops) {
-        int x=m, y=n;
+        int x = m, y = n;
         for (auto& op : ops) {
-            if (op[0] < x) x = op[0];
-            if (op[1] < y) y = op[1];
+            if (op[0] < x)
+                x = op[0];
+            if (op[1] < y)
+                y = op[1];
         }
-        return x*y;
+        return x * y;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

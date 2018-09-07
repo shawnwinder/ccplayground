@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <unordered_set>
 
 using namespace std;
 
@@ -43,10 +45,8 @@ using namespace std;
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        return nums.size() > unordered_set<int> { nums.begin(), nums.end() }.size();
+        return nums.size() > unordered_set<int>{ nums.begin(), nums.end() }.size();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

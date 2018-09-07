@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -41,18 +42,16 @@ public:
         int n = nums.size();
         vector<int> o(n);
         o[0] = 1;
-        for(int i=1;i<n;i++) {
-            o[i] = nums[i-1]*o[i-1];
+        for (int i = 1; i < n; i++) {
+            o[i] = nums[i - 1] * o[i - 1];
         }
-        int pro = nums[n-1];
-        for(int i=n-2;i>=0;i--){
-            o[i] = pro*o[i];
+        int pro = nums[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            o[i] = pro * o[i];
             pro *= nums[i];
         }
         return o;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -45,16 +46,14 @@ public:
     int longestPalindrome(string s) {
         vector<int> set(256, 0);
         for (auto c : s) {
-            set[c] ++;
+            set[c]++;
         }
         int res = 0;
         for (int n : set) {
-            res += n&1 ? (res&1 ? n-1 : n) : n;
+            res += n & 1 ? (res & 1 ? n - 1 : n) : n;
         }
         return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

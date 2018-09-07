@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <numeric>
 
 using namespace std;
 
@@ -57,45 +59,49 @@ using namespace std;
  */
 class Solution {
 public:
-    int cnt;
     bool makesquare(vector<int>& nums) {
-        if (!nums.size()) return false;
-        
-        sort(nums.begin(), nums.end(), greater<int>());
-        
-        int sum = 0;
-        for (int n : nums) sum += n;
-        if (sum % 4) return false;
-        
-        int target = sum / 4;
-        cnt = 0;
-        
-        for (int i = 0; i < 4; i++) {
-            vector<int> path;
-            if (!dfs(nums, target, 0, path)) return false;
-            for (int j = path.size()-1; j >= 0; j--) {
-                nums.erase(nums.begin()+path[j]);
+        int n = nums.size();
+        long sum = accumulate(nums.begin(), nums.end(), 0l);
+        if (sum % 4)
+            return false;
+        long sideLen = sum / 4;
+        // need to solve the problem of partitioning nums into four equal subsets each having
+        // sum equal to sideLen
+        vector<int> usedMasks;
+        // validHalfSubsets[i] == true iff the subset represented by bitmask i
+        // has sum == 2*sideLen, AND the subset represented by i can be further partitioned into
+        // two equal subsets. See below for how it is used.
+        vector<bool> validHalfSubsets(1 << n, false);
+        int all = (1 << n) - 1;
+        // go through all possible subsets each represented by a bitmask
+        for (int mask = 0; mask <= all; mask++) {
+            long subsetSum = 0;
+            // calculate the sum of this subset
+            for (int i = 0; i < 32; i++) {
+                if ((mask >> i) & 1)
+                    subsetSum += nums[i];
             }
-        }
-        return true;
-    }
-    
-    bool dfs(vector<int>& nums, int target, int start, vector<int>& path) {
-        if (target == 0) {
-            return true;
-        }
-        
-        for (int i = start; i < nums.size(); i++) {
-            if (nums[i] > target) continue;
-            path.push_back(i);
-            if (dfs(nums, target-nums[i], i+1, path)) return true;
-            path.pop_back();
+            // if this subset has what we want
+            if (subsetSum == sideLen) {
+                for (int usedMask : usedMasks) {
+                    // if this mask and usedMask are mutually exclusive
+                    if ((usedMask & mask) == 0) {
+                        // then they form a valid half subset whose sum is 2 * sideLen,
+                        // that can be further partitioned into two equal subsets (usedMask and
+                        // mask)
+                        int validHalf = usedMask | mask;
+                        validHalfSubsets[validHalf] = true;
+                        // if in the past we concluded that the other half is also a valid
+                        // half subset, DONE!
+                        if (validHalfSubsets[all ^ validHalf])
+                            return true;
+                    }
+                }
+                usedMasks.push_back(mask);
+            }
         }
         return false;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

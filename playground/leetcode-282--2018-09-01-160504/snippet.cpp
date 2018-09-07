@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -56,12 +57,34 @@ using namespace std;
  *
  */
 class Solution {
+    vector<string> res;
+    string num;
+    int target;
+    void dfs(int pos, string cur, long add, long mul, long last) {
+        long sum = add + mul * last;
+        if (pos == num.size()) {
+            if (sum == target)
+                res.push_back(cur);
+            return;
+        }
+        int x = num[pos] - '0';
+        dfs(pos + 1, cur + '*' + num[pos], add, mul * last, x);
+        dfs(pos + 1, cur + '+' + num[pos], sum, 1, x);
+        dfs(pos + 1, cur + '-' + num[pos], sum, -1, x);
+        // no op
+        if (last)
+            dfs(pos + 1, cur + num[pos], add, mul, last * 10 + x);
+    }
+
 public:
     vector<string> addOperators(string num, int target) {
-
+        if (num.empty())
+            return res;
+        this->num = num;
+        this->target = target;
+        dfs(1, num.substr(0, 1), 0, 1, num[0] - '0');
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

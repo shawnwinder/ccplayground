@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -41,36 +43,15 @@ using namespace std;
  */
 class Solution {
 public:
-    
     int minMoves2(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        int l = 0;
-        int r = nums.size() -1;
-        int mid = (l + r)/2;
-        while (true) {
-            if (l >= r) break;
-            int pivot = nums[l];
-            int i = l;
-            int j = r;
-            while (i < j) {
-                while (j > i && nums[j] >= pivot) j --;
-                if (j > i) nums[i] = nums[j];
-                while (i < j && nums[i] < pivot) i ++;
-                if (i < j) nums[j] = nums[i];
-            }
-            nums[i] = pivot;
-            if (i < mid) l = i + 1;
-            else if (i > mid) r = i;
-            else break;
-        }
-        int cost = 0;
-        for (int n: nums) {
-            cost += abs(n - nums[mid]);
-        }
-        return cost;
+        if (nums.empty())
+            return 0;
+        nth_element(nums.begin(), nums.begin() + nums.size() / 2, nums.end());
+        int s = 0;
+        for (int i : nums)
+            s += abs(i - nums[nums.size() / 2]);
+        return s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

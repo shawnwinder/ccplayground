@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -54,10 +55,13 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> transpose(vector<vector<int>>& A) {
-
+        int M = A.size(), N = A[0].size();
+        vector<vector<int>> B(N, vector<int>(M, 0));
+        for (int j = 0; j < N; j++)
+            for (int i = 0; i < M; i++)
+                B[j][i] = A[i][j];
+        return B;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

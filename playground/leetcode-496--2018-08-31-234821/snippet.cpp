@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <stack>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -65,33 +68,20 @@ using namespace std;
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
-        if(nums.empty()) return {};
+        stack<int> s;
         unordered_map<int, int> m;
-        vector<int> s;
-        for (int i=0;i<nums.size()-1; i++) {
-            if(nums[i] < nums[i+1]) {
-                m[nums[i]] = nums[i+1];
-                while (!s.empty()) {
-                    if (s.back() < nums[i+1]) {
-                        m[s.back()] = nums[i+1];
-                        s.pop_back();
-                    } else break;
-                }
-            } else s.push_back(nums[i]);
-        }
-        m[nums.back()] = -1;
-        while (!s.empty()) {
-            m[s.back()] = -1;
-            s.pop_back();
+        for (int n : nums) {
+            while (s.size() && s.top() < n) {
+                m[s.top()] = n;
+                s.pop();
+            }
+            s.push(n);
         }
         vector<int> ans;
-        for(int i=0;i<findNums.size();i++) {
-            ans.push_back(m[findNums[i]]);
-        }
+        for (int n : findNums)
+            ans.push_back(m.count(n) ? m[n] : -1);
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

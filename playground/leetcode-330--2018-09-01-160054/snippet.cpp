@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -54,7 +55,6 @@ using namespace std;
 class Solution {
 public:
     int minPatches(vector<int>& nums, int n) {
-
         long miss = 1, added = 0, i = 0;
         while (miss <= n) {
             if (i < nums.size() && nums[i] <= miss) {
@@ -68,6 +68,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

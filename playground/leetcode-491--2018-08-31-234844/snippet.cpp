@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -42,30 +45,27 @@ using namespace std;
  */
 class Solution {
 public:
-    void solve(vector<vector<int>>& ans, vector<int>& partial, vector<int>& nums, int i) {
-        if (i == nums.size()) {
-            if (partial.size() >= 2) ans.push_back(partial);
-            return;
-        }
-        bool flag = false;
-        if (partial.empty() || partial.back() <= nums[i]) {
-            partial.push_back(nums[i]);
-            solve(ans, partial, nums,i+1);
-            partial.pop_back();
-            if (partial.back() == nums[i]) flag = true;
-        }
-        solve(ans, partial, nums, i+1);
-    }
     vector<vector<int>> findSubsequences(vector<int>& nums) {
-        vector<vector<int>> ans;
-        vector<int> partial;
-        solve(ans, partial, nums, 0);
-        sort(ans.begin(), ans.end());
-        ans.erase(unique(ans.begin(), ans.end()), ans.end());
-        return ans;
+        int n = nums.size();
+        vector<vector<int>> r;
+        for (auto i = 0u; i < 1 << n; ++i) {
+            int last = INT_MIN;
+            vector<int> a;
+            for (auto j = 0u; j < n; ++j)
+                if (i >> j & 1) {
+                    if (last > nums[j]) {
+                        a.clear();
+                        break;
+                    }
+                    a.push_back(last = nums[j]);
+                }
+            if (a.size() > 1)
+                r.push_back(a);
+        }
+        sort(r.begin(), r.end());
+        r.erase(unique(r.begin(), r.end()), r.end());
+        return r;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -53,11 +54,19 @@ using namespace std;
  */
 class Solution {
 public:
-    string optimalDivision(vector<int>& nums) {
-
+    string optimalDivision(vector<int>& a) {
+        if (a.size() == 1)
+            return to_string(a[0]);
+        if (a.size() == 2)
+            return to_string(a[0]) + '/' + to_string(a[1]);
+        string r = to_string(a[0]) + "/(";
+        for (auto i = 1; i < a.size(); ++i) {
+            if (i > 1)
+                r += '/';
+            r += to_string(a[i]);
+        };
+        return r + ')';
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +17,8 @@ using namespace std;
  * Easy (55.84%)
  * Total Accepted:    5.7K
  * Total Submissions: 10.3K
- * Testcase Example:  '{"$id":"1","children":[{"$id":"2","children":[{"$id":"5","children":[],"val":5},{"$id":"6","children":[],"val":6}],"val":3},{"$id":"3","children":[],"val":2},{"$id":"4","children":[],"val":4}],"val":1}'
+ * Testcase Example:
+ * '{"$id":"1","children":[{"$id":"2","children":[{"$id":"5","children":[],"val":5},{"$id":"6","children":[],"val":6}],"val":3},{"$id":"3","children":[],"val":2},{"$id":"4","children":[],"val":4}],"val":1}'
  *
  * Given an n-ary tree, return the preorder traversal of its nodes' values.
  *
@@ -30,8 +33,8 @@ using namespace std;
  *
  * Note: Recursive solution is trivial, could you do it iteratively?
  */
-/*
-// Definition for a Node.
+
+#ifdef CC_PLAYGROUND
 class Node {
 public:
     int val;
@@ -44,14 +47,25 @@ public:
         children = _children;
     }
 };
-*/
+#endif
+
 class Solution {
 public:
     vector<int> preorder(Node* root) {
-
+        if (root == NULL)
+            return {};
+        stack<Node*> stk;
+        vector<int> res;
+        stk.push(root);
+        while (!stk.empty()) {
+            Node* temp = stk.top();
+            stk.pop();
+            for (int i = temp->children.size() - 1; i >= 0; i--)
+                stk.push(temp->children[i]);
+            res.push_back(temp->val);
+        }
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

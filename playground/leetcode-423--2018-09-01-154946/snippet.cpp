@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -49,20 +52,11 @@ using namespace std;
 class Solution {
 public:
     string originalDigits(string s) {
-        vector<string> t = {"one", "three", "five", "seven", "nine"};
-        unordered_map<char, string> m = { 
-            {'z', "zero"},
-            {'w', "two"},
-            {'u', "four"},
-            {'x', "six"},
-            {'g', "eight"}
-        };
-        unordered_map<char, string> m2 = {             
-            {'o', "one"},
-            {'r', "three"},
-            {'f', "five"},
-            {'s', "seven"}
-        };
+        vector<string> t = { "one", "three", "five", "seven", "nine" };
+        unordered_map<char, string> m = { { 'z', "zero" }, { 'w', "two" }, { 'u', "four" },
+            { 'x', "six" }, { 'g', "eight" } };
+        unordered_map<char, string> m2
+            = { { 'o', "one" }, { 'r', "three" }, { 'f', "five" }, { 's', "seven" } };
 
         unordered_map<char, int> cnt;
         unordered_map<char, int> ans;
@@ -70,35 +64,34 @@ public:
             for (char c : s) {
                 auto it = m.find(c);
                 if (it != m.end()) {
-                    ans[c] ++;
+                    ans[c]++;
                     for (char x : it->second) {
-                        cnt[x] ++;
+                        cnt[x]++;
                     }
                 }
             }
-            for (auto it=s.begin(); it !=s.end();) {
+            for (auto it = s.begin(); it != s.end();) {
                 if (cnt[*it] > 0) {
-                    cnt[*it] --;
+                    cnt[*it]--;
                     it = s.erase(it);
-                } else it ++;
+                } else
+                    it++;
             }
             m.clear();
             swap(m, m2);
         }
         stringstream ret;
-        vector<char> seq = {'z', 'o', 'w', 'r', 'u', 'f', 'x', 's', 'g'};
-        for (int i=0;i<seq.size();i++) {
-            for (int j=0;j<ans[seq[i]];j++) {
+        vector<char> seq = { 'z', 'o', 'w', 'r', 'u', 'f', 'x', 's', 'g' };
+        for (int i = 0; i < seq.size(); i++) {
+            for (int j = 0; j < ans[seq[i]]; j++) {
                 ret << i;
             }
         }
-        for (int i=0;i<s.size() / 4; i++) {
+        for (int i = 0; i < s.size() / 4; i++) {
             ret << 9;
         }
         return ret.str();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

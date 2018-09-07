@@ -42,17 +42,13 @@ using namespace std;
 class Solution {
 public:
     int getSum(int a, int b) {
-        int i = a^b;
-        int j = (a&b)<<1;
-        while (j != 0) {
-            int x = i^j;
-            j = (i&j)<<1;
-            i = x;
+        while (b) {
+            int t = a;
+            a ^= b;
+            b = (b & t) << 1;
         }
-        return i;
+        return a;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

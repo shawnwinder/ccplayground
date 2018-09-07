@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -41,14 +42,14 @@ using namespace std;
 class Solution {
 public:
     Solution(vector<int> nums) : nums(nums) {
-        
+
     }
-    
+
     /** Resets the array to its original configuration and return it. */
     vector<int> reset() {
         return nums;
     }
-    
+
     /** Returns a random shuffling of the array. */
     vector<int> shuffle() {
         vector<int> result(nums);

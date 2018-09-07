@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -28,7 +29,8 @@ using namespace std;
  * currently on, return all possible times the watch could represent.
  *
  * Example:
- * Input: n = 1Return: ["1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04",
+ * Input: n = 1
+ * Return: ["1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04",
  * "0:08", "0:16", "0:32"]
  *
  *
@@ -46,26 +48,26 @@ class Solution {
 public:
     void solve(vector<string>& ans, int b, int num, int h, int m) {
         if (num == 0) {
-            ans.push_back(to_string(h) + (m<10?":0":":") + to_string(m));
+            ans.push_back(to_string(h) + (m < 10 ? ":0" : ":") + to_string(m));
             return;
         }
-        if (10 - b < num) return;
-        for (int i=b; i<10; i++) {
+        if (10 - b < num)
+            return;
+        for (int i = b; i < 10; i++) {
             if (i < 4 && (1 << i) + h <= 11) {
-                solve(ans, i+1, num-1, (1<<i) + h, m);
-            } else if (i >= 4 && (1 << (i-4)) + m <= 59) {
-                solve(ans, i+1, num-1, h, (1<<(i-4)) + m);
+                solve(ans, i + 1, num - 1, (1 << i) + h, m);
+            } else if (i >= 4 && (1 << (i - 4)) + m <= 59) {
+                solve(ans, i + 1, num - 1, h, (1 << (i - 4)) + m);
             }
         }
     }
     vector<string> readBinaryWatch(int num) {
         vector<string> ret;
-        if (num <=0 && num >= 9) return ret;
+        if (num <= 0 && num >= 9)
+            return ret;
         solve(ret, 0, num, 0, 0);
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

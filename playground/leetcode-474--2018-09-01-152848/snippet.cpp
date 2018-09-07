@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -58,26 +60,18 @@ using namespace std;
 class Solution {
 public:
     int findMaxForm(vector<string>& strs, int m, int n) {
-        int ret = 0;
-          vector<vector<int>> dp(m+1, vector<int>(n+1, 0));
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
         for (auto& s : strs) {
-            int z = 0;
-            for (char c : s) {
-                if (c == '0') z ++;
-            }
+            int z = count(s.begin(), s.end(), '0');
             int o = s.size() - z;
-          
-            for (int i=m;i>=z;i--) {
-                for (int j=n;j>=o;j--) {
-                    dp[i][j] = max(dp[i-z][j-o] + 1, dp[i][j]);
-                    ret = max(dp[i][j], ret);
+            for (int i = m; i >= z; i--) {
+                for (int j = n; j >= o; j--) {
+                    dp[i][j] = max(dp[i - z][j - o] + 1, dp[i][j]);
                 }
             }
         }
-        return ret;
+        return dp[m][n];
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

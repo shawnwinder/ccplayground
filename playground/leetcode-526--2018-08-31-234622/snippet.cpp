@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -51,29 +52,29 @@ using namespace std;
  *
  */
 class Solution {
-public:
     int pick(vector<bool>& used, int i, int N) {
-        if (i > N) return 1;
+        if (i > N)
+            return 1;
         int ret = 0;
-        for (int x=1; x<=N; x++) {
+        for (int x = 1; x <= N; x++) {
             if (!used[x] && (x % i == 0 || i % x == 0)) {
                 if (i == N) {
-                    ret ++;
+                    ret++;
                 } else {
-                used[x] = true;
-                ret += pick(used, i+1, N);
-                used[x] = false;
+                    used[x] = true;
+                    ret += pick(used, i + 1, N);
+                    used[x] = false;
                 }
             }
         }
         return ret;
     }
+
+public:
     int countArrangement(int N) {
-        vector<bool> used(N+1);
+        vector<bool> used(N + 1);
         return pick(used, 1, N);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

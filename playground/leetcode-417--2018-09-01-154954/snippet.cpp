@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -55,54 +57,36 @@ using namespace std;
  */
 class Solution {
 public:
-  vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
-    if (matrix.empty())
-      return {};
-    int m = matrix.size(), n = matrix[0].size();
-    queue<pair<int, int>> q;
-    vector<vector<char>> a(m, vector<char>(n, 0));
-    auto bfs = [&](int b) {
-      while (q.size()) {
-        int x, y;
-        tie(x, y) = q.front(), q.pop();
-        if (x && ! (a[x-1][y] & b) && matrix[x][y] <= matrix[x-1][y])
-          a[x-1][y] |= b, q.emplace(x-1, y);
-        if (x+1 < m && ! (a[x+1][y] & b) && matrix[x][y] <= matrix[x+1][y])
-          a[x+1][y] |= b, q.emplace(x+1, y);
-        if (y && ! (a[x][y-1] & b) && matrix[x][y] <= matrix[x][y-1])
-          a[x][y-1] |= b, q.emplace(x, y-1);
-        if (y+1 < n && ! (a[x][y+1] & b) && matrix[x][y] <= matrix[x][y+1])
-          a[x][y+1] |= b, q.emplace(x, y+1);
-      }
-    };
-    REP(i, m) {
-      q.emplace(i, 0);
-      a[i][0] = 1;
+    vector<pair<int, int>> res;
+    vector<vector<int>> visited;
+    void dfs(vector<vector<int>>& matrix, int x, int y, int pre, int preval) {
+        if (x < 0 || x >= matrix.size() || y < 0 || y >= matrix[0].size() || matrix[x][y] < pre
+            || (visited[x][y] & preval) == preval)
+            return;
+        visited[x][y] |= preval;
+        if (visited[x][y] == 3)
+            res.push_back({ x, y });
+        dfs(matrix, x + 1, y, matrix[x][y], visited[x][y]);
+        dfs(matrix, x - 1, y, matrix[x][y], visited[x][y]);
+        dfs(matrix, x, y + 1, matrix[x][y], visited[x][y]);
+        dfs(matrix, x, y - 1, matrix[x][y], visited[x][y]);
     }
-    FOR(i, 1, n) {
-      q.emplace(0, i);
-      a[0][i] = 1;
+
+    vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
+        if (matrix.empty())
+            return res;
+        int m = matrix.size(), n = matrix[0].size();
+        visited.resize(m, vector<int>(n, 0));
+        for (int i = 0; i < m; i++) {
+            dfs(matrix, i, 0, INT_MIN, 1);
+            dfs(matrix, i, n - 1, INT_MIN, 2);
+        }
+        for (int i = 0; i < n; i++) {
+            dfs(matrix, 0, i, INT_MIN, 1);
+            dfs(matrix, m - 1, i, INT_MIN, 2);
+        }
+        return res;
     }
-    bfs(1);
-    REP(i, m) {
-      q.emplace(i, n-1);
-      a[i][n-1] |= 2;
-    }
-    REP(i, n) {
-      q.emplace(m-1, i);
-      a[m-1][i] |= 2;
-    }
-    bfs(2);
-    vector<pair<int, int>> r;
-    REP(i, m)
-      REP(j, n)
-        if (a[i][j] == 3)
-          r.emplace_back(i, j);
-    return r;
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

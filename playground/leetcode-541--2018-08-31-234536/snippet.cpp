@@ -40,11 +40,17 @@ using namespace std;
  */
 class Solution {
 public:
+    // 0            k           2k          3k
+    // |-----------|-----------|-----------|---
+    // +--reverse--+           +--reverse--+
     string reverseStr(string s, int k) {
-
+        for (auto left = 0ul; left < s.size(); left += 2 * k) {
+            for (auto i = left, j = min(left + k - 1, s.size() - 1); i < j; i++, j--) {
+                swap(s[i], s[j]);
+            }
+        }
+        return s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

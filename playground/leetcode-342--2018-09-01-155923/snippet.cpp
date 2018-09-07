@@ -40,15 +40,7 @@ using namespace std;
  */
 class Solution {
 public:
-    bool isPowerOfFour(int num) {
-        long long x = 1;
-        while (x < num) {
-            x *= 4;
-        }
-        return x == num;
-    }
+    bool isPowerOfFour(int num) { return !(num & num - 1) && num & 0x55555555; }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -73,12 +75,44 @@ using namespace std;
  *
  */
 class Solution {
+    vector<vector<int>> g;
+    vector<int> parent;
+    // diameter
+    int bfs(int u) {
+        queue<int> q;
+        int leaf = u;
+        fill(parent.begin(), parent.end(), -1);
+        parent[u] = -2;
+        q.push(u);
+        while (!q.empty()) {
+            u = q.front();
+            q.pop();
+            leaf = u;
+            for (int v : g[u])
+                if (parent[v] == -1) {
+                    parent[v] = u;
+                    q.push(v);
+                }
+        }
+        return leaf;
+    }
+
 public:
     vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
-
+        g.resize(n);
+        parent.resize(n);
+        for (auto& e : edges) {
+            g[e.first].push_back(e.second);
+            g[e.second].push_back(e.first);
+        }
+        vector<int> ancestors;
+        for (int v = bfs(bfs(0)); v != -2; v = parent[v])
+            ancestors.push_back(v);
+        vector<int> ret{ ancestors[ancestors.size() / 2] };
+        if (ancestors.size() % 2 == 0)
+            ret.push_back(ancestors[ancestors.size() / 2 - 1]);
+        return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

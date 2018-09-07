@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -27,10 +29,10 @@ using namespace std;
  * Input:
  *
  *   1
- * /   \
- * 2     3
- * \
- *  5
+ *  / \
+ * 2   3
+ *  \
+ *   5
  *
  * Output: ["1->2->5", "1->3"]
  *
@@ -41,13 +43,13 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
@@ -63,11 +65,15 @@ public:
         return ss.str();
     }
     void solve(vector<string>& ans, TreeNode* root, vector<string>& partial) {
-        if (!root) return;
+        if (!root)
+            return;
         partial.push_back(to_string(root->val));
-        if (!root->left && !root->right) ans.push_back(join(partial));
-        if (root->left) solve(ans, root->left, partial);
-        if (root->right) solve(ans, root->right, partial);
+        if (!root->left && !root->right)
+            ans.push_back(join(partial));
+        if (root->left)
+            solve(ans, root->left, partial);
+        if (root->right)
+            solve(ans, root->right, partial);
         partial.pop_back();
     }
     vector<string> binaryTreePaths(TreeNode* root) {
@@ -78,6 +84,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

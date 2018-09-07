@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -69,45 +71,19 @@ using namespace std;
  */
 class Solution {
 public:
-    using pp=pair<int, int>;
-    int gcd(int a, int b){ return (b == 0) ? a : gcd(b, a % b); }
-
     string fractionAddition(string expression) {
-        vector<char> ops;
-
-        vector<pp> nums;
-        istringstream is(expression);
-        while(true) {
-            char c;
-            int a, b;
-            is >> a >> c >> b;
-            nums.emplace_back(a, b);
-            if (is >> c) {
-                ops.push_back(c);
-            } else {
-                break;
-            }
+        istringstream in(expression);
+        int A = 0, B = 1, a, b;
+        char dummy;
+        while (in >> a >> dummy >> b) {
+            A = A * b + a * B;
+            B *= b;
+            int g = abs(__gcd(A, B));
+            A /= g;
+            B /= g;
         }
-        pp cd = accumulate(nums.begin(), nums.end(), pp(1, 1), [&](pp& a, pp& b) {
-            return pp(1, a.second * b.second / gcd(a.second, b.second));
-        });
-        nums[0].first *= cd.second / nums[0].second;
-        int i = 0;
-        pp ret = accumulate(nums.begin() + 1, nums.end(), nums[0], [&](pp& a, pp& b) {
-            if (ops[i++] == '+') {
-              return pp{a.first + b.first * (cd.second / b.second), cd.second};
-            } else {
-              return pp{a.first - b.first * (cd.second / b.second), cd.second};
-            }
-        });
-        int f = abs(gcd(ret.first, ret.second));
-        ostringstream os;
-        os << ret.first / f<< '/' << (ret.first?ret.second / f:1);
-        return os.str();
+        return to_string(A) + '/' + to_string(B);
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

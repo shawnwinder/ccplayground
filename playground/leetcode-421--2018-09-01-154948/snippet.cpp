@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <unordered_set>
 
 using namespace std;
 
@@ -37,17 +39,17 @@ using namespace std;
 class Solution {
 public:
     int findMaximumXOR(vector<int>& nums) {
-        int ans=0;
-        for (int i=1<<30; i>0; i>>=1) {
+        int ans = 0;
+        for (int i = 1 << 30; i > 0; i >>= 1) {
             unordered_set<int> s;
-            int nans = ans|i;
-            int fmask = ~(i-1);
+            int nans = ans | i;
+            int fmask = ~(i - 1);
             for (int n : nums) {
-                if (s.count(n&fmask)) {
+                if (s.count(n & fmask)) {
                     ans = nans;
                     break;
                 } else {
-                    s.insert(nans ^ (n&fmask));
+                    s.insert(nans ^ (n & fmask));
                 }
             }
         }
@@ -55,6 +57,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

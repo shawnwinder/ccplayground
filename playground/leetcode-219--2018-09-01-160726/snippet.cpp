@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -53,13 +55,13 @@ public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_set<int> cand;
         for (int i = 0; i < nums.size(); i++) {
-            if (i > k) cand.erase(nums[i-k-1]);
-            if (!cand.insert(nums[i]).second) return true;
+            if (i > k)
+                cand.erase(nums[i - k - 1]);
+            if (!cand.insert(nums[i]).second)
+                return true;
         }
         return false;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

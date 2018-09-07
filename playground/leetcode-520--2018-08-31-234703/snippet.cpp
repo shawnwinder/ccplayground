@@ -57,11 +57,12 @@ using namespace std;
 class Solution {
 public:
     bool detectCapitalUse(string word) {
-        if (word.empty()) return true;
+        if (word.empty())
+            return true;
         bool first = isupper(word[0]);
         bool lower = true;
         bool upper = true;
-        for (int i = 1; i < word.size() ; i ++) {
+        for (int i = 1; i < word.size(); i++) {
             lower &= islower(word[i]) != 0;
             upper &= isupper(word[i]) != 0;
         }
@@ -69,6 +70,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

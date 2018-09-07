@@ -35,21 +35,25 @@ using namespace std;
  * Could you do it in O(n) time and O(1) space?
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        if(head == NULL || head->next == NULL) return true;
+        if (head == NULL || head->next == NULL)
+            return true;
         ListNode* one = head;
         ListNode* two = head;
-        while(two->next && two->next->next) {
+        while (two->next && two->next->next) {
             one = one->next;
             two = two->next->next;
         }
@@ -58,22 +62,18 @@ public:
         ListNode* p = two->next;
         ListNode* q;
         two->next = NULL;
-        while(p != NULL) {
+        while (p != NULL) {
             q = p;
             p = p->next;
             q->next = two;
             two = q;
         }
-        
-        while(two && two->val == one->val) {
-            two=two->next;
-            one=one->next;
+        while (two && two->val == one->val) {
+            two = two->next;
+            one = one->next;
         }
-        
         return two == NULL;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

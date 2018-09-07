@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -68,22 +70,20 @@ class Solution {
 public:
     string licenseKeyFormatting(string S, int K) {
         stringstream a;
-        S.erase(remove_if(S.begin(), S.end(), [](char c) { return c == '-';}), S.end());
+        S.erase(remove_if(S.begin(), S.end(), [](char c) { return c == '-'; }), S.end());
         int i = 0;
-        for (int j = S.size()-1;j>=0;j--) {
-            if (i == K) { 
+        for (int j = S.size() - 1; j >= 0; j--) {
+            if (i == K) {
                 a << "-";
                 i = 0;
             }
-            a << (char) toupper(S[j]);
-            i ++;
+            a << (char)toupper(S[j]);
+            i++;
         }
         string ret = a.str();
         reverse(ret.begin(), ret.end());
-        return ret; 
+        return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

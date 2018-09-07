@@ -74,16 +74,17 @@ public:
     int row = 0;
     int mrow = 0;
     int findBottomLeftValue(TreeNode* root) {
-        row ++;
-        if (root == NULL) return 0;
+        row++;
+        if (root == NULL)
+            return 0;
         if (row > mrow) {
             mrow = row;
             ans = root->val;
         }
         findBottomLeftValue(root->left);
-        row --;
+        row--;
         findBottomLeftValue(root->right);
-        row --;
+        row--;
         return ans;
     }
 };

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -38,22 +39,20 @@ using namespace std;
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
-        for (int i=0; i<nums.size(); i++) {
-            if (nums[i] != i+1) {
-                while (nums[nums[i] - 1] != nums[i]) swap (nums[nums[i]-1], nums[i]);
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != i + 1) {
+                while (nums[nums[i] - 1] != nums[i])
+                    swap(nums[nums[i] - 1], nums[i]);
             }
         }
         vector<int> ret;
-        for (int i=0; i<nums.size(); i++) {
-           if (nums[i] != i+1) {
-               ret.push_back(i+1);
-           } 
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != i + 1) {
+                ret.push_back(i + 1);
+            }
         }
         return ret;
-
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

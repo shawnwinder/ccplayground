@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -48,24 +49,22 @@ using namespace std;
  * Credits:Special thanks to @agave and @StefanPochmann for adding this problem
  * and creating all test cases.
  */
- class Solution {
- public:
-   int getMoneyAmount(int n) {
-     vector<vector<int>> dp(n+1, vector<int>(n+1));
-     for (int k=1;k<n;k++) {
-       for (int i = 1; i<=n-k; i ++) {
-         int j = i + k;
-         dp[i][j] = min(dp[i][j-1] + j, dp[i+1][j] + i);
-         for (int l = i+1; l<j; l++) {
-           dp[i][j] = min(dp[i][j] , l + max(dp[i][l-1], dp[l+1][j]));
-         }
-       }
-     }
-     return dp[1][n];
-   }
- };
+class Solution {
+public:
+    // TODO http://artofproblemsolving.com/community/c296841h1273742
+    int getMoneyAmount(int n) {
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1));
+        for (int k = 1; k < n; k++) {
+            for (int i = 1; i <= n - k; i++) {
+                int j = i + k;
+                dp[i][j] = min(dp[i][j - 1] + j, dp[i + 1][j] + i);
+                for (int l = i + 1; l < j; l++) {
+                    dp[i][j] = min(dp[i][j], l + max(dp[i][l - 1], dp[l + 1][j]));
+                }
+            }
+        }
+        return dp[1][n];
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

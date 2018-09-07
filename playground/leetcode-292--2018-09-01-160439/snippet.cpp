@@ -40,11 +40,7 @@ using namespace std;
  */
 class Solution {
 public:
-    bool canWinNim(int n) {
-        return n % 4 != 0;
-    }
+    bool canWinNim(int n) { return n % 4 != 0; }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

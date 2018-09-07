@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -44,20 +45,20 @@ class Solution {
 public:
     int hIndex(vector<int>& citations) {
         int n = citations.size();
-        vector<int> b (n + 1);
+        vector<int> b(n + 1);
         for (int i : citations) {
-            if (i > n) i = n;
-            b[i] ++;
+            if (i > n)
+                i = n;
+            b[i]++;
         }
         int cnt = 0;
-        for (int i = n; i>= 0; i--) {
+        for (int i = n; i >= 0; i--) {
             cnt += b[i];
-            if (cnt >= i) return i;
+            if (cnt >= i)
+                return i;
         }
         return 0;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

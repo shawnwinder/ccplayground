@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -43,9 +45,9 @@ public:
         nums.push_back(INT_MAX);
         int s = nums[0], t = nums[0];
         vector<string> ret;
-        for (int i=1;i<nums.size();i++) {
-            if (i == nums.size() || nums[i] > nums[i-1] + 1) {
-                ret.push_back(s == t? to_string(s) : to_string(s)+ "->" + to_string(t));
+        for (int i = 1; i < nums.size(); i++) {
+            if (i == nums.size() || nums[i] > nums[i - 1] + 1) {
+                ret.push_back(s == t ? to_string(s) : to_string(s) + "->" + to_string(t));
                 s = t = nums[i];
             } else {
                 t = nums[i];
@@ -55,6 +57,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

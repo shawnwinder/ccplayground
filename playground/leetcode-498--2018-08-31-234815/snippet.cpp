@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -48,14 +49,16 @@ public:
         vector<int> ret;
         int d = 1;
         int i = 0, j = 0;
-        if (matrix.empty()) return ret;
+        if (matrix.empty())
+            return ret;
         int x = matrix.size() - 1, y = matrix[0].size() - 1;
         while (true) {
-            if (i>=0 && j>=0 && i<=x && j<=y) ret.push_back(matrix[i][j]);
+            if (i >= 0 && j >= 0 && i <= x && j <= y)
+                ret.push_back(matrix[i][j]);
             if (i == x && j == y) {
                 break;
             } else if (i == x && d == -1) {
-                j++;   
+                j++;
                 d = 1;
             } else if (i == 0 && d == 1) {
                 j++;
@@ -78,6 +81,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

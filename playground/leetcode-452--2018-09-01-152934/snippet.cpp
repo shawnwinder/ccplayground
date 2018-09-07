@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -47,13 +49,14 @@ using namespace std;
 class Solution {
 public:
     int findMinArrowShots(vector<pair<int, int>>& points) {
-        if (points.empty()) return 0;
+        if (points.empty())
+            return 0;
         sort(points.begin(), points.end());
         int ret = 1;
         int l = points[0].second;
-        for (int i=1;i<points.size(); i++) {
-            if (points[i].first > l) { 
-                ret ++;
+        for (int i = 1; i < points.size(); i++) {
+            if (points[i].first > l) {
+                ret++;
                 l = points[i].second;
             } else {
                 l = min(points[i].second, l);
@@ -63,6 +66,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

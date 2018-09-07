@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -39,22 +40,25 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     /** @param head The linked list's head.
         Note that the head is guaranteed to be not null, so it contains at least one node. */
-    Solution(ListNode* head):h(head) {
+    Solution(ListNode* head)
+        : h(head) {
         srand(time(0));
     }
-    
     /** Returns a random node's value. */
     int getRandom() {
         uint l = 0;
@@ -62,8 +66,9 @@ public:
         ListNode* i = h;
         while (i) {
             uniform_int_distribution<int> d(0, l);
-            if (d(gen) == 0) ret = i->val;
-            l ++;
+            if (d(gen) == 0)
+                ret = i->val;
+            l++;
             i = i->next;
         }
         return ret;
@@ -78,6 +83,4 @@ public:
  * int param_1 = obj.getRandom();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

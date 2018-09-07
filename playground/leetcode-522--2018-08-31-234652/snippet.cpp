@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -54,35 +57,38 @@ using namespace std;
 class Solution {
 public:
     bool is_subseq(const string& l, const string& s) {
-        int i=0, j=0;
+        int i = 0, j = 0;
         while (i < l.size() && j < s.size()) {
-            if (l[i] == s[j]) j ++;
-            i ++;
+            if (l[i] == s[j])
+                j++;
+            i++;
         }
         return j == s.size();
     }
     int findLUSlength(vector<string>& strs) {
-        if (strs.empty()) return -1;
+        if (strs.empty())
+            return -1;
         unordered_map<string, int> m;
-        for (auto& s:strs) m[s] ++;
+        for (auto& s : strs)
+            m[s]++;
         vector<pair<string, int>> v(m.begin(), m.end());
         auto cmp = [](pair<string, int>& a, pair<string, int>& b) {
             return a.first.size() > b.first.size();
         };
         sort(v.begin(), v.end(), cmp);
-        for (int i=0;i<v.size();i++) {
+        for (int i = 0; i < v.size(); i++) {
             if (v[i].second == 1) {
-               int j = 0;
-                for (;j<i;j++) {
-                    if (is_subseq(v[j].first, v[i].first)) break;
+                int j = 0;
+                for (; j < i; j++) {
+                    if (is_subseq(v[j].first, v[i].first))
+                        break;
                 }
-                if (j==i) return v[i].first.size();
+                if (j == i)
+                    return v[i].first.size();
             }
         }
         return -1;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -55,7 +56,7 @@ class Solution {
 public:
     int hIndex(vector<int> citations) {
         int n = citations.size();
-        int lo = 0, hi = n-1;
+        int lo = 0, hi = n - 1;
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
             // find the first citations[i] >= n-i
@@ -65,11 +66,8 @@ public:
                 lo = mid + 1;
             }
         }
-        return n-lo;
+        return n - lo;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

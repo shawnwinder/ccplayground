@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -54,45 +56,48 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for a point.
- * struct Point {
- *     int x;
- *     int y;
- *     Point() : x(0), y(0) {}
- *     Point(int a, int b) : x(a), y(b) {}
- * };
- */
- class Solution {
- public:
-   int orientation(Point p, Point q, Point r) {
-     return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-   }
-   vector<Point> outerTrees(vector<Point>& points) {
-     auto cmp = [](Point& p, Point& q) {
-       return q.x - p.x == 0 ? p.y < q.y : p.x < q.x;
-     };
-     sort(points.begin(), points.end(), cmp);
-     vector<Point> hull;
-     for (int i = 0; i < points.size(); i++) {
-       while (hull.size() >= 2 && orientation(hull[hull.size() - 2], hull[hull.size() - 1], points[i]) > 0)
-         hull.pop_back();
-       hull.push_back(points[i]);
-     }
-     hull.pop_back();
-     for (int i = points.size() - 1; i >= 0; i--) {
-       while (hull.size() >= 2 && orientation(hull[hull.size() - 2], hull[hull.size() - 1], points[i]) > 0)
-         hull.pop_back();
-       hull.push_back(points[i]);
-     }
-     sort(hull.begin(), hull.end(), cmp);
-     hull.erase(unique(hull.begin(), hull.end(), [](Point& p, Point& q) { return p.x == q.x && p.y == q.y;}), hull.end());
-     return hull;
-   }
- };
 
+#ifdef CC_PLAYGROUND
+struct Point {
+    int x;
+    int y;
+    Point()
+        : x(0)
+        , y(0) {}
+    Point(int a, int b)
+        : x(a)
+        , y(b) {}
+};
+#endif
 
+class Solution {
+public:
+    int orientation(Point p, Point q, Point r) {
+        return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+    }
+    vector<Point> outerTrees(vector<Point>& points) {
+        auto cmp = [](Point& p, Point& q) { return q.x - p.x == 0 ? p.y < q.y : p.x < q.x; };
+        sort(points.begin(), points.end(), cmp);
+        vector<Point> hull;
+        for (int i = 0; i < points.size(); i++) {
+            while (hull.size() >= 2
+                && orientation(hull[hull.size() - 2], hull[hull.size() - 1], points[i]) > 0)
+                hull.pop_back();
+            hull.push_back(points[i]);
+        }
+        hull.pop_back();
+        for (int i = points.size() - 1; i >= 0; i--) {
+            while (hull.size() >= 2
+                && orientation(hull[hull.size() - 2], hull[hull.size() - 1], points[i]) > 0)
+                hull.pop_back();
+            hull.push_back(points[i]);
+        }
+        sort(hull.begin(), hull.end(), cmp);
+        hull.erase(unique(hull.begin(), hull.end(),
+                       [](Point& p, Point& q) { return p.x == q.x && p.y == q.y; }),
+            hull.end());
+        return hull;
+    }
+};
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

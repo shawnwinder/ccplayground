@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -52,17 +53,16 @@ using namespace std;
 class Solution {
 public:
     int combinationSum4(vector<int>& nums, int target) {
-        vector<int> result(target + 1);
-        result[0] = 1;
+        vector<int> ret(target + 1);
+        ret[0] = 1;
         for (int i = 1; i <= target; ++i) {
             for (int x : nums) {
                 if (i >= x) {
-                    result[i] += result[i - x];
+                    ret[i] += ret[i - x];
                 }
             }
         }
-        
-        return result[target];
+        return ret[target];
     }
 };
 

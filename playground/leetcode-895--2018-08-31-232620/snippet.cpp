@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <stack>
 
 using namespace std;
 
@@ -15,7 +17,8 @@ using namespace std;
  * Hard (49.13%)
  * Total Accepted:    2.1K
  * Total Submissions: 4.4K
- * Testcase Example:  '["FreqStack","push","push","push","push","push","push","pop","pop","pop","pop"]\n[[],[5],[7],[5],[7],[4],[5],[],[],[],[]]'
+ * Testcase Example:
+ * '["FreqStack","push","push","push","push","push","push","pop","pop","pop","pop"]\n[[],[5],[7],[5],[7],[4],[5],[],[],[],[]]'
  *
  * Implement FreqStack, a class which simulates the operation of a stack-like
  * data structure.
@@ -83,17 +86,24 @@ using namespace std;
  *
  */
 class FreqStack {
-public:
-    FreqStack() {
+    unordered_map<int, int> freq;
+    unordered_map<int, stack<int>> m;
+    int maxfreq = 0;
 
-    }
+public:
+    FreqStack() {}
 
     void push(int x) {
-
+        maxfreq = max(maxfreq, ++freq[x]);
+        m[freq[x]].push(x);
     }
 
     int pop() {
-
+        int x = m[maxfreq].top();
+        m[maxfreq].pop();
+        if (!m[freq[x]--].size())
+            maxfreq--;
+        return x;
     }
 };
 
@@ -104,6 +114,4 @@ public:
  * int param_2 = obj.pop();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

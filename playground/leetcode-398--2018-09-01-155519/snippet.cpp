@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <random>
+#include <vector>
 
 using namespace std;
 
@@ -42,22 +44,23 @@ using namespace std;
  */
 class Solution {
 public:
-    Solution(vector<int> nums) : d(nums) {
+    Solution(vector<int> nums)
+        : d(nums) {}
 
-    }
-    
     int pick(int target) {
         int cnt = 0;
         int ans = -1;
-        for (int i=0;i<d.size();i++) {
+        for (int i = 0; i < d.size(); i++) {
             if (d[i] == target) {
-                cnt ++;
+                cnt++;
                 uniform_int_distribution<int> ud(1, cnt);
-                if (ud(gen) == cnt) ans = i;
+                if (ud(gen) == cnt)
+                    ans = i;
             }
         }
         return ans;
     }
+
 private:
     default_random_engine gen;
     vector<int> d;
@@ -69,6 +72,4 @@ private:
  * int param_1 = obj.pick(target);
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -40,25 +41,15 @@ using namespace std;
 class Solution {
 public:
     string convertToBase7(int num) {
-        string sign;
         if (num < 0)
-        {
-            sign = "-";
-            num = -num;
-        }
-        stringstream ss;
-        for (auto i=num % 7; num; num /= 7, i = num % 7) {
-            ss << i;
-        }
-        string ret = ss.str();
-        reverse(begin(ret), end(ret));
-        if (ret.empty())
-            return "0";
-        return sign + ret;
+            return '-' + convertToBase7(-num);
+        string r;
+        do
+            r.push_back(num % 7 + '0');
+        while (num /= 7);
+        reverse(begin(r), end(r));
+        return r;
     }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

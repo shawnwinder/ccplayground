@@ -18,7 +18,7 @@ using namespace std;
  * Testcase Example:  '123'
  *
  * Convert a non-negative integer to its english words representation. Given
- * input is guaranteed to be less than 231 - 1.
+ * input is guaranteed to be less than 2^31 - 1.
  *
  * Example 1:
  *
@@ -50,91 +50,44 @@ using namespace std;
  *
  *
  */
-var (
-	words [1000]string
-)
+class Solution {
+    static const char* const below_20[];
+    static const char* const below_100[];
+    static string int_string(int n) {
+        if (n >= 1000000000)
+            return int_string(n / 1000000000) + " Billion"
+                + int_string(n - 1000000000 * (n / 1000000000));
+        else if (n >= 1000000)
+            return int_string(n / 1000000) + " Million" + int_string(n - 1000000 * (n / 1000000));
+        else if (n >= 1000)
+            return int_string(n / 1000) + " Thousand" + int_string(n - 1000 * (n / 1000));
+        else if (n >= 100)
+            return int_string(n / 100) + " Hundred" + int_string(n - 100 * (n / 100));
+        else if (n >= 20)
+            return string(" ") + below_100[n / 10 - 2] + int_string(n - 10 * (n / 10));
+        else if (n >= 1)
+            return string(" ") + below_20[n - 1];
+        else
+            return "";
+    }
 
-func init() {
-	words[0] = ""
-	words[1] = " One"
-	words[2] = " Two"
-	words[3] = " Three"
-	words[4] = " Four"
-	words[5] = " Five"
-	words[6] = " Six"
-	words[7] = " Seven"
-	words[8] = " Eight"
-	words[9] = " Nine"
-	words[10] = " Ten"
-	words[11] = " Eleven"
-	words[12] = " Twelve"
-	words[13] = " Thirteen"
-	words[14] = " Fourteen"
-	words[15] = " Fifteen"
-	words[16] = " Sixteen"
-	words[17] = " Seventeen"
-	words[18] = " Eighteen"
-	words[19] = " Nineteen"
-	words[20] = " Twenty"
-	words[30] = " Thirty"
-	words[40] = " Forty"
-	words[50] = " Fifty"
-	words[60] = " Sixty"
-	words[70] = " Seventy"
-	words[80] = " Eighty"
-	words[90] = " Ninety"
+public:
+    static string numberToWords(int n) {
+        if (n == 0)
+            return "Zero";
+        else
+            return int_string(n).substr(1);
+    }
+};
 
-	for i := 20; i < 100; i += 10 {
+const char* const Solution::below_20[] = { "One", "Two", "Three", "Four", "Five", "Six", "Seven",
+    "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+    "Seventeen", "Eighteen", "Nineteen" };
+const char* const Solution::below_100[]
+    = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
-		for j := 1; j < 10; j++ {
+int mymain(int argc, char* argv[]) {
+    std::cout << Solution::numberToWords(123) << std::endl;
 
-			words[i+j] = words[i] + words[j]
-		}
-	}
-
-	for i := 1; i < 10; i++ {
-
-		for j := 0; j < 100; j++ {
-
-			words[i*100+j] = words[i] + " Hundred" + words[j]
-		}
-	}
-}
-
-func numberToWords(num int) string {
-    	if num == 0 {
-		return "Zero"
-	}
-	words[0] = " "
-
-	ret := ""
-	if res := num / 1000000000; res > 0 {
-
-		ret += words[res] + " Billion"
-		num = num % 1000000000
-
-	}
-
-	if res := num / 1000000; res > 0 {
-
-		ret += words[res] + " Million"
-		num = num % 1000000
-
-	}
-
-	if res := num / 1000; res > 0 {
-
-		ret += words[res] + " Thousand"
-		num = num % 1000
-
-	}
-
-	ret += words[num]
-
-	return strings.TrimSpace(ret)
-}
-
-
-int mymain(int argc, char *argv[]) {
     return 0;
 }

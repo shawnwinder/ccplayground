@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -41,11 +43,11 @@ using namespace std;
  */
 class Solution {
 public:
-    void wiggleSort(vector<int> &a) {
+    void wiggleSort(vector<int>& a) {
         int n = a.size();
-        nth_element(a.begin(), a.begin()+n/2, a.end());
-        int i = 0, j = 0, k = n-1, mid = a[n/2];
-#define A(x) a[(2*(x)+1)%(n|1)]
+        nth_element(a.begin(), a.begin() + n / 2, a.end());
+        int i = 0, j = 0, k = n - 1, mid = a[n / 2];
+#define A(x) a[(2 * (x) + 1) % (n | 1)]
         while (j <= k)
             if (A(j) > mid)
                 swap(A(i++), A(j++));
@@ -56,6 +58,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

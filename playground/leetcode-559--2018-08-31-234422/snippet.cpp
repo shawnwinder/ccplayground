@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Easy (60.77%)
  * Total Accepted:    7.3K
  * Total Submissions: 12.1K
- * Testcase Example:  '{"$id":"1","children":[{"$id":"2","children":[{"$id":"5","children":[],"val":5},{"$id":"6","children":[],"val":6}],"val":3},{"$id":"3","children":[],"val":2},{"$id":"4","children":[],"val":4}],"val":1}'
+ * Testcase Example:
+ * '{"$id":"1","children":[{"$id":"2","children":[{"$id":"5","children":[],"val":5},{"$id":"6","children":[],"val":6}],"val":3},{"$id":"3","children":[],"val":2},{"$id":"4","children":[],"val":4}],"val":1}'
  *
  * Given a n-ary tree, find its maximum depth.
  *
@@ -39,8 +41,7 @@ using namespace std;
  *
  *
  */
-/*
-// Definition for a Node.
+
 class Node {
 public:
     int val;
@@ -53,14 +54,17 @@ public:
         children = _children;
     }
 };
-*/
+
 class Solution {
 public:
     int maxDepth(Node* root) {
-
+        if (!root)
+            return 0;
+        int res = 1;
+        for (Node* child : root->children)
+            res = max(res, maxDepth(child) + 1);
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

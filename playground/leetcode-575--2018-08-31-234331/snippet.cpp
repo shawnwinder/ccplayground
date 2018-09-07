@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -59,10 +61,8 @@ public:
     int distributeCandies(vector<int>& candies) {
         sort(candies.begin(), candies.end());
         int d = distance(candies.begin(), unique(candies.begin(), candies.end()));
-        return min((int)candies.size()/2, d);
+        return min((int)candies.size() / 2, d);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

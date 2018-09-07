@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Hard (31.24%)
  * Total Accepted:    69.7K
  * Total Submissions: 223.2K
- * Testcase Example:  '["MedianFinder","addNum","addNum","findMedian","addNum","findMedian"]\n[[],[1],[2],[],[3],[]]'
+ * Testcase Example:
+ * '["MedianFinder","addNum","addNum","findMedian","addNum","findMedian"]\n[[],[1],[2],[],[3],[]]'
  *
  * Median is the middle value in an ordered integer list. If the size of the
  * list is even, there is no middle value. So the median is the mean of the two
@@ -59,18 +61,21 @@ using namespace std;
  *
  */
 class MedianFinder {
+    priority_queue<long> small, large;
+
 public:
-    /** initialize your data structure here. */
-    MedianFinder() {
-
-    }
-
     void addNum(int num) {
-
+        small.push(num);
+        large.push(-small.top());
+        small.pop();
+        if (small.size() < large.size()) {
+            small.push(-large.top());
+            large.pop();
+        }
     }
 
     double findMedian() {
-
+        return small.size() > large.size() ? small.top() : (small.top() - large.top()) / 2.0;
     }
 };
 
@@ -81,6 +86,4 @@ public:
  * double param_2 = obj.findMedian();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -32,17 +32,13 @@ using namespace std;
 class Solution {
 public:
     int countSegments(string s) {
-        if (s.empty()) return 0;
-        char l = s[0];
-        int ret = l != ' ';
-        for (int i = 1;i<s.size(); i++) {
-            if (s[i] != ' ' && l == ' ') ret ++;
-            l = s[i];
+        int r = s.size() && s.back() != ' ';
+        for (int i = 1; i < s.size(); i++) {
+            if (s[i] == ' ' && s[i - 1] != ' ')
+                r++;
         }
-        return ret;
+        return r;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

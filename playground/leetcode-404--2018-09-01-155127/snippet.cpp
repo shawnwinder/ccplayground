@@ -35,13 +35,13 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
@@ -52,11 +52,13 @@ public:
         while (root) {
             TreeNode* l = root->left;
             if (l) {
-                while (l->right && l->right != root) l = l->right;
+                while (l->right && l->right != root)
+                    l = l->right;
                 if (l->right != root) {
                     TreeNode* tmp = root;
                     root = root->left;
-                    if (!root->left && !root->right) ret += root->val;
+                    if (!root->left && !root->right)
+                        ret += root->val;
                     l->right = tmp;
                     continue;
                 } else {
@@ -69,6 +71,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

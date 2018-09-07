@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -44,54 +45,21 @@ using namespace std;
 class Solution {
 public:
     vector<string> findWords(vector<string>& words) {
-        vector<string> ans;
-        for (int i=0; i<words.size(); i++) {
-            int l1 = 0;
-            int l2 = 0;
-            int l3 = 0;
-            
-            for (char c : words[i]) {
-                
-            c = tolower(c);
-        
-        switch (c) {
-            case 'q':
-            case 'w':
-            case 'e':
-            case 'r':
-            case 't':
-            case 'y':
-            case 'u':
-            case 'i':
-            case 'o':
-            case 'p':
-                l1 = 1;
-                break;
-            case 'a':
-            case 's':
-            case 'd':
-            case 'f':
-            case 'g':
-            case 'h':
-            case 'j':
-            case 'k':
-            case 'l':
-                l2 = 1;
-                break;
-            case 'z':
-            case 'x':
-            case 'c':
-            case 'v':
-            case 'b':
-            case 'n':
-            case 'm':
-                l3 = 1;
-                break;
+        vector<int> dict(26);
+        vector<string> rows = {"QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"};
+        for (int i = 0; i < rows.size(); i++) {
+            for (auto c : rows[i]) dict[c-'A'] = 1 << i;
         }
+        vector<string> res;
+        for (auto w : words) {
+            int r = 7;
+            for (char c : w) {
+                r &= dict[toupper(c)-'A'];
+                if (r == 0) break;
             }
-            if (l1 + l2 + l3 == 1) ans.push_back(words[i]);
+            if (r) res.push_back(w);
         }
-        return ans;
+        return res;
     }
 };
 

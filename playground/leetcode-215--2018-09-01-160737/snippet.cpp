@@ -48,9 +48,7 @@ public:
         while (s <= t) {
             uniform_int_distribution<int> ui(s, t);
             int mid = nums[ui(gen)];
-            int i = s;
-            int j = s;
-            int n = t;
+            int i = s, j = s, n = t;
             while (j <= n) {
                 if (nums[j] > mid) {
                     swap(nums[i++], nums[j++]);

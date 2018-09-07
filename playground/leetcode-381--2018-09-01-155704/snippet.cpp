@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +17,8 @@ using namespace std;
  * Hard (29.95%)
  * Total Accepted:    28.3K
  * Total Submissions: 94.5K
- * Testcase Example:  '["RandomizedCollection","insert","insert","insert","getRandom","remove","getRandom"]\n[[],[1],[1],[2],[],[1],[]]'
+ * Testcase Example:
+ * '["RandomizedCollection","insert","insert","insert","getRandom","remove","getRandom"]\n[[],[1],[1],[2],[],[1],[]]'
  *
  * Design a data structure that supports all following operations in average
  * O(1) time.
@@ -61,26 +64,42 @@ using namespace std;
  *
  */
 class RandomizedCollection {
+    vector<pair<int, int>> nums;
+    unordered_map<int, vector<int>> m;
+
 public:
     /** Initialize your data structure here. */
-    RandomizedCollection() {
+    RandomizedCollection() {}
 
-    }
-
-    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
+    /** Inserts a value to the collection. Returns true if the collection did not already contain
+     * the specified element. */
     bool insert(int val) {
+        auto result = m.find(val) == m.end();
 
+        m[val].push_back(nums.size());
+        nums.push_back(pair<int, int>(val, m[val].size() - 1));
+
+        return result;
     }
 
-    /** Removes a value from the collection. Returns true if the collection contained the specified element. */
+    /** Removes a value from the collection. Returns true if the collection contained the specified
+     * element. */
     bool remove(int val) {
-
+        auto result = m.find(val) != m.end();
+        if (result) {
+            auto last = nums.back();
+            m[last.first][last.second] = m[val].back();
+            nums[m[val].back()] = last;
+            m[val].pop_back();
+            if (m[val].empty())
+                m.erase(val);
+            nums.pop_back();
+        }
+        return result;
     }
 
     /** Get a random element from the collection. */
-    int getRandom() {
-
-    }
+    int getRandom() { return nums[rand() % nums.size()].first; }
 };
 
 /**
@@ -91,6 +110,4 @@ public:
  * int param_3 = obj.getRandom();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

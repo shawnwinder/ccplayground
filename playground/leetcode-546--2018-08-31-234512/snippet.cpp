@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -50,12 +51,32 @@ using namespace std;
  *
  */
 class Solution {
+    int memo[100][100][100] = { 0 };
+
+    int dfs(vector<int>& boxes, int l, int r, int k) {
+        if (l > r)
+            return 0;
+        if (memo[l][r][k] != 0)
+            return memo[l][r][k];
+        while (r > l && boxes[r] == boxes[r - 1]) {
+            r--;
+            k++;
+        }
+        memo[l][r][k] = dfs(boxes, l, r - 1, 0) + (k + 1) * (k + 1);
+        for (int i = l; i < r; i++) {
+            if (boxes[i] == boxes[r]) {
+                memo[l][r][k]
+                    = max(memo[l][r][k], dfs(boxes, l, i, k + 1) + dfs(boxes, i + 1, r - 1, 0));
+            }
+        }
+        return memo[l][r][k];
+    }
+
 public:
     int removeBoxes(vector<int>& boxes) {
-
+        int n = boxes.size();
+        return dfs(boxes, 0, n - 1, 0);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

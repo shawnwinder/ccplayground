@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <cmath>
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -76,16 +78,32 @@ using namespace std;
  *
  */
 // The rand7() API is already defined for you.
-// int rand7();
+int rand7();
 // @return a random integer in the range 1 to 7
 
 class Solution {
+    stack<int> cache;
+    constexpr static int N = 19;
+
+    void generate() {
+        long cur = 0, range = long(pow(7, N));
+        for (int i = 0; i < N; ++i)
+            cur += long(pow(7, i)) * (rand7() - 1);
+        while (cur < range / 10 * 10) {
+            cache.push(cur % 10 + 1);
+            cur /= 10;
+            range /= 10;
+        }
+    }
+
 public:
     int rand10() {
-
+        while (cache.size() == 0)
+            generate();
+        int res = cache.top();
+        cache.pop();
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

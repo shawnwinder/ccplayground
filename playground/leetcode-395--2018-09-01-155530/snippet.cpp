@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -51,35 +52,23 @@ using namespace std;
 class Solution {
 public:
     int longestSubstring(string s, int k) {
-        int ans = 0;
-        if (k <= 1) return s.size();
-        for (int t = 1; t <= 26; t++) {
-            int l = 0;
-            int r = 0;
-            int valid = 0;
-            int num = 0;
-            unordered_map<char, int> m;
-            while (r < s.size()) {
-                if (num <= t) {
-                    int& c = m[s[r]];
-                    c ++;
-                    if (c == 1) num ++;
-                    if (c == k) valid ++;
-                    r ++;
-                } else {
-                    int& c = m[s[l]];
-                    if (c == 1) num --;
-                    if (c == k) valid --;
-                    c --;
-                    l ++;
-                }
-                if (valid == num) ans = max(ans, r - l);
-            }
+        if (s.size() == 0 || k > s.size())
+            return 0;
+        if (k == 0)
+            return s.size();
+        unordered_map<char, int> m;
+        for (int i = 0; i < s.size(); i++) {
+            m[s[i]]++;
         }
-        return ans;
+        int idx = 0;
+        while (idx < s.size() && m[s[idx]] >= k)
+            idx++;
+        if (idx == s.size())
+            return s.size();
+        int left = longestSubstring(s.substr(0, idx), k);
+        int right = longestSubstring(s.substr(idx + 1), k);
+        return max(left, right);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

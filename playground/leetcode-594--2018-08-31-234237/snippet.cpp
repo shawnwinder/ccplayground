@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <map>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -40,23 +43,15 @@ using namespace std;
 class Solution {
 public:
     int findLHS(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        map<int, int> m;
-        for (int n:nums) {
-            m[n] ++;
-        }
-        pair<int, int> l = *m.begin();
-        int ret = 0;
-        for (auto e : m) {
-            if (e.first == l.first + 1) {
-                ret = max(ret, e.second + l.second);
-            }
-            l = e;
-        }
-        return ret;
+        int s = 0;
+        unordered_map<int, int> c;
+        for (int x : nums)
+            c[x]++;
+        for (auto& x : c)
+            if (c.count(x.first + 1))
+                s = max(s, x.second + c[x.first + 1]);
+        return s;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

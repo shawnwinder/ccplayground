@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -35,50 +38,50 @@ using namespace std;
  *
  */
 class Solution {
+protected:
+    void merge_countSmaller(
+        vector<int>& indices, int first, int last, vector<int>& results, vector<int>& nums) {
+        int count = last - first;
+        if (count > 1) {
+            int step = count / 2;
+            int mid = first + step;
+            merge_countSmaller(indices, first, mid, results, nums);
+            merge_countSmaller(indices, mid, last, results, nums);
+            vector<int> tmp;
+            tmp.reserve(count);
+            int idx1 = first;
+            int idx2 = mid;
+            int semicount = 0;
+            while ((idx1 < mid) || (idx2 < last)) {
+                if ((idx2 == last)
+                    || ((idx1 < mid) && (nums[indices[idx1]] <= nums[indices[idx2]]))) {
+                    tmp.push_back(indices[idx1]);
+                    results[indices[idx1]] += semicount;
+                    ++idx1;
+                } else {
+                    tmp.push_back(indices[idx2]);
+                    ++semicount;
+                    ++idx2;
+                }
+            }
+            move(tmp.begin(), tmp.end(), indices.begin() + first);
+        }
+    }
+
 public:
-  vector<int> countSmaller(vector<int>& nums) {
-    n = nums.size();
-    t.resize(n*2);
-
-    vector<int> sn = nums;
-    sort(sn.begin(), sn.end());
-    sn.erase(unique(sn.begin(), sn.end()), sn.end());
-    int i=0;
-    for (auto& x : sn) {
-      m[x] = i++;
+    vector<int> countSmaller(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> results(n, 0);
+        vector<int> indices(n, 0);
+        iota(indices.begin(), indices.end(), 0);
+        merge_countSmaller(indices, 0, n, results, nums);
+        return results;
     }
-
-    vector<int> res(nums.size());
-    for (auto i = nums.rbegin(); i != nums.rend(); ++i) {
-      int p = nums.size() - 1 - (i - nums.rbegin());
-      res[p] = query(0, m[*i]);
-      update(m[*i], 1);
-    }
-    return res;
-  }
-
-  void update(int i, int val) {
-    for (t[i += n] += val; i>1; i >>=1) {
-      t[i>>1] = t[i] + t[i^1];
-    }
-  }
-
-  int query(int i, int j) {
-    int res = 0;
-    for (i += n, j +=n; i<j; i>>=1, j>>=1 ) {
-      if (i&1) res += t[i++];
-      if (j&1) res += t[--j];
-    }
-    return res;
-  }
-
-private:
-  vector<int> t;
-  int n;
-  unordered_map<int, int> m;
 };
 
-
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    vector<int> input = { 5, 2, 6, 1 };
+    Solution s;
+    s.countSmaller(input);
     return 0;
 }

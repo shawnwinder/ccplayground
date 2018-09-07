@@ -45,16 +45,8 @@ using namespace std;
 class Solution {
 public:
     int hammingDistance(int x, int y) {
-        int bits = x ^ y;
-        int cnt = 0;
-        while (bits != 0) {
-            bits = bits & (bits - 1);
-            cnt ++;
-        }
-        return cnt;
+        return __builtin_popcount(x ^ y);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

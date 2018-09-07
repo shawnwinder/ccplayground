@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
 #include <iostream>
+#include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -59,10 +62,20 @@ using namespace std;
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
-
+        int s3 = INT_MIN;
+        stack<int> st;
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            if (nums[i] < s3)
+                return true;
+            else
+                while (!st.empty() && nums[i] > st.top()) {
+                    s3 = st.top();
+                    st.pop();
+                }
+            st.push(nums[i]);
+        }
+        return false;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

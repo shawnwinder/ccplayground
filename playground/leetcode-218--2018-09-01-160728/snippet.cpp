@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <set>
+#include <vector>
 
 using namespace std;
 
@@ -22,7 +25,7 @@ using namespace std;
  * given the locations and height of all the buildings as shown on a cityscape
  * photo (Figure A), write a program to output the skyline formed by these
  * buildings collectively (Figure B).
- * 
+ *
  *
  * The geometric information of each building is represented by a triplet of
  * integers [Li, Ri, Hi], where Li and Ri are the x coordinates of the left and
@@ -64,24 +67,24 @@ class Solution {
 public:
     vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
         vector<pair<int, int>> height;
-        for (auto &b : buildings) {
-            height.push_back({b[0], -b[2]});
-            height.push_back({b[1], b[2]});
+        for (auto& b : buildings) {
+            height.push_back({ b[0], -b[2] });
+            height.push_back({ b[1], b[2] });
         }
         sort(height.begin(), height.end());
         multiset<int> heap;
         heap.insert(0);
         vector<pair<int, int>> res;
         int pre = 0, cur = 0;
-        for (auto &h : height) {
+        for (auto& h : height) {
             if (h.second < 0) {
                 heap.insert(-h.second);
             } else {
                 heap.erase(heap.find(h.second));
-            }   
+            }
             cur = *heap.rbegin();
             if (cur != pre) {
-                res.push_back({h.first, cur});
+                res.push_back({ h.first, cur });
                 pre = cur;
             }
         }
@@ -89,6 +92,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

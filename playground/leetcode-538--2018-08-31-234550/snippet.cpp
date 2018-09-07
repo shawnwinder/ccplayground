@@ -39,23 +39,34 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
+    int cur_sum = 0;
+
+    void travel(TreeNode* root) {
+        if (!root)
+            return;
+        if (root->right)
+            travel(root->right);
+        root->val = (cur_sum += root->val);
+        if (root->left)
+            travel(root->left);
+    }
+
 public:
     TreeNode* convertBST(TreeNode* root) {
-
+        travel(root);
+        return root;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

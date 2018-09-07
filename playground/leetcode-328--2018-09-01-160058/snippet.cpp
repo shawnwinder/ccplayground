@@ -47,42 +47,32 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x)
+        : val(x)
+        , next(NULL) {}
+};
+#endif
+
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
-        auto oh = new ListNode(0);
-        auto eh = new ListNode(0);
-        oh->next = head;
-        eh->next = nullptr;
-        auto i = oh;
-        auto j = eh;
-        int c = 0;
-        while (i->next) {
-            if (c & 1) {
-                j->next = i->next;
-                j = j->next;
-                i->next = i->next->next;
-                j->next = nullptr;    
-            } else {
-                i = i->next;
-            }
-            c ++;
+        if (!head)
+            return head;
+        ListNode *odd = head, *evenhead = head->next, *even = evenhead;
+        while (even && even->next) {
+            odd->next = odd->next->next;
+            even->next = even->next->next;
+            odd = odd->next;
+            even = even->next;
         }
-        i->next = eh->next;
-        delete oh;
-        delete eh;
+        odd->next = evenhead;
         return head;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

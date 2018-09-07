@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ using namespace std;
  * For any sequence S, let the width of S be the difference between the maximum
  * and minimum element of S.
  *
- * Return the sum of the widths of all subsequences of A. 
+ * Return the sum of the widths of all subsequences of A.
  *
  * As the answer may be very large, return the answer modulo 10^9 + 7.
  *
@@ -61,14 +63,9 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    Solution s ;
-    vector<int > a = {2,1 ,3};
+int mymain(int argc, char* argv[]) {
+    Solution s;
+    vector<int> a = { 2, 1, 3 };
     std::cout << s.sumSubseqWidths(a) << std::endl;
-    return 0;
-}
-
-
-int mymain(int argc, char *argv[]) {
     return 0;
 }

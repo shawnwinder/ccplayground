@@ -47,23 +47,34 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(nullptr)
+        , right(nullptr) {}
 };
 #endif
 
 class Solution {
+    int maxdiadepth = 0;
+
+    int dfs(TreeNode* root) {
+        if (root == nullptr)
+            return 0;
+        int leftdepth = dfs(root->left);
+        int rightdepth = dfs(root->right);
+        if (leftdepth + rightdepth > maxdiadepth)
+            maxdiadepth = leftdepth + rightdepth;
+        return max(leftdepth + 1, rightdepth + 1);
+    }
+
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-
+        dfs(root);
+        return maxdiadepth;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

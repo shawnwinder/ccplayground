@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -56,30 +57,36 @@ public:
     int row, col;
     vector<vector<int>> dp;
     int dfs(vector<vector<int>>& m, int i, int j) {
-        if (dp[i][j]) return dp[i][j];
+        if (dp[i][j])
+            return dp[i][j];
         int res = 0;
-        if (i>0 && m[i-1][j] < m[i][j]) res = max(res, dfs(m, i-1, j));
-        if (j>0 && m[i][j-1] < m[i][j]) res = max(res, dfs(m, i, j-1));
-        if (i+1<row && m[i+1][j] < m[i][j]) res = max(res, dfs(m, i+1, j));
-        if (j+1<col && m[i][j+1] < m[i][j]) res = max(res, dfs(m, i, j+1));
-        return dp[i][j] = res+1;
+        if (i > 0 && m[i - 1][j] < m[i][j])
+            res = max(res, dfs(m, i - 1, j));
+        if (j > 0 && m[i][j - 1] < m[i][j])
+            res = max(res, dfs(m, i, j - 1));
+        if (i + 1 < row && m[i + 1][j] < m[i][j])
+            res = max(res, dfs(m, i + 1, j));
+        if (j + 1 < col && m[i][j + 1] < m[i][j])
+            res = max(res, dfs(m, i, j + 1));
+        return dp[i][j] = res + 1;
     }
     int longestIncreasingPath(vector<vector<int>>& matrix) {
         row = matrix.size();
-        if (row == 0) return 0;
+        if (row == 0)
+            return 0;
         col = matrix[0].size();
         dp.resize(row);
-        for (auto& v : dp) v.assign(col, 0);
+        for (auto& v : dp)
+            v.assign(col, 0);
         int ans = 0;
-        for (int i=0;i<row;i++) {
-            for (int j=0;j<col;j++) {
-                if (!dp[i][j]) ans = max(ans, dfs(matrix, i, j));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (!dp[i][j])
+                    ans = max(ans, dfs(matrix, i, j));
             }
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

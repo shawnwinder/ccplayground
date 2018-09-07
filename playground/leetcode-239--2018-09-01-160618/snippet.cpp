@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <deque>
 
 using namespace std;
 
@@ -53,13 +55,15 @@ public:
         int n = nums.size();
         deque<int> s;
         vector<int> ans;
-        for(int i=0;i<n;i++) {
-            while (!s.empty() && nums[i]>=nums[s.back()]) {
+        for (int i = 0; i < n; i++) {
+            while (!s.empty() && nums[i] >= nums[s.back()]) {
                 s.pop_back();
             }
             s.push_back(i);
-            if(i>=k-1) {
-                while(i-s[0]>k-1) {s.pop_front();}
+            if (i >= k - 1) {
+                while (i - s[0] > k - 1) {
+                    s.pop_front();
+                }
                 ans.push_back(nums[s[0]]);
             }
         }
@@ -67,6 +71,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -51,9 +51,9 @@ public:
         for (char c : s1)
             miss[c]++;
         vector<int> result;
-        for (int i=0; i<s2.size(); i++) {
+        for (int i = 0; i < s2.size(); i++) {
             missSum -= miss[s2[i]]-- > 0;
-            int start = i+1 - s1.size();
+            int start = i + 1 - s1.size();
             if (!missSum)
                 return true;
             missSum += start >= 0 && ++miss[s2[start]] > 0;
@@ -61,10 +61,5 @@ public:
         return false;
     }
 };
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
-
 
 int mymain(int argc, char* argv[]) { return 0; }

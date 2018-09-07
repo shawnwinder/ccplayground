@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -70,19 +71,26 @@ using namespace std;
  */
 class Solution {
 public:
+    //                b                              b
+    //   +----------------+             +----------------+
+    //   |                |             |                |
+    //   |                |             |                | a
+    // c |                |           c |                |
+    //   |                | a           |                |    f
+    //   +----------->    |             |                | <----+
+    //            d       |             |                |      | e
+    //                    |             |                       |
+    //                                  +-----------------------+
+    //                                               d
     bool isSelfCrossing(vector<int>& x) {
-        for (int i = 3; i < x.size(); ++i) {
-            if (x[i]>=x[i-2] && x[i-1]<=x[i-3])
+        int a = 0, b = 0, c = 0, d = 0, e = 0;
+        for (int f : x) {
+            if ((c && d <= f && e <= c) || (b && b <= d && d <= b + f && e <= c && c <= a + e))
                 return true;
-            if (i >= 4 &&x[i]+x[i-4]>=x[i-2]&&x[i-1]==x[i-3]) 
-                return true;
-            if (i >= 5 &&x[i-2] >= x[i-4]&& x[i-3] >= x[i-1]&& x[i]+x[i-4]>=x[i-2]&& x[i-1]+x[i-5]>=x[i-3])
-                return true;
+            a = b, b = c, c = d, d = e, e = f;
         }
         return false;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

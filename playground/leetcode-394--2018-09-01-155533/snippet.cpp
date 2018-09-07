@@ -43,33 +43,31 @@ using namespace std;
  *
  */
 
-func decodeString(s string) string {
-	istack := []int{1}
-	dstack := [][]byte{{}}
-	num := 0
-	for _, c := range []byte(s) {
-		switch {
-		case c >= '0' && c <= '9':
-			num = num*10 + int(c-'0')
-		case c == '[':
-			istack = append(istack, num)
-			num = 0
-			dstack = append(dstack, []byte{})
-		case c >= 'a' && c <= 'z':
-			dstack[len(dstack)-1] = append(dstack[len(dstack)-1], c)
-		case c == ']':
-			for i := 0; i < istack[len(istack)-1]; i++ {
-				dstack[len(dstack)-2] = append(dstack[len(dstack)-2], dstack[len(dstack)-1]...)
-			}
-			istack = istack[:len(istack)-1]
-			dstack = dstack[:len(dstack)-1]
-		}
-	}
-	return string(dstack[0])
-}
+class Solution {
+    string decodeString(const string& s, int& i) {
+        string res;
+        while (i < s.length() && s[i] != ']') {
+            if (!isdigit(s[i]))
+                res += s[i++];
+            else {
+                int n = 0;
+                while (i < s.length() && isdigit(s[i]))
+                    n = n * 10 + s[i++] - '0';
+                i++; // '['
+                string t = decodeString(s, i);
+                i++; // ']'
+                while (n-- > 0)
+                    res += t;
+            }
+        }
+        return res;
+    }
 
+public:
+    string decodeString(string s) {
+        int i = 0;
+        return decodeString(s, i);
+    }
+};
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

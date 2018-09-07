@@ -51,29 +51,30 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
-public:
-    int solve(TreeNode* root, int pre, int sum)  {
-        if (!root) return 0;
+    int f(TreeNode* root, int pre, int sum) {
+        if (!root)
+            return 0;
         int cur = pre + root->val;
-        return (cur == sum) + solve(root->left, cur, sum) + solve(root->right, cur, sum);
+        return (cur == sum) + f(root->left, cur, sum) + f(root->right, cur, sum);
     }
+
+public:
     int pathSum(TreeNode* root, int sum) {
-        if (!root) return 0;
-        return solve(root, 0, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
+        if (!root)
+            return 0;
+        return f(root, 0, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

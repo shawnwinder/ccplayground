@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Medium (36.63%)
  * Total Accepted:    .7K
  * Total Submissions: 165.7K
- * Testcase Example:  '["PeekingIterator","next","peek","next","next","hasNext"]\n[[[1,2,3]],[],[],[],[],[]]'
+ * Testcase Example:
+ * '["PeekingIterator","next","peek","next","next","hasNext"]\n[[[1,2,3]],[],[],[],[],[]]'
  *
  * Given an Iterator class interface with methods: next() and hasNext(), design
  * and implement a PeekingIterator that support the peek() operation -- it
@@ -43,43 +45,28 @@ using namespace std;
 // **DO NOT** modify the interface for Iterator.
 class Iterator {
     struct Data;
-	Data* data;
-public:
-	Iterator(const vector<int>& nums);
-	Iterator(const Iterator& iter);
-	virtual ~Iterator();
-	// Returns the next element in the iteration.
-	int next();
-	// Returns true if the iteration has more elements.
-	bool hasNext() const;
-};
+    Data* data;
 
+public:
+    Iterator(const vector<int>& nums);
+    Iterator(const Iterator& iter);
+    virtual ~Iterator();
+    // Returns the next element in the iteration.
+    int next();
+    // Returns true if the iteration has more elements.
+    bool hasNext() const;
+};
 
 class PeekingIterator : public Iterator {
 public:
-	PeekingIterator(const vector<int>& nums) : Iterator(nums) {
-	    // Initialize any member here.
-	    // **DO NOT** save a copy of nums and manipulate it directly.
-	    // You should only use the Iterator interface methods.
+    PeekingIterator(const vector<int>& nums)
+        : Iterator(nums) {}
 
-	}
+    int peek() { return Iterator(*this).next(); }
 
-    // Returns the next element in the iteration without advancing the iterator.
-	int peek() {
+    int next() { return Iterator::next(); }
 
-	}
-
-	// hasNext() and next() should behave the same as in the Iterator interface.
-	// Override them if needed.
-	int next() {
-
-	}
-
-	bool hasNext() const {
-
-	}
+    bool hasNext() const { return Iterator::hasNext(); }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

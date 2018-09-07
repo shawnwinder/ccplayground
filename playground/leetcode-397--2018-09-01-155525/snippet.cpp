@@ -65,14 +65,14 @@ using namespace std;
 class Solution {
 public:
     long integerReplacement(long n) {
-        
         int div = 0;
-        while (n % 2 == 0) n /= 2, div ++;
-        if (n == 1) return div;
-        else return div+1+ min(integerReplacement(n+1), integerReplacement(n-1));
+        while (n % 2 == 0)
+            n /= 2, div++;
+        if (n == 1)
+            return div;
+        else
+            return div + 1 + min(integerReplacement(n + 1), integerReplacement(n - 1));
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

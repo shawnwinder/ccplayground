@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -71,14 +72,11 @@ public:
     int change(int amount, vector<int>& coins) {
         vector<int> dp(amount + 1);
         dp[0] = 1;
-        for (int i=0;i<coins.size(); i++)
-            for (int j=coins[i];j<=amount;j++) 
-                dp[j] += dp[j-coins[i]];
+        for (int i = 0; i < coins.size(); i++)
+            for (int j = coins[i]; j <= amount; j++)
+                dp[j] += dp[j - coins[i]];
         return dp[amount];
-        
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

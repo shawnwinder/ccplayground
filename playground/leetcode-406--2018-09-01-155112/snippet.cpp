@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -42,16 +44,15 @@ using namespace std;
 class Solution {
 public:
     vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
-        auto comp = [](const pair<int, int>& p1, const pair<int, int>& p2)
-                    { return p1.first > p2.first || (p1.first == p2.first && p1.second < p2.second); };
+        auto comp = [](auto& p1, auto& p2) {
+            return p1.first > p2.first || (p1.first == p2.first && p1.second < p2.second);
+        };
         sort(people.begin(), people.end(), comp);
         vector<pair<int, int>> res;
-        for (auto& p : people) 
+        for (auto& p : people)
             res.insert(res.begin() + p.second, p);
         return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

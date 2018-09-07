@@ -2,7 +2,9 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -39,17 +41,15 @@ using namespace std;
 class Solution {
 public:
     int minMoves(vector<int>& nums) {
-        if (nums.empty()) return 0;
+        if (nums.empty())
+            return 0;
         int m = *min_element(nums.begin(), nums.end());
         int ret = 0;
-        for (int n:nums) {
+        for (int n : nums) {
             ret += n - m;
         }
         return ret;
-        
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

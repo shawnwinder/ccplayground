@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -57,17 +58,15 @@ using namespace std;
  */
 class Solution {
 public:
-int characterReplacement(string s, int k) {
-    int i = 0, j = 0, ctr[91] = {};
-    while (j < s.size()) {
-        ctr[s[j++]]++;
-        if (j-i - *max_element(ctr+65, ctr+91) > k)
-            ctr[s[i++]]--;
+    int characterReplacement(string s, int k) {
+        int i = 0, j = 0, ctr[91] = {};
+        while (j < s.size()) {
+            ctr[s[j++]]++;
+            if (j - i - *max_element(ctr + 65, ctr + 91) > k)
+                ctr[s[i++]]--;
+        }
+        return j - i;
     }
-    return j - i;
-}
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

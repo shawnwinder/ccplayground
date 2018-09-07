@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
+#include <climits>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -64,34 +67,41 @@ using namespace std;
  *
  *
  */
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
+
+#ifdef CC_PLAYGROUND
+struct Interval {
+    int start;
+    int end;
+    Interval()
+        : start(0)
+        , end(0) {}
+    Interval(int s, int e)
+        : start(s)
+        , end(e) {}
+};
+#endif
+
 class Solution {
 public:
     int eraseOverlapIntervals(vector<Interval>& intervals) {
-        auto cmp = [](Interval& a, Interval& b) {
-            return a.start < b.start;
-        };
+        auto cmp = [](Interval& a, Interval& b) { return a.start < b.start; };
         sort(intervals.begin(), intervals.end(), cmp);
-        int prev = INT_MIN;
-        int ret = 0;
-        for (auto i : intervals) {
-            if (i.start < prev) {
-                ret ++;
-                if (i.end < prev) prev = i.end;
-            } else prev = i.end;
+        int res = 0, pre = 0;
+        for (int i = 1; i < intervals.size(); i++) {
+            if (intervals[i].start < intervals[pre].end) {
+                res++;
+                if (intervals[i].end < intervals[pre].end)
+                    pre = i;
+            } else
+                pre = i;
         }
-        return ret;
+        return res;
     }
 };
 
-int mymain(int argc, char *argv[]) {
+int mymain(int argc, char* argv[]) {
+    vector<Interval> d = { { 1, 100 }, { 11, 22 }, { 1, 11 }, { 2, 12 } };
+    Solution s;
+    cout << s.eraseOverlapIntervals(d);
     return 0;
 }

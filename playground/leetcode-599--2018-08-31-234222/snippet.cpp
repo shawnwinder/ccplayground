@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +17,8 @@ using namespace std;
  * Easy (46.46%)
  * Total Accepted:    38.5K
  * Total Submissions: 83K
- * Testcase Example:  '["Shogun","Tapioca Express","Burger King","KFC"]\n["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]'
+ * Testcase Example:  '["Shogun","Tapioca Express","Burger King","KFC"]\n["Piatti","The Grill at
+ * Torrey Pines","Hungry Hunter Steakhouse","Shogun"]'
  *
  *
  * Suppose Andy and Doris want to choose a restaurant for dinner, and they both
@@ -66,28 +69,24 @@ public:
         unordered_map<string, int> m;
         vector<string> ret;
         int ans = list1.size() + list2.size();
-        int i=0;
-        for (auto& s:list1) {
+        int i = 0;
+        for (auto& s : list1) {
             m[s] = i++;
         }
-        i = 0;
-        for (auto& s:list2) {
-            auto t = m.find(s);
+        for (auto i = 0u; i < list2.size(); ++i) {
+            auto t = m.find(list2[i]);
             if (t != m.end()) {
                 int sum = t->second + i;
                 if (sum < ans) {
-                    ret = {s};
+                    ret = { list2[i] };
                     ans = sum;
                 } else if (sum == ans) {
-                    ret.push_back(s);
+                    ret.push_back(list2[i]);
                 }
             }
-            i++;
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -24,19 +24,19 @@ using namespace std;
  * Input:
  *
  *
- *     4
- *   /   \
- *  2     7
- * / \   / \
+ *      4
+ *    /   \
+ *   2     7
+ *  / \   / \
  * 1   3 6   9
  *
  * Output:
  *
  *
- *     4
- *   /   \
- *  7     2
- * / \   / \
+ *      4
+ *    /   \
+ *   7     2
+ *  / \   / \
  * 9   6 3   1
  *
  * Trivia:
@@ -49,20 +49,21 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if (root == NULL) return NULL;
+        if (root == NULL)
+            return NULL;
         swap(root->left, root->right);
         invertTree(root->left);
         invertTree(root->right);
@@ -70,6 +71,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

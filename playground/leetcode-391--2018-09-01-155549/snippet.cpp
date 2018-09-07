@@ -2,7 +2,11 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <algorithm>
+#include <climits>
 #include <iostream>
+#include <set>
+#include <vector>
 
 using namespace std;
 
@@ -95,13 +99,35 @@ using namespace std;
  *
  *
  */
+
 class Solution {
 public:
+    // sweep line
     bool isRectangleCover(vector<vector<int>>& rectangles) {
-
+        long area = 0, x0 = INT_MAX, x1 = INT_MIN, y0 = INT_MAX, y1 = INT_MIN;
+        vector<pair<int, pair<int, int>>> b;
+        set<pair<int, int>> active;
+        for (auto& a : rectangles) {
+            x0 = min(x0, long(a[0]));
+            y0 = min(y0, long(a[1]));
+            x1 = max(x1, long(a[2]));
+            y1 = max(y1, long(a[3]));
+            area += (long(a[2]) - a[0]) * (long(a[3]) - a[1]);
+            b.emplace_back(a[0] * 2 + 1, make_pair(a[1], a[3]));
+            b.emplace_back(a[2] * 2, make_pair(a[1], a[3]));
+        }
+        sort(b.begin(), b.end());
+        for (auto& a : b)
+            if (a.first % 2) {
+                auto it = active.lower_bound(a.second);
+                if ((it != active.begin() && a.second.first < prev(it)->second)
+                    || (it != active.end() && it->first < a.second.second))
+                    return false;
+                active.insert(it, a.second);
+            } else
+                active.erase(a.second);
+        return area == (x1 - x0) * (y1 - y0);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

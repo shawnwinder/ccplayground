@@ -2,6 +2,8 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <climits>
+#include <cstring>
 #include <iostream>
 
 using namespace std;
@@ -40,27 +42,57 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Codec {
-public:
+    inline void inorderDFS(TreeNode* root, string& order) {
+        if (!root)
+            return;
+        char buf[4];
+        memcpy(buf, &(root->val), sizeof(int)); // burn the int into 4 chars
+        for (int i = 0; i < 4; i++)
+            order.push_back(buf[i]);
+        inorderDFS(root->left, order);
+        inorderDFS(root->right, order);
+    }
 
+    inline TreeNode* reconstruct(const string& buffer, int& pos, int minValue, int maxValue) {
+        if (pos >= buffer.size())
+            return NULL; // using pos to check whether buffer ends is better than using char*
+                         // directly.
+
+        int value;
+        memcpy(&value, &buffer[pos], sizeof(int));
+        if (value < minValue || value > maxValue)
+            return NULL;
+
+        TreeNode* node = new TreeNode(value);
+        pos += sizeof(int);
+        node->left = reconstruct(buffer, pos, minValue, value);
+        node->right = reconstruct(buffer, pos, value, maxValue);
+        return node;
+    }
+
+public:
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-
+        string order;
+        inorderDFS(root, order);
+        return order;
     }
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
-
+        int pos = 0;
+        return reconstruct(data, pos, INT_MIN, INT_MAX);
     }
 };
 
@@ -68,6 +100,4 @@ public:
 // Codec codec;
 // codec.deserialize(codec.serialize(root));
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

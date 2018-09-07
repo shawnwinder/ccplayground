@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -67,15 +69,15 @@ public:
         sort(g.begin(), g.end());
         int i = 0;
         int ret = 0;
-        for(int c:g) {
-            while (i < s.size() && s[i] < c) i++;
-            if (i < s.size()) ret ++;
-            i ++;
+        for (int c : g) {
+            while (i < s.size() && s[i] < c)
+                i++;
+            if (i < s.size())
+                ret++;
+            i++;
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

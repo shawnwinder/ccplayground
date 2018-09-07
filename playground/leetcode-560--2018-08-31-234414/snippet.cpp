@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -38,20 +40,19 @@ using namespace std;
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        if (nums.empty()) return 0;
+        if (nums.empty())
+            return 0;
         int ret = 0;
         unordered_map<int, int> m;
         int sum = 0;
         m[0] = 1;
-        for (int i:nums) {
+        for (int i : nums) {
             sum += i;
             ret += m[sum - k];
-            m[sum] ++;
+            m[sum]++;
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

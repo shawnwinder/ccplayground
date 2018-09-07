@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Easy (47.08%)
  * Total Accepted:    1.4K
  * Total Submissions: 3.1K
- * Testcase Example:  '[[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]]'
+ * Testcase Example:
+ * '[[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]]'
  *
  * We want to use quad trees to store an N x N boolean grid. Each cell in the
  * grid can only be true or false. The root node represents the whole grid. For
@@ -55,8 +57,8 @@ using namespace std;
  *
  *
  */
-/*
-// Definition for a QuadTree node.
+
+#ifdef CC_PLAYGROUND
 class Node {
 public:
     bool val;
@@ -68,7 +70,8 @@ public:
 
     Node() {}
 
-    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft, Node* _bottomRight) {
+    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft,
+        Node* _bottomRight) {
         val = _val;
         isLeaf = _isLeaf;
         topLeft = _topLeft;
@@ -77,14 +80,46 @@ public:
         bottomRight = _bottomRight;
     }
 };
-*/
+#endif
+
 class Solution {
+private:
+    Node* buildNode(vector<vector<int>>& grid, int x, int y, int length) {
+        if (length == 1) {
+            return new Node(grid[x][y] == 1, true, nullptr, nullptr, nullptr, nullptr);
+        }
+
+        int newLength = length / 2;
+        Node* topLeft = buildNode(grid, x, y, newLength);
+        Node* topRight = buildNode(grid, x, y + newLength, newLength);
+        Node* botLeft = buildNode(grid, x + newLength, y, newLength);
+        Node* botRight = buildNode(grid, x + newLength, y + newLength, newLength);
+
+        if (topLeft->isLeaf && topRight->isLeaf && botRight->isLeaf && botLeft->isLeaf
+            && ((topLeft->val && topRight->val && botLeft->val && botRight->val)
+                   || !(topLeft->val || topRight->val || botLeft->val || botRight->val))) {
+            bool val = topLeft->val;
+            delete topLeft;
+            topLeft = nullptr;
+            delete topRight;
+            topRight = nullptr;
+            delete botLeft;
+            botLeft = nullptr;
+            delete botRight;
+            botRight = nullptr;
+            return new Node(val, true, nullptr, nullptr, nullptr, nullptr);
+        }
+        return new Node(true, false, topLeft, topRight, botLeft, botRight);
+    }
+
 public:
     Node* construct(vector<vector<int>>& grid) {
-
+        int N = grid.size();
+        if (N == 0) {
+            return nullptr;
+        }
+        return buildNode(grid, 0, 0, N);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -84,57 +86,36 @@ using namespace std;
  */
 class Solution {
 public:
-  int minMutation(string start, string end, const vector<string>& bank) {
-    size_t n = bank.size() + 1;
-    vector<vector<int>> g(n, vector<int>{});
-    int e = -1;
-    for (int i = 1; i < n; i++) {
-      if (adj(start, bank[i-1])) {
-        g[0].push_back(i);
-      }
-      for (int j = 1; j < n; j++) {
-        if (adj(bank[j-1], bank[i-1])) {
-          g[i].push_back(j);
+    int minMutation(string start, string end, vector<string>& bank) {
+        unordered_set<string> dict(bank.begin(), bank.end());
+        if (!dict.count(end))
+            return -1;
+        unordered_set<string> bset, eset;
+        bset.insert(start), eset.insert(end);
+        int step = 0, n = start.size();
+        while (!bset.empty() and !eset.empty()) {
+            if (bset.size() <= eset.size())
+                swap(bset, eset);
+            unordered_set<string> tmp;
+            step++;
+            for (auto itr = bset.begin(); itr != bset.end(); ++itr) {
+                for (int i = 0; i < n; ++i) {
+                    string dna = *itr;
+                    for (auto g : string("ATGC")) {
+                        dna[i] = g;
+                        if (eset.count(dna))
+                            return step;
+                        if (dict.count(dna)) {
+                            tmp.insert(dna);
+                            dict.erase(dna);
+                        }
+                    }
+                }
+            }
+            bset = std::move(tmp);
         }
-      }
-      if (bank[i-1] == end) e = i;
+        return -1;
     }
-
-    vector<int> d(n, -1);
-    using pii = pair<int, int>;
-    using vii = vector<pii>;
-
-    std::priority_queue<pii, vii, greater<pii>> q;
-    q.emplace(0, 0);
-    d[0] = 0;
-    while (!q.empty()) {
-      pii i = q.top();
-      int v = i.second;
-      int w = i.first;
-      q.pop();
-      if (v == e) return w;
-      for (auto t : g[v]) {
-        if (d[t] == -1 || d[v] + 1 < d[t]) {
-          d[t] = d[v] + 1;
-          q.emplace(d[t], t);
-        }
-      }
-    }
-    return -1;
-  }
-
-private:
-  bool adj(string a, string b) {
-    int c = 0;
-    for (auto i = 0; i < a.size(); ++i) {
-      if (a[i] != b[i]) c++;
-    }
-    return c == 1;
-  }
 };
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

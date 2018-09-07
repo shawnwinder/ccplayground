@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -75,21 +76,19 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
-        if (nums.empty() || r * c != nums.size()*nums[0].size()) {
+        if (nums.empty() || r * c != nums.size() * nums[0].size()) {
             return nums;
         }
         vector<vector<int>> ans(r, vector<int>(c));
         int idx = 0;
-        for (int i=0; i<nums.size(); i++) {
-            for (int j=0; j<nums[i].size(); j ++) {
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < nums[i].size(); j++) {
                 ans[idx / c][idx % c] = nums[i][j];
-                idx ++;
+                idx++;
             }
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

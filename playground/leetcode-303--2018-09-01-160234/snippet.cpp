@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,7 +16,8 @@ using namespace std;
  * Easy (33.83%)
  * Total Accepted:    105.9K
  * Total Submissions: 313K
- * Testcase Example:  '["NumArray","sumRange","sumRange","sumRange"]\n[[[-2,0,3,-5,2,-1]],[0,2],[2,5],[0,5]]'
+ * Testcase Example:
+ * '["NumArray","sumRange","sumRange","sumRange"]\n[[[-2,0,3,-5,2,-1]],[0,2],[2,5],[0,5]]'
  *
  * Given an integer array nums, find the sum of the elements between indices i
  * and j (i <= j), inclusive.
@@ -40,12 +42,15 @@ using namespace std;
 class NumArray {
 public:
     NumArray(vector<int> nums) {
-
+        accu.push_back(0);
+        for (int num : nums)
+            accu.push_back(accu.back() + num);
     }
 
-    int sumRange(int i, int j) {
+    int sumRange(int i, int j) { return accu[j + 1] - accu[i]; }
 
-    }
+private:
+    vector<int> accu;
 };
 
 /**
@@ -54,6 +59,4 @@ public:
  * int param_1 = obj.sumRange(i,j);
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

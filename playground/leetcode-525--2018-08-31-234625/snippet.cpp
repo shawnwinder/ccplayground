@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -46,13 +48,14 @@ using namespace std;
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        if (nums.empty()) return 0;
+        if (nums.empty())
+            return 0;
         unordered_map<int, int> m;
         m[0] = -1;
         int acc = 0;
         int ret = 0;
-        for (int i=0;i<nums.size();i++) {
-            acc += nums[i] == 0? -1 : 1;
+        for (int i = 0; i < nums.size(); i++) {
+            acc += nums[i] == 0 ? -1 : 1;
             if (m.find(acc) == m.end()) {
                 m[acc] = i;
             } else {
@@ -63,6 +66,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
+#include <algorithm>
 
 using namespace std;
 
@@ -31,11 +33,6 @@ using namespace std;
  * S.
  *
  * Return the number of groups of special-equivalent strings from A.
- *
- *
- *
- *
- *
  *
  *
  * Example 1:
@@ -86,10 +83,21 @@ using namespace std;
 class Solution {
 public:
     int numSpecialEquivGroups(vector<string>& A) {
-
+        set<pair<string, string>> s;
+        for (auto& w : A) {
+            pair<string, string> p;
+            for (int i = 0; i < w.size(); ++i) {
+                if (i % 2)
+                    p.first += w[i];
+                else
+                    p.second += w[i];
+            }
+            sort(p.first.begin(), p.first.end());
+            sort(p.second.begin(), p.second.end());
+            s.insert(p);
+        }
+        return s.size();
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

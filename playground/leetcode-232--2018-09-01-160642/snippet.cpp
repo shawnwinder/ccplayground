@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -51,31 +52,25 @@ using namespace std;
  *
  */
 class MyQueue {
+    stack<int> input, output;
+
 public:
-    /** Initialize your data structure here. */
-    MyQueue() {
+    void push(int x) { input.push(x); }
 
-    }
-
-    /** Push element x to the back of queue. */
-    void push(int x) {
-
-    }
-
-    /** Removes the element from in front of queue and returns that element. */
     int pop() {
-
+        int ret = peek();
+        output.pop();
+        return ret;
     }
 
-    /** Get the front element. */
     int peek() {
-
+        if (output.empty())
+            while (input.size())
+                output.push(input.top()), input.pop();
+        return output.top();
     }
 
-    /** Returns whether the queue is empty. */
-    bool empty() {
-
-    }
+    bool empty() { return input.empty() && output.empty(); }
 };
 
 /**
@@ -87,6 +82,4 @@ public:
  * bool param_4 = obj.empty();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -49,31 +50,31 @@ using namespace std;
  */
 class Solution {
 public:
-  int splitArray(vector<int>& a, int m) {
-    long l = 0, h = 0;
-    for (long i: a) {
-      l = max(l, i);
-      h += i;
+    int splitArray(vector<int>& a, int m) {
+        long l = 0, h = 0;
+        for (long i : a) {
+            l = max(l, i);
+            h += i;
+        }
+        while (l < h) {
+            long x = l + (h - l) / 2, s = 0, n = m;
+            for (long i : a) {
+                s += i;
+                if (s > x) {
+                    s = i;
+                    if (n > 0)
+                        n--;
+                    else
+                        break;
+                }
+            }
+            if (n <= 0) // x is smaller than ans
+                l = x + 1;
+            else
+                h = x;
+        }
+        return l;
     }
-    while (l < h) {
-      long x = l+h >> 1, s = 0, n = m;
-      for (long i: a) {
-          s += i;
-          if (s > x) {
-              s = i;
-              if (n > 0) n --; else break;
-          }
-      }
-      if (n <= 0) // x is smaller than ans
-        l = x+1;
-      else
-        h = x;
-    }
-    return l;
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

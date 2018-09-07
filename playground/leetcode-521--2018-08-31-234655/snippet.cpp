@@ -58,10 +58,11 @@ using namespace std;
 class Solution {
 public:
     int findLUSlength(string a, string b) {
-        if (a == b) return -1; else return max(a.size(), b.size());
+        if (a == b)
+            return -1;
+        else
+            return max(a.size(), b.size());
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -47,37 +49,36 @@ using namespace std;
  */
 class Solution {
 public:
-      unordered_set<string> res;
-      void f(const string &s, string ss, int k, int left, int right, int state) {
+    unordered_set<string> res;
+    void f(const string& s, string ss, int k, int left, int right, int state) {
         if (k == s.size()) {
-          if (! left && ! right && ! state)
-            res.insert(ss);
-          return;
+            if (!left && !right && !state)
+                res.insert(ss);
+            return;
         }
         if (s[k] == '(') {
-          if (left > 0)
-            f(s, ss, k+1, left-1, right, state);
-          f(s, ss+'(', k+1, left, right, state+1);
+            if (left > 0)
+                f(s, ss, k + 1, left - 1, right, state);
+            f(s, ss + '(', k + 1, left, right, state + 1);
         } else if (s[k] == ')') {
-          if (right > 0)
-            f(s, ss, k+1, left, right-1, state);
-          if (state > 0)
-            f(s, ss+')', k+1, left, right, state-1);
+            if (right > 0)
+                f(s, ss, k + 1, left, right - 1, state);
+            if (state > 0)
+                f(s, ss + ')', k + 1, left, right, state - 1);
         } else
-          f(s, ss+s[k], k+1, left, right, state);
-      }
+            f(s, ss + s[k], k + 1, left, right, state);
+    }
 
     vector<string> removeInvalidParentheses(string s) {
         int l = 0, r = 0;
-        for (auto c: s)
-            if (c == '(') l++;
-            else if (c == ')') l ? l-- : r++;
+        for (auto c : s)
+            if (c == '(')
+                l++;
+            else if (c == ')')
+                l ? l-- : r++;
         f(s, "", 0, l, r, 0);
-        
         return vector<string>(res.begin(), res.end());
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

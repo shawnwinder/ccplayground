@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <unordered_set>
 
 using namespace std;
 
@@ -60,7 +62,8 @@ public:
         for (int i = 0; i < n; ++i) {
             sum += nums[i];
             int mod = k == 0 ? sum : sum % k;
-            if (modk.count(mod)) return true;
+            if (modk.count(mod))
+                return true;
             modk.insert(pre);
             pre = mod;
         }
@@ -68,6 +71,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

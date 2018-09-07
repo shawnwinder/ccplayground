@@ -83,13 +83,13 @@ public:
         , y_center_(y_center)
         , gen1(rd())
         , gen2(rd())
-        , r(radius)
-        , t(M_PI) {}
+        , r(0, 1)
+        , t(0, 2 * M_PI) {}
 
     vector<double> randPoint() {
-        double rs = r(gen1);
+        double rs = sqrt(r(gen1)) * radius_;
         double ts = t(gen2);
-        return { x_center_ + radius_ * cos(ts), y_center_ + radius_ * sin(ts) };
+        return { x_center_ + rs * cos(ts), y_center_ + rs * sin(ts) };
     }
 };
 
@@ -98,18 +98,6 @@ public:
  * Solution obj = new Solution(radius, x_center, y_center);
  * vector<double> param_1 = obj.randPoint();
  */
-
-int mymain(int argc, char* argv[]) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> r;
-    for (auto i = 1u; i < 10; ++i) {
-        std::cout << sin(M_PI / i) << std::endl;
-    }
-
-    return 0;
-}
-
 
 int mymain(int argc, char* argv[]) {
     std::random_device rd;

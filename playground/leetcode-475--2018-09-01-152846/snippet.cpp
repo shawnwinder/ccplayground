@@ -3,6 +3,9 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
 
 using namespace std;
 
@@ -59,22 +62,20 @@ using namespace std;
  */
 class Solution {
 public:
-  int findRadius(vector<int>& houses, vector<int>& heaters) {
-    int r = 0;
-    sort(heaters.begin(), heaters.end());
-    sort(houses.begin(), houses.end());
-    auto it = heaters.begin();
-    for (int x: houses) {
-      it = lower_bound(it, heaters.end(), x);
-      int t = it != heaters.end() ? *it-x : INT_MAX;
-      if (it != heaters.begin()) t = min(t, x-it[-1]);
-      r = max(r, t);
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        int r = 0;
+        sort(heaters.begin(), heaters.end());
+        sort(houses.begin(), houses.end());
+        auto it = heaters.begin();
+        for (int x : houses) {
+            it = lower_bound(it, heaters.end(), x);
+            int t = it != heaters.end() ? *it - x : INT_MAX;
+            if (it != heaters.begin())
+                t = min(t, x - it[-1]);
+            r = max(r, t);
+        }
+        return r;
     }
-    return r;
-  }
 };
 
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

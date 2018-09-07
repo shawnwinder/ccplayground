@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -43,27 +45,20 @@ using namespace std;
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
-        vector<int> ret(nums.size(), -1);
-        deque<vector<int>> s;
-        for (int i=0; i<nums.size(); i++) {
-              while (!s.empty() && s.back()[1] < nums[i]) {
-                  ret[s.back()[0]] = nums[i];
-                  s.pop_back();
-              }
-            s.push_back({i, nums[i]});
-        }
-        
-        for (int i=0; i<nums.size(); i++) {
-            while (!s.empty() && s.back()[1] < nums[i]) {
-                ret[s.back()[0]] = nums[i];
-                s.pop_back();
+        int n = nums.size();
+        vector<int> next(n, -1);
+        stack<int> s; // index stack
+        for (int i = 0; i < n * 2; i++) {
+            int num = nums[i % n];
+            while (!s.empty() && nums[s.top()] < num) {
+                next[s.top()] = num;
+                s.pop();
             }
-            if (s.empty()) break;
+            if (i < n)
+                s.push(i);
         }
-        return ret;
+        return next;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

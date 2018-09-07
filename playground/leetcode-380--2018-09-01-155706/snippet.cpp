@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -15,7 +17,8 @@ using namespace std;
  * Medium (40.41%)
  * Total Accepted:    71.9K
  * Total Submissions: 178K
- * Testcase Example:  '["RandomizedSet","insert","remove","insert","getRandom","remove","insert","getRandom"]\n[[],[1],[2],[2],[],[1],[2],[]]'
+ * Testcase Example:
+ * '["RandomizedSet","insert","remove","insert","getRandom","remove","insert","getRandom"]\n[[],[1],[2],[2],[],[1],[2],[]]'
  *
  * Design a data structure that supports all following operations in average
  * O(1) time.
@@ -58,26 +61,37 @@ using namespace std;
  *
  */
 class RandomizedSet {
+    vector<int> nums;
+    unordered_map<int, int> m;
+
 public:
     /** Initialize your data structure here. */
-    RandomizedSet() {
+    RandomizedSet() {}
 
-    }
-
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified
+     * element. */
     bool insert(int val) {
-
+        if (m.find(val) != m.end())
+            return false;
+        nums.emplace_back(val);
+        m[val] = nums.size() - 1;
+        return true;
     }
 
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     bool remove(int val) {
-
+        if (m.find(val) == m.end())
+            return false;
+        int last = nums.back();
+        m[last] = m[val];
+        nums[m[val]] = last;
+        nums.pop_back();
+        m.erase(val);
+        return true;
     }
 
     /** Get a random element from the set. */
-    int getRandom() {
-
-    }
+    int getRandom() { return nums[rand() % nums.size()]; }
 };
 
 /**
@@ -88,6 +102,4 @@ public:
  * int param_3 = obj.getRandom();
  */
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

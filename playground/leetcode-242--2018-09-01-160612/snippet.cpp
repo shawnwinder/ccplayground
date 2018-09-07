@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -45,20 +47,19 @@ using namespace std;
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        auto cnt = vector<int>(255, 0);
-        for(auto c: s) {
-            cnt[c] ++;
+        unordered_map<char, int> cnt;
+        for (auto c : s) {
+            cnt[c]++;
         }
-        for(auto c: t) {
-            cnt[c] --;
+        for (auto c : t) {
+            cnt[c]--;
         }
-        for(auto c: cnt) {
-            if(c != 0) return false;
+        for (auto c : cnt) {
+            if (c.second != 0)
+                return false;
         }
         return true;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -35,11 +35,7 @@ using namespace std;
  */
 class Solution {
 public:
-    int addDigits(int num) {
-        return num - 9 * ((num-1) / 9);
-    }
+    int addDigits(int num) { return num - 9 * ((num - 1) / 9); }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

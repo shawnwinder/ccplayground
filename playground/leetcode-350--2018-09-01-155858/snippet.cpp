@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -59,10 +61,11 @@ public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
         unordered_map<int, int> m;
         vector<int> ret;
-        for (int n:nums1) m[n] ++;
-        for (int n:nums2) {
+        for (int n : nums1)
+            m[n]++;
+        for (int n : nums2) {
             if (m[n] > 0) {
-                m[n] --;
+                m[n]--;
                 ret.push_back(n);
             }
         }
@@ -70,6 +73,4 @@ public:
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

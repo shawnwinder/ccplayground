@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -36,46 +37,36 @@ using namespace std;
  *
  */
 class Solution {
-public:
-  int move(int a, int b, int c) {
-    return ((a + b) % c + c) % c;
-  }
-  bool traverse(int i, vector<int>& nums) {
-    int len = nums.size();
-    if (nums[i] == 0) return false;
-    int one = i, two = i;
-    do {
-      int last = one;
-      cout << "one: " << one << " ---> ";
-      one = move(one, nums[one], len);
-      cout << one << endl;
-      if (one == last) return false;
-      if (nums[one] == 0) return false;
-      if (nums[one] * nums[last] < 0) return false;
-      cout << "two: " << two << " ---> ";
-      two = move(two, nums[two], len);
-      last = two;
-      two = move(two, nums[two], len);
-      if (two == last) return false;
-      if (nums[two] * nums[last] < 0) return false;
-      cout << two << endl;
-      if (nums[two] == 0) return false;
-    } while (one != two);
-    return true;
-  }
-
-  bool circularArrayLoop(vector<int>& nums) {
-    for (int i = 0; i < nums.size(); i++) {
-      if (nums[i] == 0) continue;
-      if (traverse(i, nums)) return true;
-      nums[i] = 0;
+    int advanceBy(int step, int j, vector<int>& nums, int dir) {
+        int n = nums.size();
+        for (; step > 0; step--) {
+            j = (j + nums[j] + n) % n;
+            if (nums[j] * dir <= 0)
+                return -1;
+        }
+        return j;
     }
-    return false;
-  }
+
+public:
+    bool circularArrayLoop(vector<int>& nums) {
+        bool loop = false;
+        for (int i = 0; i < nums.size() && !loop; i++)
+            if (nums[i]) {
+                int j1 = i, j2 = i, dir = nums[i];
+                do {
+                    j1 = advanceBy(1, j1, nums, dir);
+                    j2 = advanceBy(2, j2, nums, dir);
+                } while (j1 >= 0 && j2 >= 0 && j1 != j2);
+                if (j1 >= 0 && j2 >= 0 && j1 == j2) {
+                    if (j1 == advanceBy(1, j1, nums, dir))
+                        nums[j1] = 0;
+                    else
+                        loop = true;
+                }
+                nums[i] = 0;
+            }
+        return loop;
+    }
 };
 
-
-
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

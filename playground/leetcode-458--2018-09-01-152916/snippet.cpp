@@ -1,3 +1,4 @@
+#include <cmath>
 // === C++ Playground ===
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
@@ -35,11 +36,9 @@ using namespace std;
 class Solution {
 public:
     int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
-        int r = minutesToTest/minutesToDie +1;
-        return ceil(log( buckets)/log(r));
+        int r = minutesToTest / minutesToDie + 1;
+        return ceil(log(buckets) / log(r));
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

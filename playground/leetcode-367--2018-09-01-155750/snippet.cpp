@@ -3,6 +3,8 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <climits>
+#include <cmath>
 
 using namespace std;
 
@@ -44,15 +46,11 @@ using namespace std;
 class Solution {
 public:
     bool isPerfectSquare(int num) {
-        for (long long i = 0; i < num ; i ++) {
-            long long x = i*i;
-            if (x == num) return true;
-            if (x > num) return false;
-        }
-        return true;
+        int x = floor(sqrt(INT_MAX)), y;
+        while ((y = (x + num / x) >> 1) < x)
+            x = y;
+        return x * x == num;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

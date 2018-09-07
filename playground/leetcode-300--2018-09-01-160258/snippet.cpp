@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -44,16 +45,16 @@ public:
     int lengthOfLIS(vector<int>& nums) {
         vector<int> dp(nums.size(), 1);
         int ans = 0;
-        for (int i =0;i<nums.size();i++) {
-            for (int j=0;j<i;j++) {
-                if (nums[i] > nums[j]) dp[i] = max(dp[i], dp[j] + 1);
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j])
+                    dp[i] = max(dp[i], dp[j] + 1);
             }
-            if (dp[i] > ans) ans = dp[i];
+            if (dp[i] > ans)
+                ans = dp[i];
         }
         return ans;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

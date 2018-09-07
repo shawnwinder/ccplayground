@@ -15,7 +15,8 @@ using namespace std;
  * Medium (31.20%)
  * Total Accepted:    3.1K
  * Total Submissions: 10K
- * Testcase Example:  '{"$id":"1","child":null,"next":{"$id":"2","child":null,"next":{"$id":"3","child":{"$id":"7","child":null,"next":{"$id":"8","child":{"$id":"11","child":null,"next":{"$id":"12","child":null,"next":null,"prev":{"$ref":"11"},"val":12},"prev":null,"val":11},"next":{"$id":"9","child":null,"next":{"$id":"10","child":null,"next":null,"prev":{"$ref":"9"},"val":10},"prev":{"$ref":"8"},"val":9},"prev":{"$ref":"7"},"val":8},"prev":null,"val":7},"next":{"$id":"4","child":null,"next":{"$id":"5","child":null,"next":{"$id":"6","child":null,"next":null,"prev":{"$ref":"5"},"val":6},"prev":{"$ref":"4"},"val":5},"prev":{"$ref":"3"},"val":4},"prev":{"$ref":"2"},"val":3},"prev":{"$ref":"1"},"val":2},"prev":null,"val":1}'
+ * Testcase Example:
+ * '{"$id":"1","child":null,"next":{"$id":"2","child":null,"next":{"$id":"3","child":{"$id":"7","child":null,"next":{"$id":"8","child":{"$id":"11","child":null,"next":{"$id":"12","child":null,"next":null,"prev":{"$ref":"11"},"val":12},"prev":null,"val":11},"next":{"$id":"9","child":null,"next":{"$id":"10","child":null,"next":null,"prev":{"$ref":"9"},"val":10},"prev":{"$ref":"8"},"val":9},"prev":{"$ref":"7"},"val":8},"prev":null,"val":7},"next":{"$id":"4","child":null,"next":{"$id":"5","child":null,"next":{"$id":"6","child":null,"next":null,"prev":{"$ref":"5"},"val":6},"prev":{"$ref":"4"},"val":5},"prev":{"$ref":"3"},"val":4},"prev":{"$ref":"2"},"val":3},"prev":{"$ref":"1"},"val":2},"prev":null,"val":1}'
  *
  * You are given a doubly linked list which in addition to the next and
  * previous pointers, it could have a child pointer, which may or may not point
@@ -50,8 +51,8 @@ using namespace std;
  *
  *
  */
-/*
-// Definition for a Node.
+
+#ifdef CC_PLAYGROUND
 class Node {
 public:
     int val = NULL;
@@ -68,14 +69,27 @@ public:
         child = _child;
     }
 };
-*/
+#endif
+
 class Solution {
 public:
     Node* flatten(Node* head) {
-
+        for (Node* h = head; h; h = h->next) {
+            if (h->child) {
+                Node* next = h->next;
+                h->next = h->child;
+                h->next->prev = h;
+                h->child = NULL;
+                Node* p = h->next;
+                while (p->next)
+                    p = p->next;
+                p->next = next;
+                if (next)
+                    next->prev = p;
+            }
+        }
+        return head;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -2,7 +2,10 @@
 // Execute the snippet with Ctrl-Return
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
+#include <cmath>
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -40,24 +43,22 @@ using namespace std;
 class Solution {
 public:
     int dis(pair<int, int> a, pair<int, int> b) {
-        return pow(b.second-a.second, 2) + pow(b.first - a.first, 2);
+        return pow(b.second - a.second, 2) + pow(b.first - a.first, 2);
     }
     int numberOfBoomerangs(vector<pair<int, int>>& points) {
         int ret = 0;
-        for (int i=0; i< points.size();i++) {
+        for (int i = 0; i < points.size(); i++) {
             unordered_map<int, int> m;
-            for (int j=0; j<points.size();j++) {
-                m[dis(points[i], points[j])] ++;
+            for (int j = 0; j < points.size(); j++) {
+                m[dis(points[i], points[j])]++;
             }
             for (auto& e : m) {
                 int n = e.second;
-                ret += n * (n-1);
+                ret += n * (n - 1);
             }
         }
         return ret;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -48,27 +49,19 @@ using namespace std;
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        
-        int s = 0;
-        int t = nums.size();
-        
-        while (true) {
-            int slow = nums[0];
-            int fast = nums[nums[0]];
-            while (slow != fast) {
-                slow = nums[slow];
-                fast = nums[nums[fast]];
-            }
-            int head = 0;
-            while (head != slow) {
-                head = nums[head];
-                slow = nums[slow];
-            }
-            return head;
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
         }
+        int head = 0;
+        while (head != slow) {
+            head = nums[head];
+            slow = nums[slow];
+        }
+        return head;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

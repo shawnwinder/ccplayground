@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -50,23 +51,43 @@ using namespace std;
 
 #ifdef CC_PLAYGROUND
 struct TreeNode {
-int val;
- TreeNode* left;
- TreeNode* right;
- TreeNode(int x)
- : val(x)
- , left(NULL)
- , right(NULL) {}
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x)
+        : val(x)
+        , left(NULL)
+        , right(NULL) {}
 };
 #endif
 
 class Solution {
-public:
-    vector<TreeNode*> allPossibleFBT(int N) {
-
+    vector<TreeNode*> allFBT(int n) {
+        vector<TreeNode*> ans;
+        if (n == 1) {
+            TreeNode* a = new TreeNode(0);
+            ans.push_back(a);
+            return ans;
+        }
+        if (n < 1 || n % 2 == 0)
+            return ans;
+        for (int i = 1; i < n; i = i + 2) {
+            vector<TreeNode*> lans = allFBT(i);
+            vector<TreeNode*> rans = allFBT(n - i - 1);
+            for (int j = 0; j < lans.size(); j++) {
+                for (int k = 0; k < rans.size(); k++) {
+                    TreeNode* r = new TreeNode(0);
+                    r->left = lans[j];
+                    r->right = rans[k];
+                    ans.push_back(r);
+                }
+            }
+        }
+        return ans;
     }
+
+public:
+    vector<TreeNode*> allPossibleFBT(int N) { return allFBT(N); }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

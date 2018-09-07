@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -60,23 +61,19 @@ using namespace std;
  */
 class Solution {
 public:
-    int maxscore(vector<int>& nums, vector<vector<int>>& memo, int s, int t, int sum) {
-        if (s == t) return nums[s];
-        if (memo[s][t] == -1) {
-            int a = sum - maxscore(nums, memo, s + 1, t, sum - nums[s]);
-            int b = sum - maxscore(nums, memo, s, t - 1, sum - nums[t]);
-            memo[s][t] = max(a, b);
-        }
-        return memo[s][t];
-    }
     bool PredictTheWinner(vector<int>& nums) {
-        vector<vector<int>> memo(nums.size(), vector<int>(nums.size(), -1));
-        int sum = 0;
-        for (int i:nums) sum += i;
-        return maxscore(nums, memo, 0, nums.size() -1, sum) >= (sum + 1) / 2;
+        int n = nums.size();
+        // Store the maximum score player1 can get for any sub array [i, j]
+        vector<vector<int>> dp(n, vector<int>(n));
+        for (int i = 0; i < n; i++)
+            dp[i][i] = nums[i];
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j + i < n; j++) {
+                dp[j][j + i] = max(nums[j + i] - dp[j][j + i - 1], nums[j] - dp[j + 1][j + i]);
+            }
+        }
+        return dp[0][n - 1] >= 0;
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }

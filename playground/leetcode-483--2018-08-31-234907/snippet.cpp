@@ -3,6 +3,7 @@
 // Remove the snippet completely with its dir and all files M-x `cc-playground-rm`
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -56,10 +57,18 @@ using namespace std;
 class Solution {
 public:
     string smallestGoodBase(string n) {
-
+        unsigned long num = stol(n);
+        for (int m = 63 - __builtin_clz(num); m > 1; m--) {
+            unsigned long x = pow(num, 1.0 / m), s = 1, c = 1;
+            if (x > 1) {
+                for (int i = m; i--;)
+                    s += c *= x;
+                if (s == num)
+                    return to_string(x);
+            }
+        }
+        return to_string(num - 1);
     }
 };
 
-int mymain(int argc, char *argv[]) {
-    return 0;
-}
+int mymain(int argc, char* argv[]) { return 0; }
